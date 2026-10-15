@@ -42,11 +42,11 @@ Public Class ITC
                 </soap:Envelope>
 "
 
-            File.WriteAllText(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Temp", "soap_request.xml"), soap)
+            File.WriteAllText(ObtenerRutaTemp("soap_request.xml"), soap)
 
             Dim xmlResponse As XmlDocument = PostWebservice(UrlProduccion, SoapAction, soap)
 
-            File.WriteAllText(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Temp", "soap_request.xml"), xmlResponse.OuterXml)
+            File.WriteAllText(ObtenerRutaTemp("soap_response.xml"), xmlResponse.OuterXml)
 
             VerificarRespuestaGeneral(xmlResponse)
 
@@ -85,11 +85,11 @@ Public Class ITC
                 </soap:Envelope>
 "
 
-            File.WriteAllText(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Temp", "soap_request.xml"), soap)
+            File.WriteAllText(ObtenerRutaTemp("soap_request.xml"), soap)
 
             Dim xmlResponse As XmlDocument = PostWebservice(UrlProduccion, SoapAction, soap)
 
-            File.WriteAllText(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Temp", "soap_request.xml"), xmlResponse.OuterXml)
+            File.WriteAllText(ObtenerRutaTemp("soap_response.xml"), xmlResponse.OuterXml)
 
             VerificarRespuestaGeneral(xmlResponse)
 
@@ -103,39 +103,6 @@ Public Class ITC
         End Try
 
     End Function
-
-    Public Sub SolicitarAutorizacion1(argIdPC As String, argReceta As Receta, argIdMensaje As Long) 'Implements IValidador.SolicitarAutorizacion
-
-        Try
-
-
-            Dim rutaRespuesta As String = "C:\sicofa_cliente\Temp\RespuestaOsde.xml"
-
-            Dim xmlResponse As New XmlDocument()
-
-            xmlResponse.Load(rutaRespuesta)
-
-            '========================================================
-            ' FIN PRUEBA LOCAL
-            '========================================================
-
-            VerificarRespuestaGeneral(xmlResponse)
-
-            ParsearAutorizacion(argReceta, xmlResponse)
-
-        Catch ex As Exception
-
-            Throw New Exception(
-            Funciones.MensajeError(
-                Me.ToString,
-                "AutorizacionReceta",
-                ex.Message
-            )
-        )
-
-        End Try
-
-    End Sub
 
     Public Sub SolicitarAutorizacion(argIdPC As String, argReceta As Receta, argIdMensaje As Long) Implements IValidador.SolicitarAutorizacion
 
@@ -161,11 +128,11 @@ Public Class ITC
                 </soap:Envelope>
 "
 
-            File.WriteAllText(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Temp", "soap_request.xml"), soap)
+            File.WriteAllText(ObtenerRutaTemp("soap_request.xml"), soap)
 
             Dim xmlResponse As XmlDocument = PostWebservice(UrlProduccion, SoapAction, soap)
 
-            File.WriteAllText(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Temp", "soap_request.xml"), xmlResponse.OuterXml)
+            File.WriteAllText(ObtenerRutaTemp("soap_response.xml"), xmlResponse.OuterXml)
 
             VerificarRespuestaGeneral(xmlResponse)
 
@@ -202,11 +169,11 @@ Public Class ITC
                 </soap:Envelope>
 "
 
-            File.WriteAllText(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Temp", "soap_request.xml"), soap)
+            File.WriteAllText(ObtenerRutaTemp("soap_request.xml"), soap)
 
             Dim xmlResponse As XmlDocument = PostWebservice(UrlProduccion, SoapAction, soap)
 
-            File.WriteAllText(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Temp", "soap_request.xml"), xmlResponse.OuterXml)
+            File.WriteAllText(ObtenerRutaTemp("soap_response.xml"), xmlResponse.OuterXml)
 
             VerificarRespuestaGeneral(xmlResponse)
 

@@ -19,5 +19,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\SiCoFa.Entidades\Entidades.vbproj" />
+    <ProjectReference Include="..\Vecho\Vecho.vbproj" />
   </ItemGroup>
 </Project>

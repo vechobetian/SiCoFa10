@@ -12,7 +12,10 @@ Module ModInicio
     Public Sub Main()
         Try
 
-            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12
+            ' Crear la carpeta Temp centralizada para el usuario actual
+            Dim appDataFolder As String = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData)
+            Dim rutaTemp As String = System.IO.Path.Combine(appDataFolder, "SiCoFa", "Temp")
+            System.IO.Directory.CreateDirectory(rutaTemp)
 
             Dim MacAddress As String = ObtenerMacAddress()
             g_ParametrosTerminal = ObtenerParametrosTerminal(MacAddress)

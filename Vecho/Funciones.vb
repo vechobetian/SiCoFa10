@@ -1,3 +1,5 @@
+Imports System.IO
+
 Public Module Funciones
     Public Function NumEnLetras(Numero As String) As String
         Dim b, paso As Integer
@@ -272,4 +274,11 @@ Public Module Funciones
         Return msj
 
     End Function
+
+    Public Function ObtenerRutaTemp(nombreArchivo As String) As String
+        Dim carpetaTemp As String = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "SiCoFa", "Temp")
+        System.IO.Directory.CreateDirectory(carpetaTemp)
+        Return System.IO.Path.Combine(carpetaTemp, nombreArchivo)
+    End Function
+
 End Module

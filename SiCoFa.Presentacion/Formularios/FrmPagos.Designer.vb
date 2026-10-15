@@ -24,332 +24,358 @@ Partial Class FrmPagos
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FrmPagos))
-        Me.PanelDatosCliente = New System.Windows.Forms.Panel()
-        Me.lblPagoElectronico = New System.Windows.Forms.Label()
-        Me.lblNumeroDocumento = New System.Windows.Forms.Label()
-        Me.lblTipoContribuyente = New System.Windows.Forms.Label()
-        Me.lblNombreCliente = New System.Windows.Forms.Label()
-        Me.lblPagoElectronicoEtiqueta = New System.Windows.Forms.Label()
-        Me.lblTipoDocumento = New System.Windows.Forms.Label()
-        Me.lblTipoContribuyenteEtiqueta = New System.Windows.Forms.Label()
-        Me.lblNombreClienteEtiqueta = New System.Windows.Forms.Label()
-        Me.Panel1 = New System.Windows.Forms.Panel()
-        Me.Button2 = New System.Windows.Forms.Button()
-        Me.Button1 = New System.Windows.Forms.Button()
-        Me.btnPagoElectronico = New System.Windows.Forms.Button()
-        Me.btnCuentaCorriente = New System.Windows.Forms.Button()
-        Me.txtImporteCuentaCorriente = New System.Windows.Forms.TextBox()
-        Me.txtImporteEfectivo = New System.Windows.Forms.TextBox()
-        Me.txtImporteAPagar = New System.Windows.Forms.TextBox()
-        Me.txtTipoComprobante = New System.Windows.Forms.TextBox()
-        Me.txtImportePagoElectronico = New System.Windows.Forms.TextBox()
-        Me.lblImportePagoElectronico = New System.Windows.Forms.Label()
-        Me.lblImporteCuentaCorriente = New System.Windows.Forms.Label()
-        Me.lblImporteEfectivo = New System.Windows.Forms.Label()
-        Me.lblImpAPagar = New System.Windows.Forms.Label()
-        Me.lblTipoComprobante = New System.Windows.Forms.Label()
-        Me.btnFinalizar = New System.Windows.Forms.Button()
-        Me.PanelDatosCliente.SuspendLayout()
-        Me.Panel1.SuspendLayout()
-        Me.SuspendLayout()
-        '
-        'PanelDatosCliente
-        '
-        Me.PanelDatosCliente.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.PanelDatosCliente.Controls.Add(Me.lblPagoElectronico)
-        Me.PanelDatosCliente.Controls.Add(Me.lblNumeroDocumento)
-        Me.PanelDatosCliente.Controls.Add(Me.lblTipoContribuyente)
-        Me.PanelDatosCliente.Controls.Add(Me.lblNombreCliente)
-        Me.PanelDatosCliente.Controls.Add(Me.lblPagoElectronicoEtiqueta)
-        Me.PanelDatosCliente.Controls.Add(Me.lblTipoDocumento)
-        Me.PanelDatosCliente.Controls.Add(Me.lblTipoContribuyenteEtiqueta)
-        Me.PanelDatosCliente.Controls.Add(Me.lblNombreClienteEtiqueta)
-        Me.PanelDatosCliente.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.PanelDatosCliente.Location = New System.Drawing.Point(12, 12)
-        Me.PanelDatosCliente.Name = "PanelDatosCliente"
-        Me.PanelDatosCliente.Size = New System.Drawing.Size(830, 197)
-        Me.PanelDatosCliente.TabIndex = 0
-        '
-        'lblPagoElectronico
-        '
-        Me.lblPagoElectronico.AccessibleDescription = "IVACliente"
-        Me.lblPagoElectronico.Font = New System.Drawing.Font("Microsoft Sans Serif", 18.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblPagoElectronico.Location = New System.Drawing.Point(338, 153)
-        Me.lblPagoElectronico.Name = "lblPagoElectronico"
-        Me.lblPagoElectronico.Size = New System.Drawing.Size(487, 29)
-        Me.lblPagoElectronico.TabIndex = 7
-        Me.lblPagoElectronico.Text = "No Establecido"
-        '
-        'lblNumeroDocumento
-        '
-        Me.lblNumeroDocumento.AccessibleDescription = "IVACliente"
-        Me.lblNumeroDocumento.Font = New System.Drawing.Font("Microsoft Sans Serif", 18.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblNumeroDocumento.Location = New System.Drawing.Point(84, 96)
-        Me.lblNumeroDocumento.Name = "lblNumeroDocumento"
-        Me.lblNumeroDocumento.Size = New System.Drawing.Size(736, 29)
-        Me.lblNumeroDocumento.TabIndex = 6
-        Me.lblNumeroDocumento.Text = "No Aplica"
-        '
-        'lblTipoContribuyente
-        '
-        Me.lblTipoContribuyente.AccessibleDescription = "IVACliente"
-        Me.lblTipoContribuyente.Font = New System.Drawing.Font("Microsoft Sans Serif", 18.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblTipoContribuyente.Location = New System.Drawing.Point(302, 55)
-        Me.lblTipoContribuyente.Name = "lblTipoContribuyente"
-        Me.lblTipoContribuyente.Size = New System.Drawing.Size(523, 29)
-        Me.lblTipoContribuyente.TabIndex = 5
-        Me.lblTipoContribuyente.Text = "Consumidor Final"
-        '
-        'lblNombreCliente
-        '
-        Me.lblNombreCliente.Font = New System.Drawing.Font("Microsoft Sans Serif", 24.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblNombreCliente.Location = New System.Drawing.Point(151, 9)
-        Me.lblNombreCliente.Name = "lblNombreCliente"
-        Me.lblNombreCliente.Size = New System.Drawing.Size(674, 37)
-        Me.lblNombreCliente.TabIndex = 4
-        Me.lblNombreCliente.Text = "Consumidor Final"
-        '
-        'lblPagoElectronicoEtiqueta
-        '
-        Me.lblPagoElectronicoEtiqueta.Font = New System.Drawing.Font("Microsoft Sans Serif", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblPagoElectronicoEtiqueta.Location = New System.Drawing.Point(12, 153)
-        Me.lblPagoElectronicoEtiqueta.Name = "lblPagoElectronicoEtiqueta"
-        Me.lblPagoElectronicoEtiqueta.Size = New System.Drawing.Size(327, 29)
-        Me.lblPagoElectronicoEtiqueta.TabIndex = 3
-        Me.lblPagoElectronicoEtiqueta.Text = "Tarjeta / Pago Electronico:"
-        '
-        'lblTipoDocumento
-        '
-        Me.lblTipoDocumento.AutoSize = True
-        Me.lblTipoDocumento.Font = New System.Drawing.Font("Microsoft Sans Serif", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblTipoDocumento.Location = New System.Drawing.Point(14, 96)
-        Me.lblTipoDocumento.Name = "lblTipoDocumento"
-        Me.lblTipoDocumento.Size = New System.Drawing.Size(64, 29)
-        Me.lblTipoDocumento.TabIndex = 2
-        Me.lblTipoDocumento.Text = "DNI:"
-        '
-        'lblTipoContribuyenteEtiqueta
-        '
-        Me.lblTipoContribuyenteEtiqueta.AccessibleDescription = "IVACliente"
-        Me.lblTipoContribuyenteEtiqueta.Font = New System.Drawing.Font("Microsoft Sans Serif", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblTipoContribuyenteEtiqueta.Location = New System.Drawing.Point(12, 55)
-        Me.lblTipoContribuyenteEtiqueta.Name = "lblTipoContribuyenteEtiqueta"
-        Me.lblTipoContribuyenteEtiqueta.Size = New System.Drawing.Size(284, 29)
-        Me.lblTipoContribuyenteEtiqueta.TabIndex = 1
-        Me.lblTipoContribuyenteEtiqueta.Text = "Tipo de Contribuyente:"
-        '
-        'lblNombreClienteEtiqueta
-        '
-        Me.lblNombreClienteEtiqueta.Font = New System.Drawing.Font("Microsoft Sans Serif", 24.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblNombreClienteEtiqueta.Location = New System.Drawing.Point(12, 9)
-        Me.lblNombreClienteEtiqueta.Name = "lblNombreClienteEtiqueta"
-        Me.lblNombreClienteEtiqueta.Size = New System.Drawing.Size(133, 37)
-        Me.lblNombreClienteEtiqueta.TabIndex = 0
-        Me.lblNombreClienteEtiqueta.Text = "Cliente:"
-        '
-        'Panel1
-        '
-        Me.Panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.Panel1.Controls.Add(Me.Button2)
-        Me.Panel1.Controls.Add(Me.Button1)
-        Me.Panel1.Controls.Add(Me.btnPagoElectronico)
-        Me.Panel1.Controls.Add(Me.btnCuentaCorriente)
-        Me.Panel1.Controls.Add(Me.txtImporteCuentaCorriente)
-        Me.Panel1.Controls.Add(Me.txtImporteEfectivo)
-        Me.Panel1.Controls.Add(Me.txtImporteAPagar)
-        Me.Panel1.Controls.Add(Me.txtTipoComprobante)
-        Me.Panel1.Controls.Add(Me.txtImportePagoElectronico)
-        Me.Panel1.Controls.Add(Me.lblImportePagoElectronico)
-        Me.Panel1.Controls.Add(Me.lblImporteCuentaCorriente)
-        Me.Panel1.Controls.Add(Me.lblImporteEfectivo)
-        Me.Panel1.Controls.Add(Me.lblImpAPagar)
-        Me.Panel1.Controls.Add(Me.lblTipoComprobante)
-        Me.Panel1.Location = New System.Drawing.Point(12, 215)
-        Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(830, 231)
-        Me.Panel1.TabIndex = 1
-        '
-        'Button2
-        '
-        Me.Button2.Enabled = False
-        Me.Button2.FlatAppearance.BorderColor = System.Drawing.Color.White
-        Me.Button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button2.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button2.Image = CType(resources.GetObject("Button2.Image"), System.Drawing.Image)
-        Me.Button2.Location = New System.Drawing.Point(272, 180)
-        Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(33, 30)
-        Me.Button2.TabIndex = 10
-        Me.Button2.UseVisualStyleBackColor = True
-        '
-        'Button1
-        '
-        Me.Button1.Enabled = False
-        Me.Button1.FlatAppearance.BorderColor = System.Drawing.Color.White
-        Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button1.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button1.Location = New System.Drawing.Point(272, 57)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(33, 30)
-        Me.Button1.TabIndex = 9
-        Me.Button1.Text = "$"
-        Me.Button1.UseVisualStyleBackColor = True
-        '
-        'btnPagoElectronico
-        '
-        Me.btnPagoElectronico.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btnPagoElectronico.Image = CType(resources.GetObject("btnPagoElectronico.Image"), System.Drawing.Image)
-        Me.btnPagoElectronico.Location = New System.Drawing.Point(272, 139)
-        Me.btnPagoElectronico.Name = "btnPagoElectronico"
-        Me.btnPagoElectronico.Size = New System.Drawing.Size(33, 30)
-        Me.btnPagoElectronico.TabIndex = 8
-        Me.btnPagoElectronico.TabStop = False
-        Me.btnPagoElectronico.UseVisualStyleBackColor = True
-        '
-        'btnCuentaCorriente
-        '
-        Me.btnCuentaCorriente.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btnCuentaCorriente.Image = CType(resources.GetObject("btnCuentaCorriente.Image"), System.Drawing.Image)
-        Me.btnCuentaCorriente.Location = New System.Drawing.Point(272, 98)
-        Me.btnCuentaCorriente.Name = "btnCuentaCorriente"
-        Me.btnCuentaCorriente.Size = New System.Drawing.Size(33, 30)
-        Me.btnCuentaCorriente.TabIndex = 7
-        Me.btnCuentaCorriente.TabStop = False
-        Me.btnCuentaCorriente.UseVisualStyleBackColor = True
-        '
-        'txtImporteCuentaCorriente
-        '
-        Me.txtImporteCuentaCorriente.Font = New System.Drawing.Font("Microsoft Sans Serif", 18.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtImporteCuentaCorriente.Location = New System.Drawing.Point(270, 95)
-        Me.txtImporteCuentaCorriente.Name = "txtImporteCuentaCorriente"
-        Me.txtImporteCuentaCorriente.Size = New System.Drawing.Size(550, 35)
-        Me.txtImporteCuentaCorriente.TabIndex = 4
-        Me.txtImporteCuentaCorriente.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        '
-        'txtImporteEfectivo
-        '
-        Me.txtImporteEfectivo.BackColor = System.Drawing.Color.White
-        Me.txtImporteEfectivo.Font = New System.Drawing.Font("Microsoft Sans Serif", 18.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtImporteEfectivo.Location = New System.Drawing.Point(270, 177)
-        Me.txtImporteEfectivo.Name = "txtImporteEfectivo"
-        Me.txtImporteEfectivo.ReadOnly = True
-        Me.txtImporteEfectivo.Size = New System.Drawing.Size(550, 35)
-        Me.txtImporteEfectivo.TabIndex = 6
-        Me.txtImporteEfectivo.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        '
-        'txtImporteAPagar
-        '
-        Me.txtImporteAPagar.BackColor = System.Drawing.Color.White
-        Me.txtImporteAPagar.Font = New System.Drawing.Font("Microsoft Sans Serif", 18.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtImporteAPagar.Location = New System.Drawing.Point(270, 54)
-        Me.txtImporteAPagar.Name = "txtImporteAPagar"
-        Me.txtImporteAPagar.ReadOnly = True
-        Me.txtImporteAPagar.Size = New System.Drawing.Size(550, 35)
-        Me.txtImporteAPagar.TabIndex = 3
-        Me.txtImporteAPagar.TabStop = False
-        Me.txtImporteAPagar.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        '
-        'txtTipoComprobante
-        '
-        Me.txtTipoComprobante.Font = New System.Drawing.Font("Microsoft Sans Serif", 18.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtTipoComprobante.Location = New System.Drawing.Point(270, 13)
-        Me.txtTipoComprobante.Name = "txtTipoComprobante"
-        Me.txtTipoComprobante.Size = New System.Drawing.Size(550, 35)
-        Me.txtTipoComprobante.TabIndex = 1
-        Me.txtTipoComprobante.TabStop = False
-        '
-        'txtImportePagoElectronico
-        '
-        Me.txtImportePagoElectronico.Enabled = False
-        Me.txtImportePagoElectronico.Font = New System.Drawing.Font("Microsoft Sans Serif", 18.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtImportePagoElectronico.Location = New System.Drawing.Point(270, 136)
-        Me.txtImportePagoElectronico.Name = "txtImportePagoElectronico"
-        Me.txtImportePagoElectronico.Size = New System.Drawing.Size(550, 35)
-        Me.txtImportePagoElectronico.TabIndex = 5
-        Me.txtImportePagoElectronico.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        '
-        'lblImportePagoElectronico
-        '
-        Me.lblImportePagoElectronico.Font = New System.Drawing.Font("Microsoft Sans Serif", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblImportePagoElectronico.Location = New System.Drawing.Point(14, 139)
-        Me.lblImportePagoElectronico.Name = "lblImportePagoElectronico"
-        Me.lblImportePagoElectronico.Size = New System.Drawing.Size(250, 30)
-        Me.lblImportePagoElectronico.TabIndex = 6
-        Me.lblImportePagoElectronico.Text = "Tarjeta / Pago Elec:"
-        '
-        'lblImporteCuentaCorriente
-        '
-        Me.lblImporteCuentaCorriente.Font = New System.Drawing.Font("Microsoft Sans Serif", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblImporteCuentaCorriente.Location = New System.Drawing.Point(14, 98)
-        Me.lblImporteCuentaCorriente.Name = "lblImporteCuentaCorriente"
-        Me.lblImporteCuentaCorriente.Size = New System.Drawing.Size(250, 30)
-        Me.lblImporteCuentaCorriente.TabIndex = 5
-        Me.lblImporteCuentaCorriente.Text = "Importe Cta. Cte:"
-        '
-        'lblImporteEfectivo
-        '
-        Me.lblImporteEfectivo.Font = New System.Drawing.Font("Microsoft Sans Serif", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblImporteEfectivo.Location = New System.Drawing.Point(14, 180)
-        Me.lblImporteEfectivo.Name = "lblImporteEfectivo"
-        Me.lblImporteEfectivo.Size = New System.Drawing.Size(250, 30)
-        Me.lblImporteEfectivo.TabIndex = 4
-        Me.lblImporteEfectivo.Text = "Importe Efectivo:"
-        '
-        'lblImpAPagar
-        '
-        Me.lblImpAPagar.Font = New System.Drawing.Font("Microsoft Sans Serif", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblImpAPagar.Location = New System.Drawing.Point(14, 57)
-        Me.lblImpAPagar.Name = "lblImpAPagar"
-        Me.lblImpAPagar.Size = New System.Drawing.Size(250, 30)
-        Me.lblImpAPagar.TabIndex = 3
-        Me.lblImpAPagar.Text = "Importe a Pagar:"
-        '
-        'lblTipoComprobante
-        '
-        Me.lblTipoComprobante.AccessibleDescription = "IVACliente"
-        Me.lblTipoComprobante.Font = New System.Drawing.Font("Microsoft Sans Serif", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblTipoComprobante.Location = New System.Drawing.Point(15, 16)
-        Me.lblTipoComprobante.Name = "lblTipoComprobante"
-        Me.lblTipoComprobante.Size = New System.Drawing.Size(250, 30)
-        Me.lblTipoComprobante.TabIndex = 1
-        Me.lblTipoComprobante.Text = "Comprobante:"
-        '
-        'btnFinalizar
-        '
-        Me.btnFinalizar.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btnFinalizar.FlatAppearance.BorderColor = System.Drawing.Color.White
-        Me.btnFinalizar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnFinalizar.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnFinalizar.ForeColor = System.Drawing.SystemColors.Highlight
-        Me.btnFinalizar.Image = CType(resources.GetObject("btnFinalizar.Image"), System.Drawing.Image)
-        Me.btnFinalizar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.btnFinalizar.Location = New System.Drawing.Point(681, 460)
-        Me.btnFinalizar.Name = "btnFinalizar"
-        Me.btnFinalizar.Size = New System.Drawing.Size(161, 40)
-        Me.btnFinalizar.TabIndex = 2
-        Me.btnFinalizar.TabStop = False
-        Me.btnFinalizar.Text = "&Finalizar (F10)"
-        Me.btnFinalizar.UseVisualStyleBackColor = True
-        '
-        'FrmPagos
-        '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
-        Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.BackColor = System.Drawing.Color.White
-        Me.ClientSize = New System.Drawing.Size(857, 512)
-        Me.ControlBox = False
-        Me.Controls.Add(Me.btnFinalizar)
-        Me.Controls.Add(Me.Panel1)
-        Me.Controls.Add(Me.PanelDatosCliente)
-        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
-        Me.Name = "FrmPagos"
-        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "Pagos del Cliente"
-        Me.PanelDatosCliente.ResumeLayout(False)
-        Me.PanelDatosCliente.PerformLayout()
-        Me.Panel1.ResumeLayout(False)
-        Me.Panel1.PerformLayout()
-        Me.ResumeLayout(False)
+        PanelDatosCliente = New Panel()
+        lblPagoElectronico = New Label()
+        lblNumeroDocumento = New Label()
+        lblTipoContribuyente = New Label()
+        lblNombreCliente = New Label()
+        lblPagoElectronicoEtiqueta = New Label()
+        lblTipoDocumento = New Label()
+        lblTipoContribuyenteEtiqueta = New Label()
+        lblNombreClienteEtiqueta = New Label()
+        Panel1 = New Panel()
+        Button2 = New Button()
+        Button1 = New Button()
+        btnPagoElectronico = New Button()
+        btnCuentaCorriente = New Button()
+        txtImporteCuentaCorriente = New TextBox()
+        txtImporteEfectivo = New TextBox()
+        txtImporteAPagar = New TextBox()
+        txtTipoComprobante = New TextBox()
+        txtImportePagoElectronico = New TextBox()
+        lblImportePagoElectronico = New Label()
+        lblImporteCuentaCorriente = New Label()
+        lblImporteEfectivo = New Label()
+        lblImpAPagar = New Label()
+        lblTipoComprobante = New Label()
+        btnFinalizar = New Button()
+        PanelDatosCliente.SuspendLayout()
+        Panel1.SuspendLayout()
+        SuspendLayout()
+        ' 
+        ' PanelDatosCliente
+        ' 
+        PanelDatosCliente.BorderStyle = BorderStyle.FixedSingle
+        PanelDatosCliente.Controls.Add(lblPagoElectronico)
+        PanelDatosCliente.Controls.Add(lblNumeroDocumento)
+        PanelDatosCliente.Controls.Add(lblTipoContribuyente)
+        PanelDatosCliente.Controls.Add(lblNombreCliente)
+        PanelDatosCliente.Controls.Add(lblPagoElectronicoEtiqueta)
+        PanelDatosCliente.Controls.Add(lblTipoDocumento)
+        PanelDatosCliente.Controls.Add(lblTipoContribuyenteEtiqueta)
+        PanelDatosCliente.Controls.Add(lblNombreClienteEtiqueta)
+        PanelDatosCliente.Font = New Font("Microsoft Sans Serif", 8.25F, FontStyle.Italic, GraphicsUnit.Point, CByte(0))
+        PanelDatosCliente.Location = New Point(14, 14)
+        PanelDatosCliente.Margin = New Padding(4, 3, 4, 3)
+        PanelDatosCliente.Name = "PanelDatosCliente"
+        PanelDatosCliente.Size = New Size(968, 227)
+        PanelDatosCliente.TabIndex = 0
+        ' 
+        ' lblPagoElectronico
+        ' 
+        lblPagoElectronico.AccessibleDescription = "IVACliente"
+        lblPagoElectronico.Font = New Font("Microsoft Sans Serif", 18F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        lblPagoElectronico.Location = New Point(394, 177)
+        lblPagoElectronico.Margin = New Padding(4, 0, 4, 0)
+        lblPagoElectronico.Name = "lblPagoElectronico"
+        lblPagoElectronico.Size = New Size(568, 33)
+        lblPagoElectronico.TabIndex = 7
+        lblPagoElectronico.Text = "No Establecido"
+        ' 
+        ' lblNumeroDocumento
+        ' 
+        lblNumeroDocumento.AccessibleDescription = "IVACliente"
+        lblNumeroDocumento.Font = New Font("Microsoft Sans Serif", 18F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        lblNumeroDocumento.Location = New Point(394, 111)
+        lblNumeroDocumento.Margin = New Padding(4, 0, 4, 0)
+        lblNumeroDocumento.Name = "lblNumeroDocumento"
+        lblNumeroDocumento.Size = New Size(563, 33)
+        lblNumeroDocumento.TabIndex = 6
+        lblNumeroDocumento.Text = "No Aplica"
+        ' 
+        ' lblTipoContribuyente
+        ' 
+        lblTipoContribuyente.AccessibleDescription = "IVACliente"
+        lblTipoContribuyente.Font = New Font("Microsoft Sans Serif", 18F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        lblTipoContribuyente.Location = New Point(394, 63)
+        lblTipoContribuyente.Margin = New Padding(4, 0, 4, 0)
+        lblTipoContribuyente.Name = "lblTipoContribuyente"
+        lblTipoContribuyente.Size = New Size(568, 33)
+        lblTipoContribuyente.TabIndex = 5
+        lblTipoContribuyente.Text = "Consumidor Final"
+        ' 
+        ' lblNombreCliente
+        ' 
+        lblNombreCliente.Font = New Font("Microsoft Sans Serif", 24F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        lblNombreCliente.Location = New Point(176, 10)
+        lblNombreCliente.Margin = New Padding(4, 0, 4, 0)
+        lblNombreCliente.Name = "lblNombreCliente"
+        lblNombreCliente.Size = New Size(786, 43)
+        lblNombreCliente.TabIndex = 4
+        lblNombreCliente.Text = "Consumidor Final"
+        ' 
+        ' lblPagoElectronicoEtiqueta
+        ' 
+        lblPagoElectronicoEtiqueta.Font = New Font("Microsoft Sans Serif", 18F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        lblPagoElectronicoEtiqueta.Location = New Point(14, 177)
+        lblPagoElectronicoEtiqueta.Margin = New Padding(4, 0, 4, 0)
+        lblPagoElectronicoEtiqueta.Name = "lblPagoElectronicoEtiqueta"
+        lblPagoElectronicoEtiqueta.Size = New Size(382, 33)
+        lblPagoElectronicoEtiqueta.TabIndex = 3
+        lblPagoElectronicoEtiqueta.Text = "Tarjeta / Pago Electronico:"
+        ' 
+        ' lblTipoDocumento
+        ' 
+        lblTipoDocumento.AutoSize = True
+        lblTipoDocumento.Font = New Font("Microsoft Sans Serif", 18F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        lblTipoDocumento.Location = New Point(16, 111)
+        lblTipoDocumento.Margin = New Padding(4, 0, 4, 0)
+        lblTipoDocumento.Name = "lblTipoDocumento"
+        lblTipoDocumento.Size = New Size(64, 29)
+        lblTipoDocumento.TabIndex = 2
+        lblTipoDocumento.Text = "DNI:"
+        ' 
+        ' lblTipoContribuyenteEtiqueta
+        ' 
+        lblTipoContribuyenteEtiqueta.AccessibleDescription = "IVACliente"
+        lblTipoContribuyenteEtiqueta.Font = New Font("Microsoft Sans Serif", 18F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        lblTipoContribuyenteEtiqueta.Location = New Point(14, 63)
+        lblTipoContribuyenteEtiqueta.Margin = New Padding(4, 0, 4, 0)
+        lblTipoContribuyenteEtiqueta.Name = "lblTipoContribuyenteEtiqueta"
+        lblTipoContribuyenteEtiqueta.Size = New Size(331, 33)
+        lblTipoContribuyenteEtiqueta.TabIndex = 1
+        lblTipoContribuyenteEtiqueta.Text = "Tipo de Contribuyente:"
+        ' 
+        ' lblNombreClienteEtiqueta
+        ' 
+        lblNombreClienteEtiqueta.Font = New Font("Microsoft Sans Serif", 24F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        lblNombreClienteEtiqueta.Location = New Point(14, 10)
+        lblNombreClienteEtiqueta.Margin = New Padding(4, 0, 4, 0)
+        lblNombreClienteEtiqueta.Name = "lblNombreClienteEtiqueta"
+        lblNombreClienteEtiqueta.Size = New Size(155, 43)
+        lblNombreClienteEtiqueta.TabIndex = 0
+        lblNombreClienteEtiqueta.Text = "Cliente:"
+        ' 
+        ' Panel1
+        ' 
+        Panel1.BorderStyle = BorderStyle.FixedSingle
+        Panel1.Controls.Add(Button2)
+        Panel1.Controls.Add(Button1)
+        Panel1.Controls.Add(btnPagoElectronico)
+        Panel1.Controls.Add(btnCuentaCorriente)
+        Panel1.Controls.Add(txtImporteCuentaCorriente)
+        Panel1.Controls.Add(txtImporteEfectivo)
+        Panel1.Controls.Add(txtImporteAPagar)
+        Panel1.Controls.Add(txtTipoComprobante)
+        Panel1.Controls.Add(txtImportePagoElectronico)
+        Panel1.Controls.Add(lblImportePagoElectronico)
+        Panel1.Controls.Add(lblImporteCuentaCorriente)
+        Panel1.Controls.Add(lblImporteEfectivo)
+        Panel1.Controls.Add(lblImpAPagar)
+        Panel1.Controls.Add(lblTipoComprobante)
+        Panel1.Location = New Point(14, 248)
+        Panel1.Margin = New Padding(4, 3, 4, 3)
+        Panel1.Name = "Panel1"
+        Panel1.Size = New Size(968, 266)
+        Panel1.TabIndex = 1
+        ' 
+        ' Button2
+        ' 
+        Button2.Enabled = False
+        Button2.FlatAppearance.BorderColor = Color.White
+        Button2.FlatStyle = FlatStyle.Flat
+        Button2.Font = New Font("Microsoft Sans Serif", 14.25F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        Button2.Image = CType(resources.GetObject("Button2.Image"), Image)
+        Button2.Location = New Point(316, 207)
+        Button2.Margin = New Padding(4, 3, 4, 3)
+        Button2.Name = "Button2"
+        Button2.Size = New Size(30, 30)
+        Button2.TabIndex = 10
+        Button2.UseVisualStyleBackColor = True
+        ' 
+        ' Button1
+        ' 
+        Button1.Enabled = False
+        Button1.FlatAppearance.BorderColor = Color.White
+        Button1.FlatStyle = FlatStyle.Flat
+        Button1.Font = New Font("Microsoft Sans Serif", 15.75F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        Button1.Location = New Point(316, 65)
+        Button1.Margin = New Padding(4, 3, 4, 3)
+        Button1.Name = "Button1"
+        Button1.Size = New Size(30, 30)
+        Button1.TabIndex = 9
+        Button1.Text = "$"
+        Button1.UseVisualStyleBackColor = True
+        ' 
+        ' btnPagoElectronico
+        ' 
+        btnPagoElectronico.Cursor = Cursors.Hand
+        btnPagoElectronico.Image = CType(resources.GetObject("btnPagoElectronico.Image"), Image)
+        btnPagoElectronico.Location = New Point(316, 160)
+        btnPagoElectronico.Margin = New Padding(4, 3, 4, 3)
+        btnPagoElectronico.Name = "btnPagoElectronico"
+        btnPagoElectronico.Size = New Size(30, 30)
+        btnPagoElectronico.TabIndex = 8
+        btnPagoElectronico.TabStop = False
+        btnPagoElectronico.UseVisualStyleBackColor = True
+        ' 
+        ' btnCuentaCorriente
+        ' 
+        btnCuentaCorriente.Cursor = Cursors.Hand
+        btnCuentaCorriente.Image = CType(resources.GetObject("btnCuentaCorriente.Image"), Image)
+        btnCuentaCorriente.Location = New Point(316, 113)
+        btnCuentaCorriente.Margin = New Padding(4, 3, 4, 3)
+        btnCuentaCorriente.Name = "btnCuentaCorriente"
+        btnCuentaCorriente.Size = New Size(30, 30)
+        btnCuentaCorriente.TabIndex = 7
+        btnCuentaCorriente.TabStop = False
+        btnCuentaCorriente.UseVisualStyleBackColor = True
+        ' 
+        ' txtImporteCuentaCorriente
+        ' 
+        txtImporteCuentaCorriente.Font = New Font("Microsoft Sans Serif", 18F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        txtImporteCuentaCorriente.Location = New Point(315, 110)
+        txtImporteCuentaCorriente.Margin = New Padding(4, 3, 4, 3)
+        txtImporteCuentaCorriente.Name = "txtImporteCuentaCorriente"
+        txtImporteCuentaCorriente.Size = New Size(641, 35)
+        txtImporteCuentaCorriente.TabIndex = 4
+        txtImporteCuentaCorriente.TextAlign = HorizontalAlignment.Right
+        ' 
+        ' txtImporteEfectivo
+        ' 
+        txtImporteEfectivo.BackColor = Color.White
+        txtImporteEfectivo.Font = New Font("Microsoft Sans Serif", 18F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        txtImporteEfectivo.Location = New Point(315, 204)
+        txtImporteEfectivo.Margin = New Padding(4, 3, 4, 3)
+        txtImporteEfectivo.Name = "txtImporteEfectivo"
+        txtImporteEfectivo.ReadOnly = True
+        txtImporteEfectivo.Size = New Size(641, 35)
+        txtImporteEfectivo.TabIndex = 6
+        txtImporteEfectivo.TextAlign = HorizontalAlignment.Right
+        ' 
+        ' txtImporteAPagar
+        ' 
+        txtImporteAPagar.BackColor = Color.White
+        txtImporteAPagar.Font = New Font("Microsoft Sans Serif", 18F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        txtImporteAPagar.Location = New Point(315, 62)
+        txtImporteAPagar.Margin = New Padding(4, 3, 4, 3)
+        txtImporteAPagar.Name = "txtImporteAPagar"
+        txtImporteAPagar.ReadOnly = True
+        txtImporteAPagar.Size = New Size(641, 35)
+        txtImporteAPagar.TabIndex = 3
+        txtImporteAPagar.TabStop = False
+        txtImporteAPagar.TextAlign = HorizontalAlignment.Right
+        ' 
+        ' txtTipoComprobante
+        ' 
+        txtTipoComprobante.Font = New Font("Microsoft Sans Serif", 18F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        txtTipoComprobante.Location = New Point(315, 15)
+        txtTipoComprobante.Margin = New Padding(4, 3, 4, 3)
+        txtTipoComprobante.Name = "txtTipoComprobante"
+        txtTipoComprobante.Size = New Size(641, 35)
+        txtTipoComprobante.TabIndex = 1
+        txtTipoComprobante.TabStop = False
+        ' 
+        ' txtImportePagoElectronico
+        ' 
+        txtImportePagoElectronico.Enabled = False
+        txtImportePagoElectronico.Font = New Font("Microsoft Sans Serif", 18F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        txtImportePagoElectronico.Location = New Point(315, 157)
+        txtImportePagoElectronico.Margin = New Padding(4, 3, 4, 3)
+        txtImportePagoElectronico.Name = "txtImportePagoElectronico"
+        txtImportePagoElectronico.Size = New Size(641, 35)
+        txtImportePagoElectronico.TabIndex = 5
+        txtImportePagoElectronico.TextAlign = HorizontalAlignment.Right
+        ' 
+        ' lblImportePagoElectronico
+        ' 
+        lblImportePagoElectronico.Font = New Font("Microsoft Sans Serif", 18F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        lblImportePagoElectronico.Location = New Point(16, 160)
+        lblImportePagoElectronico.Margin = New Padding(4, 0, 4, 0)
+        lblImportePagoElectronico.Name = "lblImportePagoElectronico"
+        lblImportePagoElectronico.Size = New Size(292, 35)
+        lblImportePagoElectronico.TabIndex = 6
+        lblImportePagoElectronico.Text = "Tarjeta / Pago Elec:"
+        ' 
+        ' lblImporteCuentaCorriente
+        ' 
+        lblImporteCuentaCorriente.Font = New Font("Microsoft Sans Serif", 18F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        lblImporteCuentaCorriente.Location = New Point(16, 113)
+        lblImporteCuentaCorriente.Margin = New Padding(4, 0, 4, 0)
+        lblImporteCuentaCorriente.Name = "lblImporteCuentaCorriente"
+        lblImporteCuentaCorriente.Size = New Size(292, 35)
+        lblImporteCuentaCorriente.TabIndex = 5
+        lblImporteCuentaCorriente.Text = "Importe Cta. Cte:"
+        ' 
+        ' lblImporteEfectivo
+        ' 
+        lblImporteEfectivo.Font = New Font("Microsoft Sans Serif", 18F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        lblImporteEfectivo.Location = New Point(16, 208)
+        lblImporteEfectivo.Margin = New Padding(4, 0, 4, 0)
+        lblImporteEfectivo.Name = "lblImporteEfectivo"
+        lblImporteEfectivo.Size = New Size(292, 35)
+        lblImporteEfectivo.TabIndex = 4
+        lblImporteEfectivo.Text = "Importe Efectivo:"
+        ' 
+        ' lblImpAPagar
+        ' 
+        lblImpAPagar.Font = New Font("Microsoft Sans Serif", 18F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        lblImpAPagar.Location = New Point(16, 66)
+        lblImpAPagar.Margin = New Padding(4, 0, 4, 0)
+        lblImpAPagar.Name = "lblImpAPagar"
+        lblImpAPagar.Size = New Size(292, 35)
+        lblImpAPagar.TabIndex = 3
+        lblImpAPagar.Text = "Importe a Pagar:"
+        ' 
+        ' lblTipoComprobante
+        ' 
+        lblTipoComprobante.AccessibleDescription = "IVACliente"
+        lblTipoComprobante.Font = New Font("Microsoft Sans Serif", 18F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        lblTipoComprobante.Location = New Point(18, 18)
+        lblTipoComprobante.Margin = New Padding(4, 0, 4, 0)
+        lblTipoComprobante.Name = "lblTipoComprobante"
+        lblTipoComprobante.Size = New Size(292, 35)
+        lblTipoComprobante.TabIndex = 1
+        lblTipoComprobante.Text = "Comprobante:"
+        ' 
+        ' btnFinalizar
+        ' 
+        btnFinalizar.Cursor = Cursors.Hand
+        btnFinalizar.FlatAppearance.BorderColor = Color.White
+        btnFinalizar.FlatStyle = FlatStyle.Flat
+        btnFinalizar.Font = New Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        btnFinalizar.ForeColor = SystemColors.Highlight
+        btnFinalizar.Image = CType(resources.GetObject("btnFinalizar.Image"), Image)
+        btnFinalizar.ImageAlign = ContentAlignment.MiddleLeft
+        btnFinalizar.Location = New Point(794, 531)
+        btnFinalizar.Margin = New Padding(4, 3, 4, 3)
+        btnFinalizar.Name = "btnFinalizar"
+        btnFinalizar.Size = New Size(188, 46)
+        btnFinalizar.TabIndex = 2
+        btnFinalizar.TabStop = False
+        btnFinalizar.Text = "&Finalizar (F10)"
+        btnFinalizar.UseVisualStyleBackColor = True
+        ' 
+        ' FrmPagos
+        ' 
+        AutoScaleDimensions = New SizeF(7F, 15F)
+        AutoScaleMode = AutoScaleMode.Font
+        BackColor = Color.White
+        ClientSize = New Size(1000, 591)
+        ControlBox = False
+        Controls.Add(btnFinalizar)
+        Controls.Add(Panel1)
+        Controls.Add(PanelDatosCliente)
+        FormBorderStyle = FormBorderStyle.FixedDialog
+        Margin = New Padding(4, 3, 4, 3)
+        Name = "FrmPagos"
+        StartPosition = FormStartPosition.CenterScreen
+        Text = "Pagos del Cliente"
+        PanelDatosCliente.ResumeLayout(False)
+        PanelDatosCliente.PerformLayout()
+        Panel1.ResumeLayout(False)
+        Panel1.PerformLayout()
+        ResumeLayout(False)
 
     End Sub
 

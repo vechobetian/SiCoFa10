@@ -15,6 +15,8 @@ Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "Presentacion", "SiCoFa.Pres
 EndProject
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "ServiciosExternos", "ServiciosExternos\ServiciosExternos.vbproj", "{C3F1A960-D62B-4028-A95F-FA39898C17A1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiciosExternosWCF", "SiCoFa.ServiciosExternos.WCF\ServiciosExternosWCF.csproj", "{290B99C1-38C7-4511-95A2-E0F1AE5B6B07}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +47,10 @@ Global
 		{C3F1A960-D62B-4028-A95F-FA39898C17A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C3F1A960-D62B-4028-A95F-FA39898C17A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C3F1A960-D62B-4028-A95F-FA39898C17A1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{290B99C1-38C7-4511-95A2-E0F1AE5B6B07}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{290B99C1-38C7-4511-95A2-E0F1AE5B6B07}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{290B99C1-38C7-4511-95A2-E0F1AE5B6B07}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{290B99C1-38C7-4511-95A2-E0F1AE5B6B07}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

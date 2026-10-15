@@ -32,11 +32,11 @@ Public Class SIMED
             </soapenv:Body>
         </soapenv:Envelope>"
 
-        File.WriteAllText(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Temp", "soap_request.xml"), soap)
+        File.WriteAllText(ObtenerRutaTemp("soap_request.xml"), soap)
 
         Dim xmlResponse As XmlDocument = PostWebservice(UrlProduccion, SoapAction, soap)
 
-        File.WriteAllText(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Temp", "soap_response.xml"), xmlResponse.OuterXml)
+        File.WriteAllText(ObtenerRutaTemp("soap_response.xml"), xmlResponse.OuterXml)
 
         Return xmlResponse
 

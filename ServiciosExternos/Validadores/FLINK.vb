@@ -56,13 +56,13 @@ Public Class FLINK
                     </soap:Body>
                 </soap:Envelope>"
 
-            File.WriteAllText(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Temp", "soap_request.xml"), soap)
+            File.WriteAllText(ObtenerRutaTemp("soap_request.xml"), soap)
 
             Dim soapAction As String = "http://farmalink.com.ar/applicationService/V1/ConsultaRecetaElectSecureOutAppSvc"
 
             Dim xmlResponse As XmlDocument = PostWebservice(UrlRecetaElectronicaProduccion, soapAction, soap)
 
-            File.WriteAllText(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Temp", "soap_response.xml"), xmlResponse.OuterXml)
+            File.WriteAllText(ObtenerRutaTemp("soap_response.xml"), xmlResponse.OuterXml)
 
             VerificarRespuestaGeneral(xmlResponse)
 
@@ -111,13 +111,13 @@ Public Class FLINK
                     </soapenv:Body>
                 </soapenv:Envelope>"
 
-            File.WriteAllText(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Temp", "soap_request.xml"), soap)
+            File.WriteAllText(ObtenerRutaTemp("soap_request.xml"), soap)
 
             Dim soapAction As String = "http://farmalink.com.ar/applicationService/V1/AutorizacionRecetaVentaSecureOutAppSvc"
 
             Dim xmlResponse As XmlDocument = PostWebservice(UrlVentaProduccion, soapAction, soap)
 
-            File.WriteAllText(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Temp", "soap_response.xml"), xmlResponse.OuterXml)
+            File.WriteAllText(ObtenerRutaTemp("soap_response.xml"), xmlResponse.OuterXml)
 
             VerificarRespuestaGeneral(xmlResponse)
 
@@ -164,13 +164,13 @@ Public Class FLINK
                     </soapenv:Body>
                 </soapenv:Envelope>"
 
-            File.WriteAllText(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Temp", "soap_request.xml"), soap)
+            File.WriteAllText(ObtenerRutaTemp("soap_request.xml"), soap)
 
             Dim soapAction As String = "http://farmalink.com.ar/applicationService/V1/CancelacionRecetaVentaSecureOutAppSvc"
 
             Dim xmlResponse As XmlDocument = PostWebservice(UrlVentaProduccion, soapAction, soap)
 
-            File.WriteAllText(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Temp", "soap_response.xml"), xmlResponse.OuterXml)
+            File.WriteAllText(ObtenerRutaTemp("soap_response.xml"), xmlResponse.OuterXml)
 
             VerificarRespuestaGeneral(xmlResponse)
 

@@ -45,11 +45,11 @@ Public Class MISV
                     </soapenv:Body>
                 </soapenv:Envelope>"
 
-            IO.File.WriteAllText("C:\SiCoFaFarmacias\SiCoFa.Presentacion\bin\Debug\Temp\soap_request.xml", soap)
+            File.WriteAllText(ObtenerRutaTemp("soap_request.xml"), soap)
 
             Dim xmlResponse As XmlDocument = PostWebservice(UrlProduccion, soap)
 
-            IO.File.WriteAllText("C:\SiCoFaFarmacias\SiCoFa.Presentacion\bin\Debug\Temp\soap_response.xml", xmlResponse.OuterXml)
+            File.WriteAllText(ObtenerRutaTemp("soap_response.xml"), xmlResponse.OuterXml)
 
             VerificarRespuestaGeneral(xmlResponse)
 
@@ -90,11 +90,11 @@ Public Class MISV
                     </soapenv:Body>
                 </soapenv:Envelope>"
 
-            IO.File.WriteAllText("C:\SiCoFaFarmacias\SiCoFa.Presentacion\bin\Debug\Temp\soap_request.xml", soap)
+            File.WriteAllText(ObtenerRutaTemp("soap_request.xml"), soap)
 
             Dim xmlResponse As XmlDocument = PostWebservice(UrlProduccion, soap)
 
-            IO.File.WriteAllText("C:\SiCoFaFarmacias\SiCoFa.Presentacion\bin\Debug\Temp\soap_response.xml", xmlResponse.OuterXml)
+            File.WriteAllText(ObtenerRutaTemp("soap_response.xml"), xmlResponse.OuterXml)
 
             VerificarRespuestaGeneral(xmlResponse)
 
@@ -130,11 +130,11 @@ Public Class MISV
                     </soapenv:Body>
                 </soapenv:Envelope>"
 
-            IO.File.WriteAllText("C:\SiCoFaFarmacias\SiCoFa.Presentacion\bin\Debug\Temp\soap_request.xml", soap)
+            File.WriteAllText(ObtenerRutaTemp("soap_request.xml"), soap)
 
             Dim xmlResponse As XmlDocument = PostWebservice(UrlProduccion, soap)
 
-            IO.File.WriteAllText("C:\SiCoFaFarmacias\SiCoFa.Presentacion\bin\Debug\Temp\soap_response.xml", xmlResponse.OuterXml)
+            File.WriteAllText(ObtenerRutaTemp("soap_response.xml"), xmlResponse.OuterXml)
 
         Catch ex As Exception
 

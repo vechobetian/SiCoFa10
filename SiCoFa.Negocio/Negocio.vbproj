@@ -16,6 +16,7 @@
   <ItemGroup>
     <ProjectReference Include="..\SiCoFa.Entidades\Entidades.vbproj" />
     <ProjectReference Include="..\SiCoFa.Datos\Datos.vbproj" />
+    <ProjectReference Include="..\SiCoFa.ServiciosExternos.WCF\ServiciosExternosWCF.csproj" />
     <ProjectReference Include="..\Vecho\Vecho.vbproj" />
     <ProjectReference Include="..\ServiciosExternos\ServiciosExternos.vbproj" />
   </ItemGroup>

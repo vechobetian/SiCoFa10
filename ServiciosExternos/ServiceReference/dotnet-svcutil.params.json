@@ -1,0 +1,12 @@
+{
+  "providerId": "Microsoft.Tools.ServiceModel.Svcutil",
+  "version": "8.0.0",
+  "options": {
+    "inputs": [
+      "https://wswhomo.afip.gov.ar/wsfev1/service.asmx?WSDL"
+    ],
+    "outputFile": "Reference.cs",
+    "targetFramework": "net9.0",
+    "typeReuseMode": "All"
+  }
+}
