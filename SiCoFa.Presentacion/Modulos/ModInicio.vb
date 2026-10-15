@@ -2,13 +2,14 @@
 Imports SiCoFa.Negocio
 Imports SiCoFa.Entidades
 Imports System.Net
+
 Module ModInicio
 
     Public g_Usuario As Usuario = Nothing
     Public g_ParametrosTerminal As ParametrosTerminal
     Public g_ParametrosSistema As N_ParametrosSistema
 
-    Sub Main()
+    Public Sub Main()
         Try
 
             ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12
@@ -41,7 +42,7 @@ Module ModInicio
             Dim nics As NetworkInterface() = NetworkInterface.GetAllNetworkInterfaces()
             For Each adapter As NetworkInterface In nics
                 If adapter.OperationalStatus = OperationalStatus.Up AndAlso
-                   adapter.NetworkInterfaceType <> NetworkInterfaceType.Loopback Then
+                    adapter.NetworkInterfaceType <> NetworkInterfaceType.Loopback Then
 
                     Dim macBytes As Byte() = adapter.GetPhysicalAddress().GetAddressBytes()
                     If macBytes.Length = 6 Then
@@ -86,20 +87,20 @@ Module ModInicio
                                     argEstado:=Convert.ToString(registroEmpresa("Estado")),
                                     argCodIVA:=Convert.ToString(registroEmpresa("CodIVA")),
                                     argIB:=Convert.ToString(registroEmpresa("IB"))
-                                      )
+                                    )
 
             ' Mapear los campos del diccionario a las propiedades del objeto ParametrosTerminal
             Dim parametros As New ParametrosTerminal(
-                                                argMacAddress:=Convert.ToString(registroPaTer("MacAddress")),
-                                                argEmpresa:=objEmpresa,
-                                                argIdPC:=Convert.ToString(registroPaTer("IdPC")),
-                                                argPVenta:=Convert.ToString(registroPaTer("PVenta")),
-                                                argNCaja:=Convert.ToString(registroPaTer("NCaja")),
-                                                argMenuCaja:=Convert.ToBoolean(registroPaTer("MenuCaja")),
-                                                argImpresora:=Convert.ToString(registroPaTer("Impresora")),
-                                                argPapel:=Convert.ToString(registroPaTer("Papel")),
-                                                argActualizar:=CInt(registroPaTer("Actualizar"))
-                                                )
+                                        argMacAddress:=Convert.ToString(registroPaTer("MacAddress")),
+                                        argEmpresa:=objEmpresa,
+                                        argIdPC:=Convert.ToString(registroPaTer("IdPC")),
+                                        argPVenta:=Convert.ToString(registroPaTer("PVenta")),
+                                        argNCaja:=Convert.ToString(registroPaTer("NCaja")),
+                                        argMenuCaja:=Convert.ToBoolean(registroPaTer("MenuCaja")),
+                                        argImpresora:=Convert.ToString(registroPaTer("Impresora")),
+                                        argPapel:=Convert.ToString(registroPaTer("Papel")),
+                                        argActualizar:=CInt(registroPaTer("Actualizar"))
+                                        )
 
             Return parametros
 

@@ -180,8 +180,8 @@ Public Class FrmCajas
         If valor Is Nothing OrElse Not IsNumeric(valor) Then Exit Sub
 
         Dim idCaja As Integer = CInt(valor)
-        FrmMoviCajaEFDetalle.IdCaja = idCaja
-        FrmMoviCajaEFDetalle.Show()
+        My.Forms.FrmMoviCajaEFDetalle.IdCaja = idCaja
+        My.Forms.FrmMoviCajaEFDetalle.Show()
 
     End Sub
 
@@ -194,8 +194,8 @@ Public Class FrmCajas
         If valor Is Nothing OrElse Not IsNumeric(valor) Then Exit Sub
 
         Dim idCaja As Integer = CInt(valor)
-        FrmMoviCajaPEDetalle.IdCaja = idCaja
-        FrmMoviCajaPEDetalle.Show()
+        My.Forms.FrmMoviCajaPEDetalle.IdCaja = idCaja
+        My.Forms.FrmMoviCajaPEDetalle.Show()
 
     End Sub
 
@@ -208,8 +208,8 @@ Public Class FrmCajas
         If valor Is Nothing OrElse Not IsNumeric(valor) Then Exit Sub
 
         Dim idCaja As Integer = CInt(valor)
-        FrmMoviCajaCCDetalle.IdCaja = idCaja
-        FrmMoviCajaCCDetalle.Show()
+        My.Forms.FrmMoviCajaCCDetalle.IdCaja = idCaja
+        My.Forms.FrmMoviCajaCCDetalle.Show()
 
     End Sub
 
@@ -222,8 +222,8 @@ Public Class FrmCajas
         If valor Is Nothing OrElse Not IsNumeric(valor) Then Exit Sub
 
         Dim idCaja As Integer = CInt(valor)
-        FrmMoviCajaOSDetalle.IdCaja = idCaja
-        FrmMoviCajaOSDetalle.Show()
+        My.Forms.FrmMoviCajaOSDetalle.IdCaja = idCaja
+        My.Forms.FrmMoviCajaOSDetalle.Show()
 
     End Sub
 
@@ -245,33 +245,33 @@ Public Class FrmCajas
             Dim AdminComprobantes As New N_AdminComprobantes
             Dim objTC As TipoComprobante = AdminComprobantes.ObtenerTipoComprobantePorCodiTC("DI")
             Dim objComprobante As New Comprobante(argIdOperacion:=0,
-                                                  argOperacion:=Nothing,
-                                                  argTipoComprobante:=objTC,
-                                                  argPVenta:="",
-                                                  argNumComp:="",
-                                                  argFechaComp:=Nothing,
-                                                  argImpBto:=mdecImporteEf + mdecImportePE + mdecImporteCC,
-                                                  argImpDes:=0,
-                                                  argImpNeto:=0,
-                                                  argImpEx:=0,
-                                                  argImpGrav1:=0,
-                                                  argImpNeto1:=0,
-                                                  argImpIVA1:=0,
-                                                  argImpGrav2:=0,
-                                                  argImpNeto2:=0,
-                                                  argImpIVA2:=0,
-                                                  argImpCB:=0,
-                                                  argImpEf:=mdecImporteEf,
-                                                  argImpCC:=mdecImporteCC,
-                                                  argImpPE:=mdecImportePE,
-                                                  argImpOS:=0,
-                                                  argCAE:=Nothing,
-                                                  argIdCliente:=0,
-                                                  argCliente:=objCliente,
-                                                  argIdOperAsoc:=0,
-                                                  argCompAsoc:=Nothing,
-                                                  argEmpresa:=Nothing,
-                                                  argDetalle:=Nothing)
+                                                 argOperacion:=Nothing,
+                                                 argTipoComprobante:=objTC,
+                                                 argPVenta:="",
+                                                 argNumComp:="",
+                                                 argFechaComp:=Nothing,
+                                                 argImpBto:=mdecImporteEf + mdecImportePE + mdecImporteCC,
+                                                 argImpDes:=0,
+                                                 argImpNeto:=0,
+                                                 argImpEx:=0,
+                                                 argImpGrav1:=0,
+                                                 argImpNeto1:=0,
+                                                 argImpIVA1:=0,
+                                                 argImpGrav2:=0,
+                                                 argImpNeto2:=0,
+                                                 argImpIVA2:=0,
+                                                 argImpCB:=0,
+                                                 argImpEf:=mdecImporteEf,
+                                                 argImpCC:=mdecImporteCC,
+                                                 argImpPE:=mdecImportePE,
+                                                 argImpOS:=0,
+                                                 argCAE:=Nothing,
+                                                 argIdCliente:=0,
+                                                 argCliente:=objCliente,
+                                                 argIdOperAsoc:=0,
+                                                 argCompAsoc:=Nothing,
+                                                 argEmpresa:=Nothing,
+                                                 argDetalle:=Nothing)
 
 
             Dim IdCaja As Long = CInt(Me.dgvCajas.CurrentRow.Cells(0).Value)
@@ -363,31 +363,31 @@ Public Class FrmCajas
             Dim objTC As TipoComprobante = AdminComprobantes.ObtenerTipoComprobantePorCodiTC("DI")
 
             Dim objComprobante As New Comprobante(
-                                                  argIdOperacion:=0,
-                                                  argOperacion:=Nothing,
-                                                  argTipoComprobante:=objTC,
-                                                  argPVenta:="",
-                                                  argNumComp:="",
-                                                  argFechaComp:=Nothing,
-                                                  argImpBto:=Convert.ToDecimal(strImporte),
-                                                  argImpDes:=0,
-                                                  argImpNeto:=Convert.ToDecimal(strImporte),
-                                                  argImpEx:=0,
-                                                  argImpGrav1:=0,
-                                                  argImpGrav2:=0,
-                                                  argImpCB:=0,
-                                                  argImpEf:=Convert.ToDecimal(strImporte),
-                                                  argImpCC:=0,
-                                                  argImpPE:=0,
-                                                  argImpOS:=0,
-                                                  argCAE:=Nothing,
-                                                  argIdCliente:=objCliente.Id,
-                                                  argCliente:=objCliente,
-                                                  argIdOperAsoc:=0,
-                                                  argCompAsoc:=Nothing,
-                                                  argEmpresa:=g_ParametrosTerminal.Empresa,
-                                                  argDetalle:=Nothing
-                                                  )
+                                                argIdOperacion:=0,
+                                                argOperacion:=Nothing,
+                                                argTipoComprobante:=objTC,
+                                                argPVenta:="",
+                                                argNumComp:="",
+                                                argFechaComp:=Nothing,
+                                                argImpBto:=Convert.ToDecimal(strImporte),
+                                                argImpDes:=0,
+                                                argImpNeto:=Convert.ToDecimal(strImporte),
+                                                argImpEx:=0,
+                                                argImpGrav1:=0,
+                                                argImpGrav2:=0,
+                                                argImpCB:=0,
+                                                argImpEf:=Convert.ToDecimal(strImporte),
+                                                argImpCC:=0,
+                                                argImpPE:=0,
+                                                argImpOS:=0,
+                                                argCAE:=Nothing,
+                                                argIdCliente:=objCliente.Id,
+                                                argCliente:=objCliente,
+                                                argIdOperAsoc:=0,
+                                                argCompAsoc:=Nothing,
+                                                argEmpresa:=g_ParametrosTerminal.Empresa,
+                                                argDetalle:=Nothing
+                                                )
 
 
             Dim AdminCajas As New N_AdminCajas
