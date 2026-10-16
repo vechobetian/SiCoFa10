@@ -173,7 +173,7 @@ Public Class N_AdminCAE
                 Dim alrIvaXml As String = ""
                 If det.Iva IsNot Nothing Then
                     For Each iv In det.Iva
-                        alrIvaXml &= "<alicIva><Id>" & iv.Id.ToString() & "</Id><BaseImp>" & iv.BaseImp.ToString(CultureInfo.InvariantCulture) & "</BaseImp><Importe>" & iv.Importe.ToString(CultureInfo.InvariantCulture) & "</Importe></alicIva>"
+                        alrIvaXml &= "<AlicIva><Id>" & iv.Id.ToString() & "</Id><BaseImp>" & iv.BaseImp.ToString(CultureInfo.InvariantCulture) & "</BaseImp><Importe>" & iv.Importe.ToString(CultureInfo.InvariantCulture) & "</Importe></AlicIva>"
                     Next
                 End If
 
@@ -222,6 +222,8 @@ Public Class N_AdminCAE
                 clientCAE.DefaultRequestHeaders.Clear()
                 clientCAE.DefaultRequestHeaders.Add("SOAPAction", "http://ar.gov.afip.dif.FEV1/FECAESolicitar")
 
+                System.IO.File.WriteAllText("C:\temp\ultimo_soap_enviado.xml", soapCAE)
+
                 Dim responseCAE = clientCAE.PostAsync(URLWsn, contentCAE).Result
                 Dim xmlCAEStr = responseCAE.Content.ReadAsStringAsync().Result
 
@@ -246,10 +248,13 @@ Public Class N_AdminCAE
                     Dim nodeCaeFch = docCAE.SelectSingleNode("//ns:FECAESolicitarResult/ns:FeDetResp/ns:FECAEDetResponse/ns:CAEFchVto", nsMgrCAE)
 
                     Dim caeNumStr As String = If(nodeCaeNum IsNot Nothing, nodeCaeNum.InnerText, "0")
-                    Dim caeNum As Long = If(IsNumeric(caeNumStr), CLng(caeNumStr), 0)
+                    Dim caeNum As String = If(IsNumeric(caeNumStr), caeNumStr, "")
                     Dim caeFchVtoStr As String = If(nodeCaeFch IsNot Nothing, nodeCaeFch.InnerText, Now.ToString("yyyyMMdd"))
 
-                    objCAE = New CAE(NroCbteAutorizado.ToString(), caeNum, DateTime.ParseExact(caeFchVtoStr, "yyyyMMdd", CultureInfo.InvariantCulture))                    Return objCAE
+                    objCAE = New CAE(NroCbteAutorizado, caeNum, DateTime.ParseExact(caeFchVtoStr, "yyyyMMdd", CultureInfo.InvariantCulture))
+
+                    Return objCAE
+
                 End If
 
                 Dim errNode = docCAE.SelectSingleNode("//ns:FECAESolicitarResult/ns:Errors", nsMgrCAE)
