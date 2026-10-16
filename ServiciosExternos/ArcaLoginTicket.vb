@@ -1,4 +1,5 @@
-﻿Imports System.IO
+﻿Imports System.Configuration
+Imports System.IO
 Imports System.Net
 Imports System.Net.Http
 Imports System.Security
@@ -22,7 +23,7 @@ Public Class ArcaLoginTicket
     Private mstrRutaCertX509Firmante As String
 
     ' Ruta del Ticket de Acceso centralizada en AppData usando Vecho
-    Private mstrRutaTA As String = ObtenerRutaTemp("TA.txt")
+    Private mstrRutaTA As String = ConfigurationManager.AppSettings("PathSiCoFa_Server") & "Temp\TA.txt"
 
     Private XmlLoginTicketRequest As XmlDocument = Nothing
     Private URLWsaa As String
@@ -35,7 +36,7 @@ Public Class ArcaLoginTicket
         'URLWsaa = "https://wsaa.afip.gov.ar/ws/services/LoginCms" ' URL WSAA Producción
 
         Dim carpetaApp As String = AppDomain.CurrentDomain.BaseDirectory
-        Dim rutaCertificado As String = Path.Combine(carpetaApp, "CFESICOFA" & argEmpCUIT & ".pfx")
+        Dim rutaCertificado As String = Path.Combine(ConfigurationManager.AppSettings("PathSiCoFa_Server") & "Arca\", "CFESICOFA" & argEmpCUIT & ".pfx")
 
         If File.Exists(rutaCertificado) Then
             mstrRutaCertX509Firmante = rutaCertificado

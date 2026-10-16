@@ -2,9 +2,7 @@
 Imports SiCoFa.Entidades
 Imports Vecho
 Imports SiCoFa.ServiciosExternos
-Imports ar.gov.afip.dif.fev1
 Imports System.Net.Http
-Imports System.Security.Cryptography.X509Certificates
 Imports System.Xml
 
 Public Class N_AdminCAE
@@ -221,8 +219,6 @@ Public Class N_AdminCAE
                 Dim contentCAE As New StringContent(soapCAE, System.Text.Encoding.UTF8, "text/xml")
                 clientCAE.DefaultRequestHeaders.Clear()
                 clientCAE.DefaultRequestHeaders.Add("SOAPAction", "http://ar.gov.afip.dif.FEV1/FECAESolicitar")
-
-                System.IO.File.WriteAllText("C:\temp\ultimo_soap_enviado.xml", soapCAE)
 
                 Dim responseCAE = clientCAE.PostAsync(URLWsn, contentCAE).Result
                 Dim xmlCAEStr = responseCAE.Content.ReadAsStringAsync().Result

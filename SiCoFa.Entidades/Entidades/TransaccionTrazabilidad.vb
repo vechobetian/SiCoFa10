@@ -5,6 +5,7 @@
     Public Property GlnOrigen As String
     Public Property RazonSocialOrigen As String
     Public Property Comprobante As String
+    Public Property IdUsuario As Integer
     Public Property Nombre As String
     Public Property Gtin As String
     Public Property Serie As String

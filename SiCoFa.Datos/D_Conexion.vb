@@ -3,12 +3,10 @@ Imports System.Configuration
 
 Public Class D_Conexion
     Private cadenaFarmacias As String
-    Private cadenaOS As String
     Private cadenaContratos As String
 
     Public Sub New()
         cadenaFarmacias = ConfigurationManager.ConnectionStrings("Conexion_sicofaco_farmacias").ConnectionString
-        'cadenaOS = ConfigurationManager.ConnectionStrings("Conexion_sicofaco_os").ConnectionString
         cadenaContratos = ConfigurationManager.ConnectionStrings("Conexion_sicofaco_contratos").ConnectionString
     End Sub
 
@@ -23,9 +21,6 @@ Public Class D_Conexion
 
             Case "CONTRATOS"
                 cadena = cadenaContratos
-
-                'Case "OS"
-                'cadena = cadenaOS
 
             Case Else
                 Throw New Exception("Base de datos inválida")
