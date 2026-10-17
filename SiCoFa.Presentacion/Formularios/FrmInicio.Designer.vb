@@ -22,401 +22,417 @@ Partial Class FrmInicio
     'No lo modifique con el editor de código.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
-        Me.mnuOperaciones = New System.Windows.Forms.ToolStripMenuItem()
-        Me.mnuOperacionesFacturacion = New System.Windows.Forms.ToolStripMenuItem()
-        Me.mnuOperacionesCC = New System.Windows.Forms.ToolStripMenuItem()
-        Me.mnuOperacionesCompras = New System.Windows.Forms.ToolStripMenuItem()
-        Me.mnuCaja = New System.Windows.Forms.ToolStripMenuItem()
-        Me.mnuCajaMovimientos = New System.Windows.Forms.ToolStripMenuItem()
-        Me.mnuCajaAsientoGastos = New System.Windows.Forms.ToolStripMenuItem()
-        Me.mnuFiscal = New System.Windows.Forms.ToolStripMenuItem()
-        Me.mnuFiscalLibroIVA = New System.Windows.Forms.ToolStripMenuItem()
-        Me.mnuFiscalIVADigital = New System.Windows.Forms.ToolStripMenuItem()
-        Me.mnuFiscalIVAExcel = New System.Windows.Forms.ToolStripMenuItem()
-        Me.mnuContabilidad = New System.Windows.Forms.ToolStripMenuItem()
-        Me.mnuContabilidadResultadosMensuales = New System.Windows.Forms.ToolStripMenuItem()
-        Me.mnuContabilidadSaldoCuentaPatrimoniales = New System.Windows.Forms.ToolStripMenuItem()
-        Me.AsientoContableToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.CancelarCuentasIncobraToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.CierreEjercicioAbiertoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.mnuAuditoria = New System.Windows.Forms.ToolStripMenuItem()
-        Me.mnuAuditoriaCuentasCorrientes = New System.Windows.Forms.ToolStripMenuItem()
-        Me.mnuAuditoriaComprobantes = New System.Windows.Forms.ToolStripMenuItem()
-        Me.mnuAuditoriaComprobantesEmitidos = New System.Windows.Forms.ToolStripMenuItem()
-        Me.mnuAuditoriaComprobantesRecibidos = New System.Windows.Forms.ToolStripMenuItem()
-        Me.mnuAuditoriaReporteVentas = New System.Windows.Forms.ToolStripMenuItem()
-        Me.mnuAuditoriaCuentasProveedores = New System.Windows.Forms.ToolStripMenuItem()
-        Me.mnuAuditoriaCuentasBancarias = New System.Windows.Forms.ToolStripMenuItem()
-        Me.mnuAuditoriaCuentasEmpleados = New System.Windows.Forms.ToolStripMenuItem()
-        Me.mnuAuditoriaMovimientoDeProductos = New System.Windows.Forms.ToolStripMenuItem()
-        Me.mnuAuditoriaRankingDeVentas = New System.Windows.Forms.ToolStripMenuItem()
-        Me.mnuEditar = New System.Windows.Forms.ToolStripMenuItem()
-        Me.mnuEditarArticulos = New System.Windows.Forms.ToolStripMenuItem()
-        Me.mnuEditarFraccionables = New System.Windows.Forms.ToolStripMenuItem()
-        Me.mnuEditarClientes = New System.Windows.Forms.ToolStripMenuItem()
-        Me.mnuEditarEmpleados = New System.Windows.Forms.ToolStripMenuItem()
-        Me.mnuEditarUsuarios = New System.Windows.Forms.ToolStripMenuItem()
-        Me.mnuEditarProveedores = New System.Windows.Forms.ToolStripMenuItem()
-        Me.mnuEditarSecciones = New System.Windows.Forms.ToolStripMenuItem()
-        Me.mnuEditarCuentasBancarias = New System.Windows.Forms.ToolStripMenuItem()
-        Me.mnuEditarMedioPE = New System.Windows.Forms.ToolStripMenuItem()
-        Me.mnuEditarPermisos = New System.Windows.Forms.ToolStripMenuItem()
-        Me.mnuObraSociales = New System.Windows.Forms.ToolStripMenuItem()
-        Me.mnuDatosRequeridosValidacionOS = New System.Windows.Forms.ToolStripMenuItem()
-        Me.mnuHerramientas = New System.Windows.Forms.ToolStripMenuItem()
-        Me.mnuTrazabilidad = New System.Windows.Forms.ToolStripMenuItem()
-        Me.mnuConfirmarRecepcionDeTrazables = New System.Windows.Forms.ToolStripMenuItem()
-        Me.mnuSistema = New System.Windows.Forms.ToolStripMenuItem()
-        Me.mnuSistemaPTerminal = New System.Windows.Forms.ToolStripMenuItem()
-        Me.mnuSistemaPSistema = New System.Windows.Forms.ToolStripMenuItem()
-        Me.mnuSistemaActualizaciones = New System.Windows.Forms.ToolStripMenuItem()
-        Me.mnuSistemaActualizarVersion = New System.Windows.Forms.ToolStripMenuItem()
-        Me.mnuAyuda = New System.Windows.Forms.ToolStripMenuItem()
-        Me.mnuDescargarTransaccionesConfirmadas = New System.Windows.Forms.ToolStripMenuItem()
-        Me.MenuStrip1.SuspendLayout()
-        Me.SuspendLayout()
-        '
-        'MenuStrip1
-        '
-        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.mnuOperaciones, Me.mnuCaja, Me.mnuFiscal, Me.mnuContabilidad, Me.mnuAuditoria, Me.mnuEditar, Me.mnuObraSociales, Me.mnuHerramientas, Me.mnuTrazabilidad, Me.mnuSistema, Me.mnuAyuda})
-        Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
-        Me.MenuStrip1.Name = "MenuStrip1"
-        Me.MenuStrip1.Size = New System.Drawing.Size(800, 24)
-        Me.MenuStrip1.TabIndex = 0
-        Me.MenuStrip1.Text = "MenuStrip1"
-        '
-        'mnuOperaciones
-        '
-        Me.mnuOperaciones.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.mnuOperacionesFacturacion, Me.mnuOperacionesCC, Me.mnuOperacionesCompras})
-        Me.mnuOperaciones.Name = "mnuOperaciones"
-        Me.mnuOperaciones.Size = New System.Drawing.Size(85, 20)
-        Me.mnuOperaciones.Text = "&Operaciones"
-        '
-        'mnuOperacionesFacturacion
-        '
-        Me.mnuOperacionesFacturacion.Name = "mnuOperacionesFacturacion"
-        Me.mnuOperacionesFacturacion.Size = New System.Drawing.Size(233, 22)
-        Me.mnuOperacionesFacturacion.Text = "&Facturacion"
-        '
-        'mnuOperacionesCC
-        '
-        Me.mnuOperacionesCC.Name = "mnuOperacionesCC"
-        Me.mnuOperacionesCC.Size = New System.Drawing.Size(233, 22)
-        Me.mnuOperacionesCC.Text = "&Operaciones Cuenta Corriente"
-        '
-        'mnuOperacionesCompras
-        '
-        Me.mnuOperacionesCompras.Name = "mnuOperacionesCompras"
-        Me.mnuOperacionesCompras.Size = New System.Drawing.Size(233, 22)
-        Me.mnuOperacionesCompras.Text = "Com&pras"
-        '
-        'mnuCaja
-        '
-        Me.mnuCaja.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.mnuCajaMovimientos, Me.mnuCajaAsientoGastos})
-        Me.mnuCaja.Name = "mnuCaja"
-        Me.mnuCaja.Size = New System.Drawing.Size(42, 20)
-        Me.mnuCaja.Text = "&Caja"
-        '
-        'mnuCajaMovimientos
-        '
-        Me.mnuCajaMovimientos.Name = "mnuCajaMovimientos"
-        Me.mnuCajaMovimientos.Size = New System.Drawing.Size(186, 22)
-        Me.mnuCajaMovimientos.Text = "&Movimientos de Caja"
-        '
-        'mnuCajaAsientoGastos
-        '
-        Me.mnuCajaAsientoGastos.Name = "mnuCajaAsientoGastos"
-        Me.mnuCajaAsientoGastos.Size = New System.Drawing.Size(186, 22)
-        Me.mnuCajaAsientoGastos.Text = "&Asiendo de Gastos"
-        '
-        'mnuFiscal
-        '
-        Me.mnuFiscal.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.mnuFiscalLibroIVA, Me.mnuFiscalIVADigital, Me.mnuFiscalIVAExcel})
-        Me.mnuFiscal.Name = "mnuFiscal"
-        Me.mnuFiscal.Size = New System.Drawing.Size(48, 20)
-        Me.mnuFiscal.Text = "&Fiscal"
-        '
-        'mnuFiscalLibroIVA
-        '
-        Me.mnuFiscalLibroIVA.Name = "mnuFiscalLibroIVA"
-        Me.mnuFiscalLibroIVA.Size = New System.Drawing.Size(158, 22)
-        Me.mnuFiscalLibroIVA.Text = "&Libro IVA"
-        '
-        'mnuFiscalIVADigital
-        '
-        Me.mnuFiscalIVADigital.Name = "mnuFiscalIVADigital"
-        Me.mnuFiscalIVADigital.Size = New System.Drawing.Size(158, 22)
-        Me.mnuFiscalIVADigital.Text = "Libro IVA &Digital"
-        '
-        'mnuFiscalIVAExcel
-        '
-        Me.mnuFiscalIVAExcel.Name = "mnuFiscalIVAExcel"
-        Me.mnuFiscalIVAExcel.Size = New System.Drawing.Size(158, 22)
-        Me.mnuFiscalIVAExcel.Text = "Libro IVA &Excel"
-        '
-        'mnuContabilidad
-        '
-        Me.mnuContabilidad.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.mnuContabilidadResultadosMensuales, Me.mnuContabilidadSaldoCuentaPatrimoniales, Me.AsientoContableToolStripMenuItem, Me.CancelarCuentasIncobraToolStripMenuItem, Me.CierreEjercicioAbiertoToolStripMenuItem})
-        Me.mnuContabilidad.Name = "mnuContabilidad"
-        Me.mnuContabilidad.Size = New System.Drawing.Size(87, 20)
-        Me.mnuContabilidad.Text = "Co&ntabilidad"
-        '
-        'mnuContabilidadResultadosMensuales
-        '
-        Me.mnuContabilidadResultadosMensuales.Name = "mnuContabilidadResultadosMensuales"
-        Me.mnuContabilidadResultadosMensuales.Size = New System.Drawing.Size(230, 22)
-        Me.mnuContabilidadResultadosMensuales.Text = "&Resultados Mensuales"
-        '
-        'mnuContabilidadSaldoCuentaPatrimoniales
-        '
-        Me.mnuContabilidadSaldoCuentaPatrimoniales.Name = "mnuContabilidadSaldoCuentaPatrimoniales"
-        Me.mnuContabilidadSaldoCuentaPatrimoniales.Size = New System.Drawing.Size(230, 22)
-        Me.mnuContabilidadSaldoCuentaPatrimoniales.Text = "&Saldo Cuenta Patrimoniales"
-        '
-        'AsientoContableToolStripMenuItem
-        '
-        Me.AsientoContableToolStripMenuItem.Name = "AsientoContableToolStripMenuItem"
-        Me.AsientoContableToolStripMenuItem.Size = New System.Drawing.Size(230, 22)
-        Me.AsientoContableToolStripMenuItem.Text = "&Asiento Contable"
-        '
-        'CancelarCuentasIncobraToolStripMenuItem
-        '
-        Me.CancelarCuentasIncobraToolStripMenuItem.Name = "CancelarCuentasIncobraToolStripMenuItem"
-        Me.CancelarCuentasIncobraToolStripMenuItem.Size = New System.Drawing.Size(230, 22)
-        Me.CancelarCuentasIncobraToolStripMenuItem.Text = "&Cancelar Cuentas Incobrables"
-        '
-        'CierreEjercicioAbiertoToolStripMenuItem
-        '
-        Me.CierreEjercicioAbiertoToolStripMenuItem.Name = "CierreEjercicioAbiertoToolStripMenuItem"
-        Me.CierreEjercicioAbiertoToolStripMenuItem.Size = New System.Drawing.Size(230, 22)
-        Me.CierreEjercicioAbiertoToolStripMenuItem.Text = "Cierre &Ejercicio Abierto"
-        '
-        'mnuAuditoria
-        '
-        Me.mnuAuditoria.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.mnuAuditoriaCuentasCorrientes, Me.mnuAuditoriaComprobantes, Me.mnuAuditoriaReporteVentas, Me.mnuAuditoriaCuentasProveedores, Me.mnuAuditoriaCuentasBancarias, Me.mnuAuditoriaCuentasEmpleados, Me.mnuAuditoriaMovimientoDeProductos, Me.mnuAuditoriaRankingDeVentas})
-        Me.mnuAuditoria.Name = "mnuAuditoria"
-        Me.mnuAuditoria.Size = New System.Drawing.Size(68, 20)
-        Me.mnuAuditoria.Text = "&Auditoría"
-        '
-        'mnuAuditoriaCuentasCorrientes
-        '
-        Me.mnuAuditoriaCuentasCorrientes.Name = "mnuAuditoriaCuentasCorrientes"
-        Me.mnuAuditoriaCuentasCorrientes.Size = New System.Drawing.Size(205, 22)
-        Me.mnuAuditoriaCuentasCorrientes.Text = "&Cuentas Corrientes"
-        '
-        'mnuAuditoriaComprobantes
-        '
-        Me.mnuAuditoriaComprobantes.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.mnuAuditoriaComprobantesEmitidos, Me.mnuAuditoriaComprobantesRecibidos})
-        Me.mnuAuditoriaComprobantes.Name = "mnuAuditoriaComprobantes"
-        Me.mnuAuditoriaComprobantes.Size = New System.Drawing.Size(205, 22)
-        Me.mnuAuditoriaComprobantes.Text = "Com&probantes"
-        '
-        'mnuAuditoriaComprobantesEmitidos
-        '
-        Me.mnuAuditoriaComprobantesEmitidos.Name = "mnuAuditoriaComprobantesEmitidos"
-        Me.mnuAuditoriaComprobantesEmitidos.Size = New System.Drawing.Size(207, 22)
-        Me.mnuAuditoriaComprobantesEmitidos.Text = "Comprobantes &Emitidos"
-        '
-        'mnuAuditoriaComprobantesRecibidos
-        '
-        Me.mnuAuditoriaComprobantesRecibidos.Name = "mnuAuditoriaComprobantesRecibidos"
-        Me.mnuAuditoriaComprobantesRecibidos.Size = New System.Drawing.Size(207, 22)
-        Me.mnuAuditoriaComprobantesRecibidos.Text = "Comprobantes &Recibidos"
-        '
-        'mnuAuditoriaReporteVentas
-        '
-        Me.mnuAuditoriaReporteVentas.Name = "mnuAuditoriaReporteVentas"
-        Me.mnuAuditoriaReporteVentas.Size = New System.Drawing.Size(205, 22)
-        Me.mnuAuditoriaReporteVentas.Text = "Reporte de &Ventas"
-        '
-        'mnuAuditoriaCuentasProveedores
-        '
-        Me.mnuAuditoriaCuentasProveedores.Name = "mnuAuditoriaCuentasProveedores"
-        Me.mnuAuditoriaCuentasProveedores.Size = New System.Drawing.Size(205, 22)
-        Me.mnuAuditoriaCuentasProveedores.Text = "Cuenta Provee&dores"
-        '
-        'mnuAuditoriaCuentasBancarias
-        '
-        Me.mnuAuditoriaCuentasBancarias.Name = "mnuAuditoriaCuentasBancarias"
-        Me.mnuAuditoriaCuentasBancarias.Size = New System.Drawing.Size(205, 22)
-        Me.mnuAuditoriaCuentasBancarias.Text = "Cuentas &Bancarias"
-        '
-        'mnuAuditoriaCuentasEmpleados
-        '
-        Me.mnuAuditoriaCuentasEmpleados.Name = "mnuAuditoriaCuentasEmpleados"
-        Me.mnuAuditoriaCuentasEmpleados.Size = New System.Drawing.Size(205, 22)
-        Me.mnuAuditoriaCuentasEmpleados.Text = "Cuenta &Empleados"
-        '
-        'mnuAuditoriaMovimientoDeProductos
-        '
-        Me.mnuAuditoriaMovimientoDeProductos.Name = "mnuAuditoriaMovimientoDeProductos"
-        Me.mnuAuditoriaMovimientoDeProductos.Size = New System.Drawing.Size(205, 22)
-        Me.mnuAuditoriaMovimientoDeProductos.Text = "Movimiento de &Articulos"
-        '
-        'mnuAuditoriaRankingDeVentas
-        '
-        Me.mnuAuditoriaRankingDeVentas.Name = "mnuAuditoriaRankingDeVentas"
-        Me.mnuAuditoriaRankingDeVentas.Size = New System.Drawing.Size(205, 22)
-        Me.mnuAuditoriaRankingDeVentas.Text = "Ranking de &Ventas"
-        '
-        'mnuEditar
-        '
-        Me.mnuEditar.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.mnuEditarArticulos, Me.mnuEditarFraccionables, Me.mnuEditarClientes, Me.mnuEditarEmpleados, Me.mnuEditarUsuarios, Me.mnuEditarProveedores, Me.mnuEditarSecciones, Me.mnuEditarCuentasBancarias, Me.mnuEditarMedioPE, Me.mnuEditarPermisos})
-        Me.mnuEditar.Name = "mnuEditar"
-        Me.mnuEditar.Size = New System.Drawing.Size(49, 20)
-        Me.mnuEditar.Text = "&Editar"
-        '
-        'mnuEditarArticulos
-        '
-        Me.mnuEditarArticulos.Name = "mnuEditarArticulos"
-        Me.mnuEditarArticulos.Size = New System.Drawing.Size(159, 22)
-        Me.mnuEditarArticulos.Text = "Artículos"
-        '
-        'mnuEditarFraccionables
-        '
-        Me.mnuEditarFraccionables.Name = "mnuEditarFraccionables"
-        Me.mnuEditarFraccionables.Size = New System.Drawing.Size(159, 22)
-        Me.mnuEditarFraccionables.Text = "Fraccionables"
-        '
-        'mnuEditarClientes
-        '
-        Me.mnuEditarClientes.Name = "mnuEditarClientes"
-        Me.mnuEditarClientes.Size = New System.Drawing.Size(159, 22)
-        Me.mnuEditarClientes.Text = "Clientes"
-        '
-        'mnuEditarEmpleados
-        '
-        Me.mnuEditarEmpleados.Name = "mnuEditarEmpleados"
-        Me.mnuEditarEmpleados.Size = New System.Drawing.Size(159, 22)
-        Me.mnuEditarEmpleados.Text = "Empleados"
-        '
-        'mnuEditarUsuarios
-        '
-        Me.mnuEditarUsuarios.Name = "mnuEditarUsuarios"
-        Me.mnuEditarUsuarios.Size = New System.Drawing.Size(159, 22)
-        Me.mnuEditarUsuarios.Text = "Usuarios"
-        '
-        'mnuEditarProveedores
-        '
-        Me.mnuEditarProveedores.Name = "mnuEditarProveedores"
-        Me.mnuEditarProveedores.Size = New System.Drawing.Size(159, 22)
-        Me.mnuEditarProveedores.Text = "Proveedores"
-        '
-        'mnuEditarSecciones
-        '
-        Me.mnuEditarSecciones.Name = "mnuEditarSecciones"
-        Me.mnuEditarSecciones.Size = New System.Drawing.Size(159, 22)
-        Me.mnuEditarSecciones.Text = "Secciones"
-        '
-        'mnuEditarCuentasBancarias
-        '
-        Me.mnuEditarCuentasBancarias.Name = "mnuEditarCuentasBancarias"
-        Me.mnuEditarCuentasBancarias.Size = New System.Drawing.Size(159, 22)
-        Me.mnuEditarCuentasBancarias.Text = "Cuentas Banco"
-        '
-        'mnuEditarMedioPE
-        '
-        Me.mnuEditarMedioPE.Name = "mnuEditarMedioPE"
-        Me.mnuEditarMedioPE.Size = New System.Drawing.Size(159, 22)
-        Me.mnuEditarMedioPE.Text = "Medios de Pago"
-        '
-        'mnuEditarPermisos
-        '
-        Me.mnuEditarPermisos.Name = "mnuEditarPermisos"
-        Me.mnuEditarPermisos.Size = New System.Drawing.Size(159, 22)
-        Me.mnuEditarPermisos.Text = "Permisos"
-        '
-        'mnuObraSociales
-        '
-        Me.mnuObraSociales.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.mnuDatosRequeridosValidacionOS})
-        Me.mnuObraSociales.Name = "mnuObraSociales"
-        Me.mnuObraSociales.Size = New System.Drawing.Size(95, 20)
-        Me.mnuObraSociales.Text = "O&bras Sociales"
-        '
-        'mnuDatosRequeridosValidacionOS
-        '
-        Me.mnuDatosRequeridosValidacionOS.Name = "mnuDatosRequeridosValidacionOS"
-        Me.mnuDatosRequeridosValidacionOS.Size = New System.Drawing.Size(223, 22)
-        Me.mnuDatosRequeridosValidacionOS.Text = "Datos Requeridos Validación"
-        '
-        'mnuHerramientas
-        '
-        Me.mnuHerramientas.Name = "mnuHerramientas"
-        Me.mnuHerramientas.Size = New System.Drawing.Size(90, 20)
-        Me.mnuHerramientas.Text = "&Herramientas"
-        '
-        'mnuTrazabilidad
-        '
-        Me.mnuTrazabilidad.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.mnuConfirmarRecepcionDeTrazables, Me.mnuDescargarTransaccionesConfirmadas})
-        Me.mnuTrazabilidad.Name = "mnuTrazabilidad"
-        Me.mnuTrazabilidad.Size = New System.Drawing.Size(81, 20)
-        Me.mnuTrazabilidad.Text = "&Trazabilidad"
-        '
-        'mnuConfirmarRecepcionDeTrazables
-        '
-        Me.mnuConfirmarRecepcionDeTrazables.Name = "mnuConfirmarRecepcionDeTrazables"
-        Me.mnuConfirmarRecepcionDeTrazables.Size = New System.Drawing.Size(273, 22)
-        Me.mnuConfirmarRecepcionDeTrazables.Text = "Confirmar Recepción de Trazables"
-        '
-        'mnuSistema
-        '
-        Me.mnuSistema.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.mnuSistemaPTerminal, Me.mnuSistemaPSistema, Me.mnuSistemaActualizaciones, Me.mnuSistemaActualizarVersion})
-        Me.mnuSistema.Name = "mnuSistema"
-        Me.mnuSistema.Size = New System.Drawing.Size(60, 20)
-        Me.mnuSistema.Text = "&Sistema"
-        '
-        'mnuSistemaPTerminal
-        '
-        Me.mnuSistemaPTerminal.Name = "mnuSistemaPTerminal"
-        Me.mnuSistemaPTerminal.Size = New System.Drawing.Size(194, 22)
-        Me.mnuSistemaPTerminal.Text = "Parametros &Terminal"
-        '
-        'mnuSistemaPSistema
-        '
-        Me.mnuSistemaPSistema.Name = "mnuSistemaPSistema"
-        Me.mnuSistemaPSistema.Size = New System.Drawing.Size(194, 22)
-        Me.mnuSistemaPSistema.Text = "Parametros de &Sistema"
-        '
-        'mnuSistemaActualizaciones
-        '
-        Me.mnuSistemaActualizaciones.Name = "mnuSistemaActualizaciones"
-        Me.mnuSistemaActualizaciones.Size = New System.Drawing.Size(194, 22)
-        Me.mnuSistemaActualizaciones.Text = "Actualizaciones"
-        '
-        'mnuSistemaActualizarVersion
-        '
-        Me.mnuSistemaActualizarVersion.Name = "mnuSistemaActualizarVersion"
-        Me.mnuSistemaActualizarVersion.Size = New System.Drawing.Size(194, 22)
-        Me.mnuSistemaActualizarVersion.Text = "Actualizar Version"
-        '
-        'mnuAyuda
-        '
-        Me.mnuAyuda.Name = "mnuAyuda"
-        Me.mnuAyuda.Size = New System.Drawing.Size(53, 20)
-        Me.mnuAyuda.Text = "Ay&uda"
-        '
-        'mnuDescargarTransaccionesConfirmadas
-        '
-        Me.mnuDescargarTransaccionesConfirmadas.Name = "mnuDescargarTransaccionesConfirmadas"
-        Me.mnuDescargarTransaccionesConfirmadas.Size = New System.Drawing.Size(273, 22)
-        Me.mnuDescargarTransaccionesConfirmadas.Text = "Descargar Transacciones Confirmadas"
-        '
-        'FrmInicio
-        '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
-        Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(800, 450)
-        Me.Controls.Add(Me.MenuStrip1)
-        Me.IsMdiContainer = True
-        Me.MainMenuStrip = Me.MenuStrip1
-        Me.Name = "FrmInicio"
-        Me.Text = "Gestión SiCoFa"
-        Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
-        Me.MenuStrip1.ResumeLayout(False)
-        Me.MenuStrip1.PerformLayout()
-        Me.ResumeLayout(False)
-        Me.PerformLayout()
+        MenuStrip1 = New MenuStrip()
+        mnuOperaciones = New ToolStripMenuItem()
+        mnuOperacionesFacturacion = New ToolStripMenuItem()
+        mnuOperacionesCC = New ToolStripMenuItem()
+        mnuOperacionesCompras = New ToolStripMenuItem()
+        mnuCaja = New ToolStripMenuItem()
+        mnuCajaMovimientos = New ToolStripMenuItem()
+        mnuCajaAsientoGastos = New ToolStripMenuItem()
+        mnuFiscal = New ToolStripMenuItem()
+        mnuFiscalLibroIVA = New ToolStripMenuItem()
+        mnuFiscalIVADigital = New ToolStripMenuItem()
+        mnuFiscalIVAExcel = New ToolStripMenuItem()
+        mnuContabilidad = New ToolStripMenuItem()
+        mnuContabilidadResultadosMensuales = New ToolStripMenuItem()
+        mnuContabilidadSaldoCuentaPatrimoniales = New ToolStripMenuItem()
+        AsientoContableToolStripMenuItem = New ToolStripMenuItem()
+        CancelarCuentasIncobraToolStripMenuItem = New ToolStripMenuItem()
+        CierreEjercicioAbiertoToolStripMenuItem = New ToolStripMenuItem()
+        mnuAuditoria = New ToolStripMenuItem()
+        mnuAuditoriaCuentasCorrientes = New ToolStripMenuItem()
+        mnuAuditoriaComprobantes = New ToolStripMenuItem()
+        mnuAuditoriaComprobantesEmitidos = New ToolStripMenuItem()
+        mnuAuditoriaComprobantesRecibidos = New ToolStripMenuItem()
+        mnuAuditoriaReporteVentas = New ToolStripMenuItem()
+        mnuAuditoriaCuentasProveedores = New ToolStripMenuItem()
+        mnuAuditoriaCuentasBancarias = New ToolStripMenuItem()
+        mnuAuditoriaCuentasEmpleados = New ToolStripMenuItem()
+        mnuAuditoriaMovimientoDeProductos = New ToolStripMenuItem()
+        mnuAuditoriaRankingDeVentas = New ToolStripMenuItem()
+        mnuEditar = New ToolStripMenuItem()
+        mnuEditarArticulos = New ToolStripMenuItem()
+        mnuEditarFraccionables = New ToolStripMenuItem()
+        mnuEditarClientes = New ToolStripMenuItem()
+        mnuEditarEmpleados = New ToolStripMenuItem()
+        mnuEditarUsuarios = New ToolStripMenuItem()
+        mnuEditarProveedores = New ToolStripMenuItem()
+        mnuEditarSecciones = New ToolStripMenuItem()
+        mnuEditarCuentasBancarias = New ToolStripMenuItem()
+        mnuEditarMedioPE = New ToolStripMenuItem()
+        mnuEditarPermisos = New ToolStripMenuItem()
+        mnuObraSociales = New ToolStripMenuItem()
+        mnuDatosRequeridosValidacionOS = New ToolStripMenuItem()
+        mnuHerramientas = New ToolStripMenuItem()
+        mnuTrazabilidad = New ToolStripMenuItem()
+        mnuConfirmarRecepcionDeTrazables = New ToolStripMenuItem()
+        mnuTrazablesConfirmadosStockFarmacia = New ToolStripMenuItem()
+        mnuInformarTrazablesDispensados = New ToolStripMenuItem()
+        mnuTrazablesInformados = New ToolStripMenuItem()
+        mnuSistema = New ToolStripMenuItem()
+        mnuSistemaPTerminal = New ToolStripMenuItem()
+        mnuSistemaPSistema = New ToolStripMenuItem()
+        mnuSistemaActualizaciones = New ToolStripMenuItem()
+        mnuSistemaActualizarVersion = New ToolStripMenuItem()
+        mnuAyuda = New ToolStripMenuItem()
+        MenuStrip1.SuspendLayout()
+        SuspendLayout()
+        ' 
+        ' MenuStrip1
+        ' 
+        MenuStrip1.Items.AddRange(New ToolStripItem() {mnuOperaciones, mnuCaja, mnuFiscal, mnuContabilidad, mnuAuditoria, mnuEditar, mnuObraSociales, mnuHerramientas, mnuTrazabilidad, mnuSistema, mnuAyuda})
+        MenuStrip1.Location = New Point(0, 0)
+        MenuStrip1.Name = "MenuStrip1"
+        MenuStrip1.Padding = New Padding(7, 2, 0, 2)
+        MenuStrip1.Size = New Size(933, 24)
+        MenuStrip1.TabIndex = 0
+        MenuStrip1.Text = "MenuStrip1"
+        ' 
+        ' mnuOperaciones
+        ' 
+        mnuOperaciones.DropDownItems.AddRange(New ToolStripItem() {mnuOperacionesFacturacion, mnuOperacionesCC, mnuOperacionesCompras})
+        mnuOperaciones.Name = "mnuOperaciones"
+        mnuOperaciones.Size = New Size(85, 20)
+        mnuOperaciones.Text = "&Operaciones"
+        ' 
+        ' mnuOperacionesFacturacion
+        ' 
+        mnuOperacionesFacturacion.Name = "mnuOperacionesFacturacion"
+        mnuOperacionesFacturacion.Size = New Size(233, 22)
+        mnuOperacionesFacturacion.Text = "&Facturacion"
+        ' 
+        ' mnuOperacionesCC
+        ' 
+        mnuOperacionesCC.Name = "mnuOperacionesCC"
+        mnuOperacionesCC.Size = New Size(233, 22)
+        mnuOperacionesCC.Text = "&Operaciones Cuenta Corriente"
+        ' 
+        ' mnuOperacionesCompras
+        ' 
+        mnuOperacionesCompras.Name = "mnuOperacionesCompras"
+        mnuOperacionesCompras.Size = New Size(233, 22)
+        mnuOperacionesCompras.Text = "Com&pras"
+        ' 
+        ' mnuCaja
+        ' 
+        mnuCaja.DropDownItems.AddRange(New ToolStripItem() {mnuCajaMovimientos, mnuCajaAsientoGastos})
+        mnuCaja.Name = "mnuCaja"
+        mnuCaja.Size = New Size(42, 20)
+        mnuCaja.Text = "&Caja"
+        ' 
+        ' mnuCajaMovimientos
+        ' 
+        mnuCajaMovimientos.Name = "mnuCajaMovimientos"
+        mnuCajaMovimientos.Size = New Size(186, 22)
+        mnuCajaMovimientos.Text = "&Movimientos de Caja"
+        ' 
+        ' mnuCajaAsientoGastos
+        ' 
+        mnuCajaAsientoGastos.Name = "mnuCajaAsientoGastos"
+        mnuCajaAsientoGastos.Size = New Size(186, 22)
+        mnuCajaAsientoGastos.Text = "&Asiendo de Gastos"
+        ' 
+        ' mnuFiscal
+        ' 
+        mnuFiscal.DropDownItems.AddRange(New ToolStripItem() {mnuFiscalLibroIVA, mnuFiscalIVADigital, mnuFiscalIVAExcel})
+        mnuFiscal.Name = "mnuFiscal"
+        mnuFiscal.Size = New Size(48, 20)
+        mnuFiscal.Text = "&Fiscal"
+        ' 
+        ' mnuFiscalLibroIVA
+        ' 
+        mnuFiscalLibroIVA.Name = "mnuFiscalLibroIVA"
+        mnuFiscalLibroIVA.Size = New Size(158, 22)
+        mnuFiscalLibroIVA.Text = "&Libro IVA"
+        ' 
+        ' mnuFiscalIVADigital
+        ' 
+        mnuFiscalIVADigital.Name = "mnuFiscalIVADigital"
+        mnuFiscalIVADigital.Size = New Size(158, 22)
+        mnuFiscalIVADigital.Text = "Libro IVA &Digital"
+        ' 
+        ' mnuFiscalIVAExcel
+        ' 
+        mnuFiscalIVAExcel.Name = "mnuFiscalIVAExcel"
+        mnuFiscalIVAExcel.Size = New Size(158, 22)
+        mnuFiscalIVAExcel.Text = "Libro IVA &Excel"
+        ' 
+        ' mnuContabilidad
+        ' 
+        mnuContabilidad.DropDownItems.AddRange(New ToolStripItem() {mnuContabilidadResultadosMensuales, mnuContabilidadSaldoCuentaPatrimoniales, AsientoContableToolStripMenuItem, CancelarCuentasIncobraToolStripMenuItem, CierreEjercicioAbiertoToolStripMenuItem})
+        mnuContabilidad.Name = "mnuContabilidad"
+        mnuContabilidad.Size = New Size(87, 20)
+        mnuContabilidad.Text = "Co&ntabilidad"
+        ' 
+        ' mnuContabilidadResultadosMensuales
+        ' 
+        mnuContabilidadResultadosMensuales.Name = "mnuContabilidadResultadosMensuales"
+        mnuContabilidadResultadosMensuales.Size = New Size(230, 22)
+        mnuContabilidadResultadosMensuales.Text = "&Resultados Mensuales"
+        ' 
+        ' mnuContabilidadSaldoCuentaPatrimoniales
+        ' 
+        mnuContabilidadSaldoCuentaPatrimoniales.Name = "mnuContabilidadSaldoCuentaPatrimoniales"
+        mnuContabilidadSaldoCuentaPatrimoniales.Size = New Size(230, 22)
+        mnuContabilidadSaldoCuentaPatrimoniales.Text = "&Saldo Cuenta Patrimoniales"
+        ' 
+        ' AsientoContableToolStripMenuItem
+        ' 
+        AsientoContableToolStripMenuItem.Name = "AsientoContableToolStripMenuItem"
+        AsientoContableToolStripMenuItem.Size = New Size(230, 22)
+        AsientoContableToolStripMenuItem.Text = "&Asiento Contable"
+        ' 
+        ' CancelarCuentasIncobraToolStripMenuItem
+        ' 
+        CancelarCuentasIncobraToolStripMenuItem.Name = "CancelarCuentasIncobraToolStripMenuItem"
+        CancelarCuentasIncobraToolStripMenuItem.Size = New Size(230, 22)
+        CancelarCuentasIncobraToolStripMenuItem.Text = "&Cancelar Cuentas Incobrables"
+        ' 
+        ' CierreEjercicioAbiertoToolStripMenuItem
+        ' 
+        CierreEjercicioAbiertoToolStripMenuItem.Name = "CierreEjercicioAbiertoToolStripMenuItem"
+        CierreEjercicioAbiertoToolStripMenuItem.Size = New Size(230, 22)
+        CierreEjercicioAbiertoToolStripMenuItem.Text = "Cierre &Ejercicio Abierto"
+        ' 
+        ' mnuAuditoria
+        ' 
+        mnuAuditoria.DropDownItems.AddRange(New ToolStripItem() {mnuAuditoriaCuentasCorrientes, mnuAuditoriaComprobantes, mnuAuditoriaReporteVentas, mnuAuditoriaCuentasProveedores, mnuAuditoriaCuentasBancarias, mnuAuditoriaCuentasEmpleados, mnuAuditoriaMovimientoDeProductos, mnuAuditoriaRankingDeVentas})
+        mnuAuditoria.Name = "mnuAuditoria"
+        mnuAuditoria.Size = New Size(68, 20)
+        mnuAuditoria.Text = "&Auditoría"
+        ' 
+        ' mnuAuditoriaCuentasCorrientes
+        ' 
+        mnuAuditoriaCuentasCorrientes.Name = "mnuAuditoriaCuentasCorrientes"
+        mnuAuditoriaCuentasCorrientes.Size = New Size(205, 22)
+        mnuAuditoriaCuentasCorrientes.Text = "&Cuentas Corrientes"
+        ' 
+        ' mnuAuditoriaComprobantes
+        ' 
+        mnuAuditoriaComprobantes.DropDownItems.AddRange(New ToolStripItem() {mnuAuditoriaComprobantesEmitidos, mnuAuditoriaComprobantesRecibidos})
+        mnuAuditoriaComprobantes.Name = "mnuAuditoriaComprobantes"
+        mnuAuditoriaComprobantes.Size = New Size(205, 22)
+        mnuAuditoriaComprobantes.Text = "Com&probantes"
+        ' 
+        ' mnuAuditoriaComprobantesEmitidos
+        ' 
+        mnuAuditoriaComprobantesEmitidos.Name = "mnuAuditoriaComprobantesEmitidos"
+        mnuAuditoriaComprobantesEmitidos.Size = New Size(207, 22)
+        mnuAuditoriaComprobantesEmitidos.Text = "Comprobantes &Emitidos"
+        ' 
+        ' mnuAuditoriaComprobantesRecibidos
+        ' 
+        mnuAuditoriaComprobantesRecibidos.Name = "mnuAuditoriaComprobantesRecibidos"
+        mnuAuditoriaComprobantesRecibidos.Size = New Size(207, 22)
+        mnuAuditoriaComprobantesRecibidos.Text = "Comprobantes &Recibidos"
+        ' 
+        ' mnuAuditoriaReporteVentas
+        ' 
+        mnuAuditoriaReporteVentas.Name = "mnuAuditoriaReporteVentas"
+        mnuAuditoriaReporteVentas.Size = New Size(205, 22)
+        mnuAuditoriaReporteVentas.Text = "Reporte de &Ventas"
+        ' 
+        ' mnuAuditoriaCuentasProveedores
+        ' 
+        mnuAuditoriaCuentasProveedores.Name = "mnuAuditoriaCuentasProveedores"
+        mnuAuditoriaCuentasProveedores.Size = New Size(205, 22)
+        mnuAuditoriaCuentasProveedores.Text = "Cuenta Provee&dores"
+        ' 
+        ' mnuAuditoriaCuentasBancarias
+        ' 
+        mnuAuditoriaCuentasBancarias.Name = "mnuAuditoriaCuentasBancarias"
+        mnuAuditoriaCuentasBancarias.Size = New Size(205, 22)
+        mnuAuditoriaCuentasBancarias.Text = "Cuentas &Bancarias"
+        ' 
+        ' mnuAuditoriaCuentasEmpleados
+        ' 
+        mnuAuditoriaCuentasEmpleados.Name = "mnuAuditoriaCuentasEmpleados"
+        mnuAuditoriaCuentasEmpleados.Size = New Size(205, 22)
+        mnuAuditoriaCuentasEmpleados.Text = "Cuenta &Empleados"
+        ' 
+        ' mnuAuditoriaMovimientoDeProductos
+        ' 
+        mnuAuditoriaMovimientoDeProductos.Name = "mnuAuditoriaMovimientoDeProductos"
+        mnuAuditoriaMovimientoDeProductos.Size = New Size(205, 22)
+        mnuAuditoriaMovimientoDeProductos.Text = "Movimiento de &Articulos"
+        ' 
+        ' mnuAuditoriaRankingDeVentas
+        ' 
+        mnuAuditoriaRankingDeVentas.Name = "mnuAuditoriaRankingDeVentas"
+        mnuAuditoriaRankingDeVentas.Size = New Size(205, 22)
+        mnuAuditoriaRankingDeVentas.Text = "Ranking de &Ventas"
+        ' 
+        ' mnuEditar
+        ' 
+        mnuEditar.DropDownItems.AddRange(New ToolStripItem() {mnuEditarArticulos, mnuEditarFraccionables, mnuEditarClientes, mnuEditarEmpleados, mnuEditarUsuarios, mnuEditarProveedores, mnuEditarSecciones, mnuEditarCuentasBancarias, mnuEditarMedioPE, mnuEditarPermisos})
+        mnuEditar.Name = "mnuEditar"
+        mnuEditar.Size = New Size(49, 20)
+        mnuEditar.Text = "&Editar"
+        ' 
+        ' mnuEditarArticulos
+        ' 
+        mnuEditarArticulos.Name = "mnuEditarArticulos"
+        mnuEditarArticulos.Size = New Size(159, 22)
+        mnuEditarArticulos.Text = "Artículos"
+        ' 
+        ' mnuEditarFraccionables
+        ' 
+        mnuEditarFraccionables.Name = "mnuEditarFraccionables"
+        mnuEditarFraccionables.Size = New Size(159, 22)
+        mnuEditarFraccionables.Text = "Fraccionables"
+        ' 
+        ' mnuEditarClientes
+        ' 
+        mnuEditarClientes.Name = "mnuEditarClientes"
+        mnuEditarClientes.Size = New Size(159, 22)
+        mnuEditarClientes.Text = "Clientes"
+        ' 
+        ' mnuEditarEmpleados
+        ' 
+        mnuEditarEmpleados.Name = "mnuEditarEmpleados"
+        mnuEditarEmpleados.Size = New Size(159, 22)
+        mnuEditarEmpleados.Text = "Empleados"
+        ' 
+        ' mnuEditarUsuarios
+        ' 
+        mnuEditarUsuarios.Name = "mnuEditarUsuarios"
+        mnuEditarUsuarios.Size = New Size(159, 22)
+        mnuEditarUsuarios.Text = "Usuarios"
+        ' 
+        ' mnuEditarProveedores
+        ' 
+        mnuEditarProveedores.Name = "mnuEditarProveedores"
+        mnuEditarProveedores.Size = New Size(159, 22)
+        mnuEditarProveedores.Text = "Proveedores"
+        ' 
+        ' mnuEditarSecciones
+        ' 
+        mnuEditarSecciones.Name = "mnuEditarSecciones"
+        mnuEditarSecciones.Size = New Size(159, 22)
+        mnuEditarSecciones.Text = "Secciones"
+        ' 
+        ' mnuEditarCuentasBancarias
+        ' 
+        mnuEditarCuentasBancarias.Name = "mnuEditarCuentasBancarias"
+        mnuEditarCuentasBancarias.Size = New Size(159, 22)
+        mnuEditarCuentasBancarias.Text = "Cuentas Banco"
+        ' 
+        ' mnuEditarMedioPE
+        ' 
+        mnuEditarMedioPE.Name = "mnuEditarMedioPE"
+        mnuEditarMedioPE.Size = New Size(159, 22)
+        mnuEditarMedioPE.Text = "Medios de Pago"
+        ' 
+        ' mnuEditarPermisos
+        ' 
+        mnuEditarPermisos.Name = "mnuEditarPermisos"
+        mnuEditarPermisos.Size = New Size(159, 22)
+        mnuEditarPermisos.Text = "Permisos"
+        ' 
+        ' mnuObraSociales
+        ' 
+        mnuObraSociales.DropDownItems.AddRange(New ToolStripItem() {mnuDatosRequeridosValidacionOS})
+        mnuObraSociales.Name = "mnuObraSociales"
+        mnuObraSociales.Size = New Size(95, 20)
+        mnuObraSociales.Text = "O&bras Sociales"
+        ' 
+        ' mnuDatosRequeridosValidacionOS
+        ' 
+        mnuDatosRequeridosValidacionOS.Name = "mnuDatosRequeridosValidacionOS"
+        mnuDatosRequeridosValidacionOS.Size = New Size(223, 22)
+        mnuDatosRequeridosValidacionOS.Text = "Datos Requeridos Validación"
+        ' 
+        ' mnuHerramientas
+        ' 
+        mnuHerramientas.Name = "mnuHerramientas"
+        mnuHerramientas.Size = New Size(90, 20)
+        mnuHerramientas.Text = "&Herramientas"
+        ' 
+        ' mnuTrazabilidad
+        ' 
+        mnuTrazabilidad.DropDownItems.AddRange(New ToolStripItem() {mnuConfirmarRecepcionDeTrazables, mnuTrazablesConfirmadosStockFarmacia, mnuInformarTrazablesDispensados, mnuTrazablesInformados})
+        mnuTrazabilidad.Name = "mnuTrazabilidad"
+        mnuTrazabilidad.Size = New Size(81, 20)
+        mnuTrazabilidad.Text = "&Trazabilidad"
+        ' 
+        ' mnuConfirmarRecepcionDeTrazables
+        ' 
+        mnuConfirmarRecepcionDeTrazables.Name = "mnuConfirmarRecepcionDeTrazables"
+        mnuConfirmarRecepcionDeTrazables.Size = New Size(303, 22)
+        mnuConfirmarRecepcionDeTrazables.Text = "Confirmar Recepción de Trazables"
+        ' 
+        ' mnuTrazablesConfirmadosStockFarmacia
+        ' 
+        mnuTrazablesConfirmadosStockFarmacia.Name = "mnuTrazablesConfirmadosStockFarmacia"
+        mnuTrazablesConfirmadosStockFarmacia.Size = New Size(303, 22)
+        mnuTrazablesConfirmadosStockFarmacia.Text = "Trazables confirmados (Stock en Farmacias)"
+        ' 
+        ' mnuInformarTrazablesDispensados
+        ' 
+        mnuInformarTrazablesDispensados.Name = "mnuInformarTrazablesDispensados"
+        mnuInformarTrazablesDispensados.Size = New Size(303, 22)
+        mnuInformarTrazablesDispensados.Text = "Informar Trazables Dispensados"
+        ' 
+        ' mnuTrazablesInformados
+        ' 
+        mnuTrazablesInformados.Name = "mnuTrazablesInformados"
+        mnuTrazablesInformados.Size = New Size(303, 22)
+        mnuTrazablesInformados.Text = "Trazables informados"
+        ' 
+        ' mnuSistema
+        ' 
+        mnuSistema.DropDownItems.AddRange(New ToolStripItem() {mnuSistemaPTerminal, mnuSistemaPSistema, mnuSistemaActualizaciones, mnuSistemaActualizarVersion})
+        mnuSistema.Name = "mnuSistema"
+        mnuSistema.Size = New Size(60, 20)
+        mnuSistema.Text = "&Sistema"
+        ' 
+        ' mnuSistemaPTerminal
+        ' 
+        mnuSistemaPTerminal.Name = "mnuSistemaPTerminal"
+        mnuSistemaPTerminal.Size = New Size(194, 22)
+        mnuSistemaPTerminal.Text = "Parametros &Terminal"
+        ' 
+        ' mnuSistemaPSistema
+        ' 
+        mnuSistemaPSistema.Name = "mnuSistemaPSistema"
+        mnuSistemaPSistema.Size = New Size(194, 22)
+        mnuSistemaPSistema.Text = "Parametros de &Sistema"
+        ' 
+        ' mnuSistemaActualizaciones
+        ' 
+        mnuSistemaActualizaciones.Name = "mnuSistemaActualizaciones"
+        mnuSistemaActualizaciones.Size = New Size(194, 22)
+        mnuSistemaActualizaciones.Text = "Actualizaciones"
+        ' 
+        ' mnuSistemaActualizarVersion
+        ' 
+        mnuSistemaActualizarVersion.Name = "mnuSistemaActualizarVersion"
+        mnuSistemaActualizarVersion.Size = New Size(194, 22)
+        mnuSistemaActualizarVersion.Text = "Actualizar Version"
+        ' 
+        ' mnuAyuda
+        ' 
+        mnuAyuda.Name = "mnuAyuda"
+        mnuAyuda.Size = New Size(53, 20)
+        mnuAyuda.Text = "Ay&uda"
+        ' 
+        ' FrmInicio
+        ' 
+        AutoScaleDimensions = New SizeF(7F, 15F)
+        AutoScaleMode = AutoScaleMode.Font
+        ClientSize = New Size(933, 519)
+        Controls.Add(MenuStrip1)
+        IsMdiContainer = True
+        MainMenuStrip = MenuStrip1
+        Margin = New Padding(4, 3, 4, 3)
+        Name = "FrmInicio"
+        Text = "Gestión SiCoFa"
+        WindowState = FormWindowState.Maximized
+        MenuStrip1.ResumeLayout(False)
+        MenuStrip1.PerformLayout()
+        ResumeLayout(False)
+        PerformLayout()
 
     End Sub
 
@@ -471,5 +487,7 @@ Partial Class FrmInicio
     Friend WithEvents mnuDatosRequeridosValidacionOS As ToolStripMenuItem
     Friend WithEvents mnuTrazabilidad As ToolStripMenuItem
     Friend WithEvents mnuConfirmarRecepcionDeTrazables As ToolStripMenuItem
-    Friend WithEvents mnuDescargarTransaccionesConfirmadas As ToolStripMenuItem
+    Friend WithEvents mnuInformarTrazablesDispensados As ToolStripMenuItem
+    Friend WithEvents mnuTrazablesConfirmadosStockFarmacia As ToolStripMenuItem
+    Friend WithEvents mnuTrazablesInformados As ToolStripMenuItem
 End Class

@@ -151,14 +151,14 @@ Public Class D_AdminDB
 
     End Function
 
-    Public Sub InsertarRegistro(ByVal argSql As String, ByVal valoresColumnas As Dictionary(Of String, Object), Optional ByVal argDataBase As String = "FARMACIAS")
+    Public Sub InsertarRegistro(ByVal argTabla As String, ByVal valoresColumnas As Dictionary(Of String, Object), Optional ByVal argDataBase As String = "FARMACIAS")
 
         Try
             Dim objConexionDB As New D_Conexion
             Dim columnas As String = String.Join(",", valoresColumnas.Keys.Select(Function(k) "`" & k & "`"))
             Dim valores As String = String.Join(",", valoresColumnas.Keys.Cast(Of String)().Select(Function(k) "@" & k))
 
-            Dim insertCommand As String = $"INSERT INTO {argSql} ({columnas}) VALUES ({valores})"
+            Dim insertCommand As String = $"INSERT INTO {argTabla} ({columnas}) VALUES ({valores})"
 
             Using cn As MySqlConnection = objConexionDB.ObtenerConexion(argDataBase)
 

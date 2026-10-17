@@ -486,37 +486,73 @@ Public Class FrmInicio
         End Using
     End Sub
 
-    Private Async Sub mnuDescargarTransaccionesConfirmadas_Click(sender As Object, e As EventArgs) Handles mnuDescargarTransaccionesConfirmadas.Click
-        ' 1. Abrimos el formulario de rango de fechas de forma modal
-        Using frmFechas As New FrmRangoFechas()
+    Private Sub mnuTrazablesConfirmadosStockFarmacia_Click(sender As Object, e As EventArgs) Handles mnuTrazablesConfirmadosStockFarmacia.Click
 
-            If frmFechas.ShowDialog() = DialogResult.OK Then
+        Cursor = Cursors.WaitCursor
 
-                Dim strDesde As String = frmFechas.FechaDesde.ToString("dd/MM/yyyy")
-                Dim strHasta As String = frmFechas.FechaHasta.ToString("dd/MM/yyyy")
+        Try
+            Dim negocio As New N_AdminTrazabilidad()
 
-                Cursor = Cursors.WaitCursor
+            ' Obtener las transacciones confirmadas desde MySQL.
+            Dim tabla As DataTable = negocio.ObtenerTransaccionesConfirmadas()
 
-                Try
-                    ' 3. Llamamos a tu capa de negocio
-                    Dim negocio As New N_AdminTrazabilidad()
-                    Dim listaItems = Await negocio.VerTransacciones(strDesde, strHasta, 1)
-                    Stop
-                    ' 4. Mostramos los datos en tu formulario de grilla (FrmTransacTraza)
-                    'Using frmGrilla As New FrmTransacTraza()
-                    'frmGrilla.CargarDatosEnGrilla(listaItems)
-                    'frmGrilla.ShowDialog()
-                    'End Using
-
-                Catch ex As Exception
-                    MessageBox.Show(ex.Message, "SiCoFa - Trazabilidad", MessageBoxButtons.OK, MessageBoxIcon.Warning)
-                Finally
-                    Cursor = Cursors.Default
-                End Try
-
+            If tabla.Rows.Count = 0 Then
+                MessageBox.Show(
+                "No hay transacciones confirmadas para mostrar.",
+                "SiCoFa - Trazabilidad",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Information
+            )
+                Return
             End If
 
-        End Using
+            ' Mostrar las transacciones en la grilla.
+            Using frm As New FrmTransaccionesTrazabilidad()
+                frm.CargarDatosEnGrilla(tabla)
+                frm.ShowDialog(Me)
+            End Using
+
+        Catch ex As Exception
+            MessageBox.Show(ex.Message, "SiCoFa - Trazabilidad", MessageBoxButtons.OK, MessageBoxIcon.Error)
+
+        Finally
+            Cursor = Cursors.Default
+        End Try
+
+    End Sub
+
+    Private Sub mnuTrazablesInformados_Click(sender As Object, e As EventArgs) Handles mnuTrazablesInformados.Click
+
+        Cursor = Cursors.WaitCursor
+
+        Try
+            Dim negocio As New N_AdminTrazabilidad()
+
+            ' Obtener las transacciones confirmadas desde MySQL.
+            Dim tabla As DataTable = negocio.ObtenerTransaccionesInformadas()
+
+            If tabla.Rows.Count = 0 Then
+                MessageBox.Show(
+                "No hay transacciones informadas para mostrar.",
+                "SiCoFa - Trazabilidad",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Information
+            )
+                Return
+            End If
+
+            ' Mostrar las transacciones en la grilla.
+            Using frm As New FrmTransaccionesTrazabilidad()
+                frm.CargarDatosEnGrilla(tabla)
+                frm.ShowDialog(Me)
+            End Using
+
+        Catch ex As Exception
+            MessageBox.Show(ex.Message, "SiCoFa - Trazabilidad", MessageBoxButtons.OK, MessageBoxIcon.Error)
+
+        Finally
+            Cursor = Cursors.Default
+        End Try
 
     End Sub
 

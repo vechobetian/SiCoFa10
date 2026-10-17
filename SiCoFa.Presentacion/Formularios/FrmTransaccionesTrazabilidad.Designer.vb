@@ -22,6 +22,7 @@ Partial Class FrmTransaccionesTrazabilidad
     'No lo modifique con el editor de código.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FrmTransaccionesTrazabilidad))
         Dim DataGridViewCellStyle1 As DataGridViewCellStyle = New DataGridViewCellStyle()
         Dim DataGridViewCellStyle2 As DataGridViewCellStyle = New DataGridViewCellStyle()
         Dim DataGridViewCellStyle3 As DataGridViewCellStyle = New DataGridViewCellStyle()
@@ -31,9 +32,13 @@ Partial Class FrmTransaccionesTrazabilidad
         Dim DataGridViewCellStyle7 As DataGridViewCellStyle = New DataGridViewCellStyle()
         Dim DataGridViewCellStyle8 As DataGridViewCellStyle = New DataGridViewCellStyle()
         Dim DataGridViewCellStyle9 As DataGridViewCellStyle = New DataGridViewCellStyle()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FrmTransaccionesTrazabilidad))
         TableLayoutPanel1 = New TableLayoutPanel()
         dgvTransacciones = New DataGridView()
+        ToolStrip1 = New ToolStrip()
+        btnOrdenAscendente = New ToolStripButton()
+        btnOrdenDescendente = New ToolStripButton()
+        btnConfirmarTransaccion = New ToolStripButton()
+        btnConfirmarTransacciones = New ToolStripButton()
         IdTransaccion = New DataGridViewTextBoxColumn()
         FechaEvento = New DataGridViewTextBoxColumn()
         DescripcionEvento = New DataGridViewTextBoxColumn()
@@ -47,11 +52,6 @@ Partial Class FrmTransaccionesTrazabilidad
         Lote = New DataGridViewTextBoxColumn()
         Vencimiento = New DataGridViewTextBoxColumn()
         Estado = New DataGridViewTextBoxColumn()
-        ToolStrip1 = New ToolStrip()
-        ClienteToolStripButton = New ToolStripButton()
-        AyudaToolStripButton = New ToolStripButton()
-        ToolStripButton1 = New ToolStripButton()
-        SalirToolStripButton = New ToolStripButton()
         TableLayoutPanel1.SuspendLayout()
         CType(dgvTransacciones, ComponentModel.ISupportInitialize).BeginInit()
         ToolStrip1.SuspendLayout()
@@ -93,6 +93,51 @@ Partial Class FrmTransaccionesTrazabilidad
         dgvTransacciones.Size = New Size(966, 433)
         dgvTransacciones.TabIndex = 5
         dgvTransacciones.TabStop = False
+        ' 
+        ' ToolStrip1
+        ' 
+        ToolStrip1.AutoSize = False
+        ToolStrip1.GripStyle = ToolStripGripStyle.Hidden
+        ToolStrip1.Items.AddRange(New ToolStripItem() {btnOrdenAscendente, btnOrdenDescendente, btnConfirmarTransaccion, btnConfirmarTransacciones})
+        ToolStrip1.Location = New Point(0, 0)
+        ToolStrip1.Name = "ToolStrip1"
+        ToolStrip1.Size = New Size(974, 38)
+        ToolStrip1.TabIndex = 2
+        ToolStrip1.Text = "ToolStrip1"
+        ' 
+        ' btnOrdenAscendente
+        ' 
+        btnOrdenAscendente.DisplayStyle = ToolStripItemDisplayStyle.Image
+        btnOrdenAscendente.Image = CType(resources.GetObject("btnOrdenAscendente.Image"), Image)
+        btnOrdenAscendente.ImageTransparentColor = Color.Magenta
+        btnOrdenAscendente.Name = "btnOrdenAscendente"
+        btnOrdenAscendente.Size = New Size(23, 35)
+        ' 
+        ' btnOrdenDescendente
+        ' 
+        btnOrdenDescendente.DisplayStyle = ToolStripItemDisplayStyle.Image
+        btnOrdenDescendente.Image = CType(resources.GetObject("btnOrdenDescendente.Image"), Image)
+        btnOrdenDescendente.ImageTransparentColor = Color.Magenta
+        btnOrdenDescendente.Name = "btnOrdenDescendente"
+        btnOrdenDescendente.Size = New Size(23, 35)
+        ' 
+        ' btnConfirmarTransaccion
+        ' 
+        btnConfirmarTransaccion.DisplayStyle = ToolStripItemDisplayStyle.Image
+        btnConfirmarTransaccion.Image = CType(resources.GetObject("btnConfirmarTransaccion.Image"), Image)
+        btnConfirmarTransaccion.ImageTransparentColor = Color.Magenta
+        btnConfirmarTransaccion.Name = "btnConfirmarTransaccion"
+        btnConfirmarTransaccion.Size = New Size(23, 35)
+        ' 
+        ' btnConfirmarTransacciones
+        ' 
+        btnConfirmarTransacciones.DisplayStyle = ToolStripItemDisplayStyle.Text
+        btnConfirmarTransacciones.Font = New Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        btnConfirmarTransacciones.ImageTransparentColor = Color.Magenta
+        btnConfirmarTransacciones.Name = "btnConfirmarTransacciones"
+        btnConfirmarTransacciones.Size = New Size(36, 35)
+        btnConfirmarTransacciones.Text = "☑"
+        btnConfirmarTransacciones.ToolTipText = "Descuento General"
         ' 
         ' IdTransaccion
         ' 
@@ -209,55 +254,7 @@ Partial Class FrmTransaccionesTrazabilidad
         Estado.HeaderText = "Estado"
         Estado.Name = "Estado"
         Estado.ReadOnly = True
-        Estado.Width = 120
-        ' 
-        ' ToolStrip1
-        ' 
-        ToolStrip1.AutoSize = False
-        ToolStrip1.GripStyle = ToolStripGripStyle.Hidden
-        ToolStrip1.Items.AddRange(New ToolStripItem() {ClienteToolStripButton, AyudaToolStripButton, ToolStripButton1, SalirToolStripButton})
-        ToolStrip1.Location = New Point(0, 0)
-        ToolStrip1.Name = "ToolStrip1"
-        ToolStrip1.Size = New Size(974, 38)
-        ToolStrip1.TabIndex = 2
-        ToolStrip1.Text = "ToolStrip1"
-        ' 
-        ' ClienteToolStripButton
-        ' 
-        ClienteToolStripButton.DisplayStyle = ToolStripItemDisplayStyle.Image
-        ClienteToolStripButton.Image = CType(resources.GetObject("ClienteToolStripButton.Image"), Image)
-        ClienteToolStripButton.ImageTransparentColor = Color.Magenta
-        ClienteToolStripButton.Name = "ClienteToolStripButton"
-        ClienteToolStripButton.Size = New Size(23, 35)
-        ClienteToolStripButton.Text = "&Cliente"
-        ' 
-        ' AyudaToolStripButton
-        ' 
-        AyudaToolStripButton.DisplayStyle = ToolStripItemDisplayStyle.Image
-        AyudaToolStripButton.Image = CType(resources.GetObject("AyudaToolStripButton.Image"), Image)
-        AyudaToolStripButton.ImageTransparentColor = Color.Magenta
-        AyudaToolStripButton.Name = "AyudaToolStripButton"
-        AyudaToolStripButton.Size = New Size(23, 35)
-        AyudaToolStripButton.Text = "Ay&uda"
-        ' 
-        ' ToolStripButton1
-        ' 
-        ToolStripButton1.DisplayStyle = ToolStripItemDisplayStyle.Image
-        ToolStripButton1.Image = CType(resources.GetObject("ToolStripButton1.Image"), Image)
-        ToolStripButton1.ImageTransparentColor = Color.Magenta
-        ToolStripButton1.Name = "ToolStripButton1"
-        ToolStripButton1.Size = New Size(23, 35)
-        ToolStripButton1.Text = "ToolStripButton1"
-        ' 
-        ' SalirToolStripButton
-        ' 
-        SalirToolStripButton.DisplayStyle = ToolStripItemDisplayStyle.Image
-        SalirToolStripButton.Image = CType(resources.GetObject("SalirToolStripButton.Image"), Image)
-        SalirToolStripButton.ImageTransparentColor = Color.Magenta
-        SalirToolStripButton.Name = "SalirToolStripButton"
-        SalirToolStripButton.Size = New Size(23, 35)
-        SalirToolStripButton.Text = "&Salir"
-        SalirToolStripButton.ToolTipText = "Salir"
+        Estado.Width = 150
         ' 
         ' FrmTransaccionesTrazabilidad
         ' 
@@ -278,11 +275,11 @@ Partial Class FrmTransaccionesTrazabilidad
     End Sub
     Friend WithEvents TableLayoutPanel1 As TableLayoutPanel
     Friend WithEvents ToolStrip1 As ToolStrip
-    Friend WithEvents ClienteToolStripButton As ToolStripButton
-    Friend WithEvents AyudaToolStripButton As ToolStripButton
-    Friend WithEvents ToolStripButton1 As ToolStripButton
-    Friend WithEvents SalirToolStripButton As ToolStripButton
+    Friend WithEvents btnOrdenAscendente As ToolStripButton
+    Friend WithEvents btnOrdenDescendente As ToolStripButton
+    Friend WithEvents btnConfirmarTransaccion As ToolStripButton
     Friend WithEvents dgvTransacciones As DataGridView
+    Friend WithEvents btnConfirmarTransacciones As ToolStripButton
     Friend WithEvents IdTransaccion As DataGridViewTextBoxColumn
     Friend WithEvents FechaEvento As DataGridViewTextBoxColumn
     Friend WithEvents DescripcionEvento As DataGridViewTextBoxColumn

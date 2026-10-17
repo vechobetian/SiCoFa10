@@ -33,9 +33,6 @@ Public Class TrazabilidadServices
     Private Async Function EjecutarSoapAsync(cuerpoSoap As String, soapAction As String) As Task(Of XDocument)
         Dim soapXml As String = _soapHead & cuerpoSoap & _soapFoot
 
-        System.Net.ServicePointManager.Expect100Continue = False
-        System.Net.ServicePointManager.SecurityProtocol = System.Net.SecurityProtocolType.Tls12 Or System.Net.SecurityProtocolType.Tls11 Or System.Net.SecurityProtocolType.Tls
-
         Using handler As New HttpClientHandler()
             handler.UseProxy = True
             handler.Proxy = System.Net.WebRequest.GetSystemWebProxy()
@@ -131,7 +128,7 @@ Public Class TrazabilidadServices
                 Dim venc = itemXml.Elements().FirstOrDefault(Function(e) e.Name.LocalName = "_vencimiento")?.Value
                 If DateTime.TryParse(venc, Nothing) Then item.Vencimiento = Convert.ToDateTime(venc)
 
-                item.Estado = "NO CONFIRMADO"
+                item.Estado = "NO CONFIRMADA"
                 listaItems.Add(item)
             Next
         End If
@@ -158,11 +155,11 @@ Public Class TrazabilidadServices
         ' Definimos el texto del estado de forma equivalente a VB6
         Dim estadoStr As String = String.Empty
         Select Case argIdEstado
-            Case 1 : estadoStr = "INFORMADO"
-            Case 2 : estadoStr = "ANULADO"
-            Case 3 : estadoStr = "CONFIRMADO"
-            Case 4 : estadoStr = "ALERTADO"
-            Case 5 : estadoStr = "CARGADO"
+            Case 1 : estadoStr = "INFORMADA"
+            Case 2 : estadoStr = "ANULADA"
+            Case 3 : estadoStr = "CONFIRMADA"
+            Case 4 : estadoStr = "ALERTADA"
+            Case 5 : estadoStr = "CARGADA"
         End Select
 
         ' Ejecutamos la consulta enviando el SOAPAction correcto para getTransaccionesWS
