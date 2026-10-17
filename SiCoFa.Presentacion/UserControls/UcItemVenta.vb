@@ -10,6 +10,7 @@ Public Class UcItemVenta
     Public Event CantidadConfirmada(uc As UcItemVenta)
     Public Event PrecioConfirmado(uc As UcItemVenta)
     Public Event ItemSeleccionado(uc As UcItemVenta)
+    Public Event TrazabilidadSolicitada(uc As UcItemVenta)
 
     Protected Overridable Sub OnItemEliminado()
 
@@ -47,8 +48,7 @@ Public Class UcItemVenta
         End If
 
         ' Validar que solamente se ingrese 0 o 1
-        If txtFraccionado.Text.Trim() <> "0" AndAlso
-       txtFraccionado.Text.Trim() <> "1" Then
+        If txtFraccionado.Text.Trim() <> "0" AndAlso txtFraccionado.Text.Trim() <> "1" Then
 
             MsgBox("Ingrese 0 para NO fraccionar o 1 para fraccionar.", vbInformation, "SiCoFa")
 
@@ -86,8 +86,21 @@ Public Class UcItemVenta
     Protected Overridable Sub OnItemSeleccionado()
 
         If ItemVenta IsNot Nothing Then
-
             RaiseEvent ItemSeleccionado(Me)
+        End If
+
+    End Sub
+
+    Protected Overridable Sub OnTrazabilidadSolicitada()
+
+        If ItemVenta Is Nothing Then Exit Sub
+        If ItemVenta.Articulo Is Nothing Then Exit Sub
+
+        Dim gtin As String = ItemVenta.Articulo.Gtin
+
+        If Not String.IsNullOrWhiteSpace(gtin) AndAlso gtin.Length = 14 Then
+
+            RaiseEvent TrazabilidadSolicitada(Me)
 
         End If
 

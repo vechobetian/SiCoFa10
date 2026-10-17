@@ -326,6 +326,7 @@ Public Class FrmVentas
                 AddHandler uc.CantidadConfirmada, AddressOf CantidadConfirmada
                 AddHandler uc.PrecioConfirmado, AddressOf PrecioConfirmado
                 AddHandler uc.ItemSeleccionado, AddressOf SeleccionarItem
+                AddHandler uc.TrazabilidadSolicitada, AddressOf TrazabilidadSolicitada
 
                 PanelItems.Controls.Add(uc)
 
@@ -475,6 +476,7 @@ Public Class FrmVentas
         AddHandler uc.CantidadConfirmada, AddressOf CantidadConfirmada
         AddHandler uc.PrecioConfirmado, AddressOf PrecioConfirmado
         AddHandler uc.ItemSeleccionado, AddressOf SeleccionarItem
+        AddHandler uc.TrazabilidadSolicitada, AddressOf TrazabilidadSolicitada
 
         PanelItems.Controls.Add(uc)
         PanelItems.Controls.SetChildIndex(uc, 0)
@@ -718,6 +720,16 @@ Public Class FrmVentas
             MsgBox(ex.Message, vbCritical, "SiCoFa")
 
         End Try
+
+    End Sub
+
+    Private Sub TrazabilidadSolicitada(uc As UcItemVenta)
+
+        Dim item As ItemComprobante = uc.ItemVenta
+
+        If item Is Nothing OrElse item.Articulo Is Nothing Then Exit Sub
+
+        ' Aquí procesaremos la trazabilidad del artículo.
 
     End Sub
 

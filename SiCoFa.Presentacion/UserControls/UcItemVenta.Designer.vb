@@ -22,210 +22,224 @@ Partial Class UcItemVenta
     'No lo modifique con el editor de código.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
-        Me.txtFraccionado = New System.Windows.Forms.TextBox()
-        Me.txtImporteConDescuento = New System.Windows.Forms.TextBox()
-        Me.txtImporteDescuento = New System.Windows.Forms.TextBox()
-        Me.txtPorcentajeDescuento = New System.Windows.Forms.TextBox()
-        Me.txtImporteSinDescuento = New System.Windows.Forms.TextBox()
-        Me.txtPrecioUnitario = New System.Windows.Forms.TextBox()
-        Me.txtAlicIVA = New System.Windows.Forms.TextBox()
-        Me.txtCantidad = New System.Windows.Forms.TextBox()
-        Me.txtDescripcion = New System.Windows.Forms.TextBox()
-        Me.txtCodBarra = New System.Windows.Forms.TextBox()
-        Me.btnEliminarItem = New System.Windows.Forms.Button()
-        Me.TableLayoutPanel1.SuspendLayout()
-        Me.SuspendLayout()
-        '
-        'TableLayoutPanel1
-        '
-        Me.TableLayoutPanel1.ColumnCount = 11
-        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 28.0!))
-        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100.0!))
-        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 40.0!))
-        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 40.0!))
-        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 50.0!))
-        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100.0!))
-        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100.0!))
-        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 50.0!))
-        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100.0!))
-        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100.0!))
-        Me.TableLayoutPanel1.Controls.Add(Me.txtFraccionado, 3, 0)
-        Me.TableLayoutPanel1.Controls.Add(Me.txtImporteConDescuento, 10, 0)
-        Me.TableLayoutPanel1.Controls.Add(Me.txtImporteDescuento, 9, 0)
-        Me.TableLayoutPanel1.Controls.Add(Me.txtPorcentajeDescuento, 8, 0)
-        Me.TableLayoutPanel1.Controls.Add(Me.txtImporteSinDescuento, 7, 0)
-        Me.TableLayoutPanel1.Controls.Add(Me.txtPrecioUnitario, 6, 0)
-        Me.TableLayoutPanel1.Controls.Add(Me.txtAlicIVA, 5, 0)
-        Me.TableLayoutPanel1.Controls.Add(Me.txtCantidad, 4, 0)
-        Me.TableLayoutPanel1.Controls.Add(Me.txtDescripcion, 2, 0)
-        Me.TableLayoutPanel1.Controls.Add(Me.txtCodBarra, 1, 0)
-        Me.TableLayoutPanel1.Controls.Add(Me.btnEliminarItem, 0, 0)
-        Me.TableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TableLayoutPanel1.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TableLayoutPanel1.Location = New System.Drawing.Point(0, 0)
-        Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
-        Me.TableLayoutPanel1.RowCount = 1
-        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-        Me.TableLayoutPanel1.Size = New System.Drawing.Size(1178, 25)
-        Me.TableLayoutPanel1.TabIndex = 0
-        '
-        'txtFraccionado
-        '
-        Me.txtFraccionado.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.txtFraccionado.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.txtFraccionado.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtFraccionado.Location = New System.Drawing.Point(601, 3)
-        Me.txtFraccionado.Name = "txtFraccionado"
-        Me.txtFraccionado.Size = New System.Drawing.Size(34, 18)
-        Me.txtFraccionado.TabIndex = 10
-        Me.txtFraccionado.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        '
-        'txtImporteConDescuento
-        '
-        Me.txtImporteConDescuento.BackColor = System.Drawing.Color.White
-        Me.txtImporteConDescuento.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.txtImporteConDescuento.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.txtImporteConDescuento.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtImporteConDescuento.Location = New System.Drawing.Point(1081, 3)
-        Me.txtImporteConDescuento.Name = "txtImporteConDescuento"
-        Me.txtImporteConDescuento.ReadOnly = True
-        Me.txtImporteConDescuento.Size = New System.Drawing.Size(94, 18)
-        Me.txtImporteConDescuento.TabIndex = 8
-        Me.txtImporteConDescuento.TabStop = False
-        Me.txtImporteConDescuento.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        '
-        'txtImporteDescuento
-        '
-        Me.txtImporteDescuento.BackColor = System.Drawing.Color.White
-        Me.txtImporteDescuento.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.txtImporteDescuento.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.txtImporteDescuento.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtImporteDescuento.Location = New System.Drawing.Point(981, 3)
-        Me.txtImporteDescuento.Name = "txtImporteDescuento"
-        Me.txtImporteDescuento.ReadOnly = True
-        Me.txtImporteDescuento.Size = New System.Drawing.Size(94, 18)
-        Me.txtImporteDescuento.TabIndex = 7
-        Me.txtImporteDescuento.TabStop = False
-        Me.txtImporteDescuento.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        '
-        'txtPorcentajeDescuento
-        '
-        Me.txtPorcentajeDescuento.BackColor = System.Drawing.Color.White
-        Me.txtPorcentajeDescuento.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.txtPorcentajeDescuento.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.txtPorcentajeDescuento.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtPorcentajeDescuento.Location = New System.Drawing.Point(931, 3)
-        Me.txtPorcentajeDescuento.Name = "txtPorcentajeDescuento"
-        Me.txtPorcentajeDescuento.ReadOnly = True
-        Me.txtPorcentajeDescuento.Size = New System.Drawing.Size(44, 18)
-        Me.txtPorcentajeDescuento.TabIndex = 6
-        Me.txtPorcentajeDescuento.TabStop = False
-        Me.txtPorcentajeDescuento.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        '
-        'txtImporteSinDescuento
-        '
-        Me.txtImporteSinDescuento.BackColor = System.Drawing.Color.White
-        Me.txtImporteSinDescuento.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.txtImporteSinDescuento.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.txtImporteSinDescuento.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtImporteSinDescuento.Location = New System.Drawing.Point(831, 3)
-        Me.txtImporteSinDescuento.Name = "txtImporteSinDescuento"
-        Me.txtImporteSinDescuento.ReadOnly = True
-        Me.txtImporteSinDescuento.Size = New System.Drawing.Size(94, 18)
-        Me.txtImporteSinDescuento.TabIndex = 5
-        Me.txtImporteSinDescuento.TabStop = False
-        Me.txtImporteSinDescuento.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        '
-        'txtPrecioUnitario
-        '
-        Me.txtPrecioUnitario.BackColor = System.Drawing.Color.White
-        Me.txtPrecioUnitario.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.txtPrecioUnitario.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.txtPrecioUnitario.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtPrecioUnitario.Location = New System.Drawing.Point(731, 3)
-        Me.txtPrecioUnitario.Name = "txtPrecioUnitario"
-        Me.txtPrecioUnitario.Size = New System.Drawing.Size(94, 18)
-        Me.txtPrecioUnitario.TabIndex = 4
-        Me.txtPrecioUnitario.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        '
-        'txtAlicIVA
-        '
-        Me.txtAlicIVA.BackColor = System.Drawing.Color.White
-        Me.txtAlicIVA.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.txtAlicIVA.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.txtAlicIVA.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtAlicIVA.Location = New System.Drawing.Point(681, 3)
-        Me.txtAlicIVA.Name = "txtAlicIVA"
-        Me.txtAlicIVA.ReadOnly = True
-        Me.txtAlicIVA.Size = New System.Drawing.Size(44, 18)
-        Me.txtAlicIVA.TabIndex = 3
-        Me.txtAlicIVA.TabStop = False
-        Me.txtAlicIVA.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        '
-        'txtCantidad
-        '
-        Me.txtCantidad.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.txtCantidad.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.txtCantidad.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtCantidad.Location = New System.Drawing.Point(641, 3)
-        Me.txtCantidad.Name = "txtCantidad"
-        Me.txtCantidad.Size = New System.Drawing.Size(34, 18)
-        Me.txtCantidad.TabIndex = 2
-        Me.txtCantidad.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        '
-        'txtDescripcion
-        '
-        Me.txtDescripcion.BackColor = System.Drawing.Color.White
-        Me.txtDescripcion.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.txtDescripcion.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.txtDescripcion.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtDescripcion.Location = New System.Drawing.Point(131, 3)
-        Me.txtDescripcion.Name = "txtDescripcion"
-        Me.txtDescripcion.Size = New System.Drawing.Size(464, 18)
-        Me.txtDescripcion.TabIndex = 1
-        '
-        'txtCodBarra
-        '
-        Me.txtCodBarra.BackColor = System.Drawing.Color.White
-        Me.txtCodBarra.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.txtCodBarra.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.txtCodBarra.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtCodBarra.Location = New System.Drawing.Point(31, 3)
-        Me.txtCodBarra.Name = "txtCodBarra"
-        Me.txtCodBarra.ReadOnly = True
-        Me.txtCodBarra.Size = New System.Drawing.Size(94, 18)
-        Me.txtCodBarra.TabIndex = 0
-        Me.txtCodBarra.TabStop = False
-        '
-        'btnEliminarItem
-        '
-        Me.btnEliminarItem.BackColor = System.Drawing.Color.White
-        Me.btnEliminarItem.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.btnEliminarItem.FlatAppearance.BorderSize = 0
-        Me.btnEliminarItem.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DarkGray
-        Me.btnEliminarItem.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.ActiveCaption
-        Me.btnEliminarItem.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnEliminarItem.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnEliminarItem.ForeColor = System.Drawing.Color.Red
-        Me.btnEliminarItem.Location = New System.Drawing.Point(3, 3)
-        Me.btnEliminarItem.Name = "btnEliminarItem"
-        Me.btnEliminarItem.Size = New System.Drawing.Size(22, 19)
-        Me.btnEliminarItem.TabIndex = 9
-        Me.btnEliminarItem.Text = "X"
-        Me.btnEliminarItem.UseVisualStyleBackColor = False
-        '
-        'UcItemVenta
-        '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
-        Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.Controls.Add(Me.TableLayoutPanel1)
-        Me.Name = "UcItemVenta"
-        Me.Size = New System.Drawing.Size(1178, 25)
-        Me.TableLayoutPanel1.ResumeLayout(False)
-        Me.TableLayoutPanel1.PerformLayout()
-        Me.ResumeLayout(False)
+        TableLayoutPanel1 = New TableLayoutPanel()
+        txtFraccionado = New TextBox()
+        txtImporteConDescuento = New TextBox()
+        txtImporteDescuento = New TextBox()
+        txtPorcentajeDescuento = New TextBox()
+        txtImporteSinDescuento = New TextBox()
+        txtPrecioUnitario = New TextBox()
+        txtAlicIVA = New TextBox()
+        txtCantidad = New TextBox()
+        txtDescripcion = New TextBox()
+        txtCodBarra = New TextBox()
+        btnEliminarItem = New Button()
+        TableLayoutPanel1.SuspendLayout()
+        SuspendLayout()
+        ' 
+        ' TableLayoutPanel1
+        ' 
+        TableLayoutPanel1.ColumnCount = 11
+        TableLayoutPanel1.ColumnStyles.Add(New ColumnStyle(SizeType.Absolute, 33F))
+        TableLayoutPanel1.ColumnStyles.Add(New ColumnStyle(SizeType.Absolute, 117F))
+        TableLayoutPanel1.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 100F))
+        TableLayoutPanel1.ColumnStyles.Add(New ColumnStyle(SizeType.Absolute, 47F))
+        TableLayoutPanel1.ColumnStyles.Add(New ColumnStyle(SizeType.Absolute, 47F))
+        TableLayoutPanel1.ColumnStyles.Add(New ColumnStyle(SizeType.Absolute, 58F))
+        TableLayoutPanel1.ColumnStyles.Add(New ColumnStyle(SizeType.Absolute, 117F))
+        TableLayoutPanel1.ColumnStyles.Add(New ColumnStyle(SizeType.Absolute, 117F))
+        TableLayoutPanel1.ColumnStyles.Add(New ColumnStyle(SizeType.Absolute, 58F))
+        TableLayoutPanel1.ColumnStyles.Add(New ColumnStyle(SizeType.Absolute, 117F))
+        TableLayoutPanel1.ColumnStyles.Add(New ColumnStyle(SizeType.Absolute, 117F))
+        TableLayoutPanel1.Controls.Add(txtFraccionado, 3, 0)
+        TableLayoutPanel1.Controls.Add(txtImporteConDescuento, 10, 0)
+        TableLayoutPanel1.Controls.Add(txtImporteDescuento, 9, 0)
+        TableLayoutPanel1.Controls.Add(txtPorcentajeDescuento, 8, 0)
+        TableLayoutPanel1.Controls.Add(txtImporteSinDescuento, 7, 0)
+        TableLayoutPanel1.Controls.Add(txtPrecioUnitario, 6, 0)
+        TableLayoutPanel1.Controls.Add(txtAlicIVA, 5, 0)
+        TableLayoutPanel1.Controls.Add(txtCantidad, 4, 0)
+        TableLayoutPanel1.Controls.Add(txtDescripcion, 2, 0)
+        TableLayoutPanel1.Controls.Add(txtCodBarra, 1, 0)
+        TableLayoutPanel1.Controls.Add(btnEliminarItem, 0, 0)
+        TableLayoutPanel1.Dock = DockStyle.Fill
+        TableLayoutPanel1.Font = New Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        TableLayoutPanel1.Location = New Point(0, 0)
+        TableLayoutPanel1.Margin = New Padding(4, 3, 4, 3)
+        TableLayoutPanel1.Name = "TableLayoutPanel1"
+        TableLayoutPanel1.RowCount = 1
+        TableLayoutPanel1.RowStyles.Add(New RowStyle(SizeType.Percent, 100F))
+        TableLayoutPanel1.Size = New Size(1374, 26)
+        TableLayoutPanel1.TabIndex = 0
+        ' 
+        ' txtFraccionado
+        ' 
+        txtFraccionado.BorderStyle = BorderStyle.None
+        txtFraccionado.Dock = DockStyle.Fill
+        txtFraccionado.Font = New Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        txtFraccionado.Location = New Point(700, 3)
+        txtFraccionado.Margin = New Padding(4, 3, 4, 3)
+        txtFraccionado.Name = "txtFraccionado"
+        txtFraccionado.Size = New Size(39, 18)
+        txtFraccionado.TabIndex = 10
+        txtFraccionado.TextAlign = HorizontalAlignment.Center
+        ' 
+        ' txtImporteConDescuento
+        ' 
+        txtImporteConDescuento.BackColor = Color.White
+        txtImporteConDescuento.BorderStyle = BorderStyle.None
+        txtImporteConDescuento.Dock = DockStyle.Fill
+        txtImporteConDescuento.Font = New Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        txtImporteConDescuento.Location = New Point(1261, 3)
+        txtImporteConDescuento.Margin = New Padding(4, 3, 4, 3)
+        txtImporteConDescuento.Name = "txtImporteConDescuento"
+        txtImporteConDescuento.ReadOnly = True
+        txtImporteConDescuento.Size = New Size(109, 18)
+        txtImporteConDescuento.TabIndex = 8
+        txtImporteConDescuento.TabStop = False
+        txtImporteConDescuento.TextAlign = HorizontalAlignment.Right
+        ' 
+        ' txtImporteDescuento
+        ' 
+        txtImporteDescuento.BackColor = Color.White
+        txtImporteDescuento.BorderStyle = BorderStyle.None
+        txtImporteDescuento.Dock = DockStyle.Fill
+        txtImporteDescuento.Font = New Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        txtImporteDescuento.Location = New Point(1144, 3)
+        txtImporteDescuento.Margin = New Padding(4, 3, 4, 3)
+        txtImporteDescuento.Name = "txtImporteDescuento"
+        txtImporteDescuento.ReadOnly = True
+        txtImporteDescuento.Size = New Size(109, 18)
+        txtImporteDescuento.TabIndex = 7
+        txtImporteDescuento.TabStop = False
+        txtImporteDescuento.TextAlign = HorizontalAlignment.Right
+        ' 
+        ' txtPorcentajeDescuento
+        ' 
+        txtPorcentajeDescuento.BackColor = Color.White
+        txtPorcentajeDescuento.BorderStyle = BorderStyle.None
+        txtPorcentajeDescuento.Dock = DockStyle.Fill
+        txtPorcentajeDescuento.Font = New Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        txtPorcentajeDescuento.Location = New Point(1086, 3)
+        txtPorcentajeDescuento.Margin = New Padding(4, 3, 4, 3)
+        txtPorcentajeDescuento.Name = "txtPorcentajeDescuento"
+        txtPorcentajeDescuento.ReadOnly = True
+        txtPorcentajeDescuento.Size = New Size(50, 18)
+        txtPorcentajeDescuento.TabIndex = 6
+        txtPorcentajeDescuento.TabStop = False
+        txtPorcentajeDescuento.TextAlign = HorizontalAlignment.Center
+        ' 
+        ' txtImporteSinDescuento
+        ' 
+        txtImporteSinDescuento.BackColor = Color.White
+        txtImporteSinDescuento.BorderStyle = BorderStyle.None
+        txtImporteSinDescuento.Dock = DockStyle.Fill
+        txtImporteSinDescuento.Font = New Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        txtImporteSinDescuento.Location = New Point(969, 3)
+        txtImporteSinDescuento.Margin = New Padding(4, 3, 4, 3)
+        txtImporteSinDescuento.Name = "txtImporteSinDescuento"
+        txtImporteSinDescuento.ReadOnly = True
+        txtImporteSinDescuento.Size = New Size(109, 18)
+        txtImporteSinDescuento.TabIndex = 5
+        txtImporteSinDescuento.TabStop = False
+        txtImporteSinDescuento.TextAlign = HorizontalAlignment.Right
+        ' 
+        ' txtPrecioUnitario
+        ' 
+        txtPrecioUnitario.BackColor = Color.White
+        txtPrecioUnitario.BorderStyle = BorderStyle.None
+        txtPrecioUnitario.Dock = DockStyle.Fill
+        txtPrecioUnitario.Font = New Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        txtPrecioUnitario.Location = New Point(852, 3)
+        txtPrecioUnitario.Margin = New Padding(4, 3, 4, 3)
+        txtPrecioUnitario.Name = "txtPrecioUnitario"
+        txtPrecioUnitario.Size = New Size(109, 18)
+        txtPrecioUnitario.TabIndex = 4
+        txtPrecioUnitario.TextAlign = HorizontalAlignment.Right
+        ' 
+        ' txtAlicIVA
+        ' 
+        txtAlicIVA.BackColor = Color.White
+        txtAlicIVA.BorderStyle = BorderStyle.None
+        txtAlicIVA.Dock = DockStyle.Fill
+        txtAlicIVA.Font = New Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        txtAlicIVA.Location = New Point(794, 3)
+        txtAlicIVA.Margin = New Padding(4, 3, 4, 3)
+        txtAlicIVA.Name = "txtAlicIVA"
+        txtAlicIVA.ReadOnly = True
+        txtAlicIVA.Size = New Size(50, 18)
+        txtAlicIVA.TabIndex = 3
+        txtAlicIVA.TabStop = False
+        txtAlicIVA.TextAlign = HorizontalAlignment.Center
+        ' 
+        ' txtCantidad
+        ' 
+        txtCantidad.BorderStyle = BorderStyle.None
+        txtCantidad.Dock = DockStyle.Fill
+        txtCantidad.Font = New Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        txtCantidad.Location = New Point(747, 3)
+        txtCantidad.Margin = New Padding(4, 3, 4, 3)
+        txtCantidad.Name = "txtCantidad"
+        txtCantidad.Size = New Size(39, 18)
+        txtCantidad.TabIndex = 2
+        txtCantidad.TextAlign = HorizontalAlignment.Center
+        ' 
+        ' txtDescripcion
+        ' 
+        txtDescripcion.BackColor = Color.White
+        txtDescripcion.BorderStyle = BorderStyle.None
+        txtDescripcion.Dock = DockStyle.Fill
+        txtDescripcion.Font = New Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        txtDescripcion.Location = New Point(154, 3)
+        txtDescripcion.Margin = New Padding(4, 3, 4, 3)
+        txtDescripcion.Name = "txtDescripcion"
+        txtDescripcion.Size = New Size(538, 18)
+        txtDescripcion.TabIndex = 1
+        ' 
+        ' txtCodBarra
+        ' 
+        txtCodBarra.BackColor = Color.White
+        txtCodBarra.BorderStyle = BorderStyle.None
+        txtCodBarra.Dock = DockStyle.Fill
+        txtCodBarra.Font = New Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        txtCodBarra.Location = New Point(37, 3)
+        txtCodBarra.Margin = New Padding(4, 3, 4, 3)
+        txtCodBarra.Name = "txtCodBarra"
+        txtCodBarra.ReadOnly = True
+        txtCodBarra.Size = New Size(109, 18)
+        txtCodBarra.TabIndex = 0
+        txtCodBarra.TabStop = False
+        ' 
+        ' btnEliminarItem
+        ' 
+        btnEliminarItem.BackColor = Color.White
+        btnEliminarItem.Dock = DockStyle.Top
+        btnEliminarItem.FlatAppearance.BorderSize = 0
+        btnEliminarItem.FlatAppearance.MouseDownBackColor = Color.DarkGray
+        btnEliminarItem.FlatAppearance.MouseOverBackColor = SystemColors.ActiveCaption
+        btnEliminarItem.FlatStyle = FlatStyle.Flat
+        btnEliminarItem.Font = New Font("Segoe UI", 8.25F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        btnEliminarItem.ForeColor = Color.Red
+        btnEliminarItem.Location = New Point(4, 3)
+        btnEliminarItem.Margin = New Padding(4, 3, 4, 3)
+        btnEliminarItem.Name = "btnEliminarItem"
+        btnEliminarItem.Size = New Size(25, 20)
+        btnEliminarItem.TabIndex = 9
+        btnEliminarItem.Text = "X"
+        btnEliminarItem.TextAlign = ContentAlignment.TopCenter
+        btnEliminarItem.UseVisualStyleBackColor = False
+        ' 
+        ' UcItemVenta
+        ' 
+        AutoScaleDimensions = New SizeF(7F, 15F)
+        AutoScaleMode = AutoScaleMode.Font
+        Controls.Add(TableLayoutPanel1)
+        Margin = New Padding(4, 3, 4, 3)
+        Name = "UcItemVenta"
+        Size = New Size(1374, 26)
+        TableLayoutPanel1.ResumeLayout(False)
+        TableLayoutPanel1.PerformLayout()
+        ResumeLayout(False)
 
     End Sub
 
