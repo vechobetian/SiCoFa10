@@ -82,14 +82,15 @@ Partial Class FrmVentas
         mnuRecargoGeneral = New ToolStripMenuItem()
         PanelItems = New Panel()
         TableLayoutPanel1 = New TableLayoutPanel()
-        Label8 = New Label()
-        Label7 = New Label()
-        Label6 = New Label()
-        Label5 = New Label()
-        Label4 = New Label()
-        Label3 = New Label()
-        Label2 = New Label()
-        Label1 = New Label()
+        lblSerie = New Label()
+        lblIva = New Label()
+        lblImporteConDescuento = New Label()
+        lblImporteDescuento = New Label()
+        lblPorcentajeDescuento = New Label()
+        lblImporteSinDescuento = New Label()
+        lblPrecioUnitario = New Label()
+        lblCantidad = New Label()
+        lblFraccionado = New Label()
         lblDescripcion = New Label()
         lblCodigo = New Label()
         tlyGeneral.SuspendLayout()
@@ -674,9 +675,10 @@ Partial Class FrmVentas
         ' 
         ' TableLayoutPanel1
         ' 
-        TableLayoutPanel1.ColumnCount = 10
+        TableLayoutPanel1.ColumnCount = 11
         TableLayoutPanel1.ColumnStyles.Add(New ColumnStyle(SizeType.Absolute, 175F))
         TableLayoutPanel1.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 100F))
+        TableLayoutPanel1.ColumnStyles.Add(New ColumnStyle(SizeType.Absolute, 60F))
         TableLayoutPanel1.ColumnStyles.Add(New ColumnStyle(SizeType.Absolute, 52F))
         TableLayoutPanel1.ColumnStyles.Add(New ColumnStyle(SizeType.Absolute, 52F))
         TableLayoutPanel1.ColumnStyles.Add(New ColumnStyle(SizeType.Absolute, 52F))
@@ -685,14 +687,15 @@ Partial Class FrmVentas
         TableLayoutPanel1.ColumnStyles.Add(New ColumnStyle(SizeType.Absolute, 58F))
         TableLayoutPanel1.ColumnStyles.Add(New ColumnStyle(SizeType.Absolute, 117F))
         TableLayoutPanel1.ColumnStyles.Add(New ColumnStyle(SizeType.Absolute, 117F))
-        TableLayoutPanel1.Controls.Add(Label8, 4, 0)
-        TableLayoutPanel1.Controls.Add(Label7, 9, 0)
-        TableLayoutPanel1.Controls.Add(Label6, 8, 0)
-        TableLayoutPanel1.Controls.Add(Label5, 7, 0)
-        TableLayoutPanel1.Controls.Add(Label4, 6, 0)
-        TableLayoutPanel1.Controls.Add(Label3, 5, 0)
-        TableLayoutPanel1.Controls.Add(Label2, 3, 0)
-        TableLayoutPanel1.Controls.Add(Label1, 2, 0)
+        TableLayoutPanel1.Controls.Add(lblSerie, 2, 0)
+        TableLayoutPanel1.Controls.Add(lblIva, 5, 0)
+        TableLayoutPanel1.Controls.Add(lblImporteConDescuento, 10, 0)
+        TableLayoutPanel1.Controls.Add(lblImporteDescuento, 9, 0)
+        TableLayoutPanel1.Controls.Add(lblPorcentajeDescuento, 8, 0)
+        TableLayoutPanel1.Controls.Add(lblImporteSinDescuento, 7, 0)
+        TableLayoutPanel1.Controls.Add(lblPrecioUnitario, 6, 0)
+        TableLayoutPanel1.Controls.Add(lblCantidad, 4, 0)
+        TableLayoutPanel1.Controls.Add(lblFraccionado, 3, 0)
         TableLayoutPanel1.Controls.Add(lblDescripcion, 1, 0)
         TableLayoutPanel1.Controls.Add(lblCodigo, 0, 0)
         TableLayoutPanel1.Dock = DockStyle.Fill
@@ -704,101 +707,113 @@ Partial Class FrmVentas
         TableLayoutPanel1.Size = New Size(1134, 29)
         TableLayoutPanel1.TabIndex = 7
         ' 
-        ' Label8
+        ' lblSerie
         ' 
-        Label8.AutoSize = True
-        Label8.Dock = DockStyle.Fill
-        Label8.Location = New Point(560, 0)
-        Label8.Margin = New Padding(4, 0, 4, 0)
-        Label8.Name = "Label8"
-        Label8.Size = New Size(44, 29)
-        Label8.TabIndex = 9
-        Label8.Text = "Iva"
-        Label8.TextAlign = ContentAlignment.MiddleCenter
+        lblSerie.AutoSize = True
+        lblSerie.Dock = DockStyle.Fill
+        lblSerie.Location = New Point(396, 0)
+        lblSerie.Margin = New Padding(4, 0, 4, 0)
+        lblSerie.Name = "lblSerie"
+        lblSerie.Size = New Size(52, 29)
+        lblSerie.TabIndex = 10
+        lblSerie.Text = "Serie"
+        lblSerie.TextAlign = ContentAlignment.MiddleLeft
         ' 
-        ' Label7
+        ' lblIva
         ' 
-        Label7.AutoSize = True
-        Label7.Dock = DockStyle.Fill
-        Label7.Location = New Point(1021, 0)
-        Label7.Margin = New Padding(4, 0, 4, 0)
-        Label7.Name = "Label7"
-        Label7.Size = New Size(109, 29)
-        Label7.TabIndex = 8
-        Label7.Text = "Imp. Cliente"
-        Label7.TextAlign = ContentAlignment.MiddleRight
+        lblIva.AutoSize = True
+        lblIva.Dock = DockStyle.Fill
+        lblIva.Location = New Point(560, 0)
+        lblIva.Margin = New Padding(4, 0, 4, 0)
+        lblIva.Name = "lblIva"
+        lblIva.Size = New Size(44, 29)
+        lblIva.TabIndex = 9
+        lblIva.Text = "Iva"
+        lblIva.TextAlign = ContentAlignment.MiddleCenter
         ' 
-        ' Label6
+        ' lblImporteConDescuento
         ' 
-        Label6.AutoSize = True
-        Label6.Dock = DockStyle.Fill
-        Label6.Location = New Point(904, 0)
-        Label6.Margin = New Padding(4, 0, 4, 0)
-        Label6.Name = "Label6"
-        Label6.Size = New Size(109, 29)
-        Label6.TabIndex = 7
-        Label6.Text = "Imp. Descuento"
-        Label6.TextAlign = ContentAlignment.MiddleRight
+        lblImporteConDescuento.AutoSize = True
+        lblImporteConDescuento.Dock = DockStyle.Fill
+        lblImporteConDescuento.Location = New Point(1021, 0)
+        lblImporteConDescuento.Margin = New Padding(4, 0, 4, 0)
+        lblImporteConDescuento.Name = "lblImporteConDescuento"
+        lblImporteConDescuento.Size = New Size(109, 29)
+        lblImporteConDescuento.TabIndex = 8
+        lblImporteConDescuento.Text = "Imp. Cliente"
+        lblImporteConDescuento.TextAlign = ContentAlignment.MiddleRight
         ' 
-        ' Label5
+        ' lblImporteDescuento
         ' 
-        Label5.AutoSize = True
-        Label5.Dock = DockStyle.Fill
-        Label5.Location = New Point(846, 0)
-        Label5.Margin = New Padding(4, 0, 4, 0)
-        Label5.Name = "Label5"
-        Label5.Size = New Size(50, 29)
-        Label5.TabIndex = 6
-        Label5.Text = "% Desc"
-        Label5.TextAlign = ContentAlignment.MiddleCenter
+        lblImporteDescuento.AutoSize = True
+        lblImporteDescuento.Dock = DockStyle.Fill
+        lblImporteDescuento.Location = New Point(904, 0)
+        lblImporteDescuento.Margin = New Padding(4, 0, 4, 0)
+        lblImporteDescuento.Name = "lblImporteDescuento"
+        lblImporteDescuento.Size = New Size(109, 29)
+        lblImporteDescuento.TabIndex = 7
+        lblImporteDescuento.Text = "Imp. Descuento"
+        lblImporteDescuento.TextAlign = ContentAlignment.MiddleRight
         ' 
-        ' Label4
+        ' lblPorcentajeDescuento
         ' 
-        Label4.AutoSize = True
-        Label4.Dock = DockStyle.Fill
-        Label4.Location = New Point(729, 0)
-        Label4.Margin = New Padding(4, 0, 4, 0)
-        Label4.Name = "Label4"
-        Label4.Size = New Size(109, 29)
-        Label4.TabIndex = 5
-        Label4.Text = "Importe"
-        Label4.TextAlign = ContentAlignment.MiddleRight
+        lblPorcentajeDescuento.AutoSize = True
+        lblPorcentajeDescuento.Dock = DockStyle.Fill
+        lblPorcentajeDescuento.Location = New Point(846, 0)
+        lblPorcentajeDescuento.Margin = New Padding(4, 0, 4, 0)
+        lblPorcentajeDescuento.Name = "lblPorcentajeDescuento"
+        lblPorcentajeDescuento.Size = New Size(50, 29)
+        lblPorcentajeDescuento.TabIndex = 6
+        lblPorcentajeDescuento.Text = "% Desc"
+        lblPorcentajeDescuento.TextAlign = ContentAlignment.MiddleCenter
         ' 
-        ' Label3
+        ' lblImporteSinDescuento
         ' 
-        Label3.AutoSize = True
-        Label3.Dock = DockStyle.Fill
-        Label3.Location = New Point(612, 0)
-        Label3.Margin = New Padding(4, 0, 4, 0)
-        Label3.Name = "Label3"
-        Label3.Size = New Size(109, 29)
-        Label3.TabIndex = 4
-        Label3.Text = "Prec. Unit."
-        Label3.TextAlign = ContentAlignment.MiddleRight
+        lblImporteSinDescuento.AutoSize = True
+        lblImporteSinDescuento.Dock = DockStyle.Fill
+        lblImporteSinDescuento.Location = New Point(729, 0)
+        lblImporteSinDescuento.Margin = New Padding(4, 0, 4, 0)
+        lblImporteSinDescuento.Name = "lblImporteSinDescuento"
+        lblImporteSinDescuento.Size = New Size(109, 29)
+        lblImporteSinDescuento.TabIndex = 5
+        lblImporteSinDescuento.Text = "Importe"
+        lblImporteSinDescuento.TextAlign = ContentAlignment.MiddleRight
         ' 
-        ' Label2
+        ' lblPrecioUnitario
         ' 
-        Label2.AutoSize = True
-        Label2.Dock = DockStyle.Fill
-        Label2.Location = New Point(508, 0)
-        Label2.Margin = New Padding(4, 0, 4, 0)
-        Label2.Name = "Label2"
-        Label2.Size = New Size(44, 29)
-        Label2.TabIndex = 3
-        Label2.Text = "Cant"
-        Label2.TextAlign = ContentAlignment.MiddleCenter
+        lblPrecioUnitario.AutoSize = True
+        lblPrecioUnitario.Dock = DockStyle.Fill
+        lblPrecioUnitario.Location = New Point(612, 0)
+        lblPrecioUnitario.Margin = New Padding(4, 0, 4, 0)
+        lblPrecioUnitario.Name = "lblPrecioUnitario"
+        lblPrecioUnitario.Size = New Size(109, 29)
+        lblPrecioUnitario.TabIndex = 4
+        lblPrecioUnitario.Text = "Prec. Unit."
+        lblPrecioUnitario.TextAlign = ContentAlignment.MiddleRight
         ' 
-        ' Label1
+        ' lblCantidad
         ' 
-        Label1.AutoSize = True
-        Label1.Dock = DockStyle.Fill
-        Label1.Location = New Point(456, 0)
-        Label1.Margin = New Padding(4, 0, 4, 0)
-        Label1.Name = "Label1"
-        Label1.Size = New Size(44, 29)
-        Label1.TabIndex = 2
-        Label1.Text = "Frac"
-        Label1.TextAlign = ContentAlignment.MiddleCenter
+        lblCantidad.AutoSize = True
+        lblCantidad.Dock = DockStyle.Fill
+        lblCantidad.Location = New Point(508, 0)
+        lblCantidad.Margin = New Padding(4, 0, 4, 0)
+        lblCantidad.Name = "lblCantidad"
+        lblCantidad.Size = New Size(44, 29)
+        lblCantidad.TabIndex = 3
+        lblCantidad.Text = "Cant"
+        lblCantidad.TextAlign = ContentAlignment.MiddleCenter
+        ' 
+        ' lblFraccionado
+        ' 
+        lblFraccionado.AutoSize = True
+        lblFraccionado.Dock = DockStyle.Fill
+        lblFraccionado.Location = New Point(456, 0)
+        lblFraccionado.Margin = New Padding(4, 0, 4, 0)
+        lblFraccionado.Name = "lblFraccionado"
+        lblFraccionado.Size = New Size(44, 29)
+        lblFraccionado.TabIndex = 2
+        lblFraccionado.Text = "Frac"
+        lblFraccionado.TextAlign = ContentAlignment.MiddleCenter
         ' 
         ' lblDescripcion
         ' 
@@ -807,7 +822,7 @@ Partial Class FrmVentas
         lblDescripcion.Location = New Point(179, 0)
         lblDescripcion.Margin = New Padding(4, 0, 4, 0)
         lblDescripcion.Name = "lblDescripcion"
-        lblDescripcion.Size = New Size(269, 29)
+        lblDescripcion.Size = New Size(209, 29)
         lblDescripcion.TabIndex = 1
         lblDescripcion.Text = "Descripción"
         lblDescripcion.TextAlign = ContentAlignment.MiddleLeft
@@ -914,12 +929,13 @@ Partial Class FrmVentas
     Friend WithEvents TableLayoutPanel1 As TableLayoutPanel
     Friend WithEvents lblDescripcion As Label
     Friend WithEvents lblCodigo As Label
-    Friend WithEvents Label5 As Label
-    Friend WithEvents Label4 As Label
-    Friend WithEvents Label3 As Label
-    Friend WithEvents Label2 As Label
-    Friend WithEvents Label1 As Label
-    Friend WithEvents Label6 As Label
-    Friend WithEvents Label7 As Label
-    Friend WithEvents Label8 As Label
+    Friend WithEvents lblPorcentajeDescuento As Label
+    Friend WithEvents lblImporteSinDescuento As Label
+    Friend WithEvents lblPrecioUnitario As Label
+    Friend WithEvents lblCantidad As Label
+    Friend WithEvents lblFraccionado As Label
+    Friend WithEvents lblImporteDescuento As Label
+    Friend WithEvents lblImporteConDescuento As Label
+    Friend WithEvents lblIva As Label
+    Friend WithEvents lblSerie As Label
 End Class

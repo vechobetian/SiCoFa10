@@ -10,7 +10,6 @@ Public Class UcItemVenta
     Public Event CantidadConfirmada(uc As UcItemVenta)
     Public Event PrecioConfirmado(uc As UcItemVenta)
     Public Event ItemSeleccionado(uc As UcItemVenta)
-    Public Event TrazabilidadSolicitada(uc As UcItemVenta)
 
     Protected Overridable Sub OnItemEliminado()
 
@@ -87,21 +86,6 @@ Public Class UcItemVenta
 
         If ItemVenta IsNot Nothing Then
             RaiseEvent ItemSeleccionado(Me)
-        End If
-
-    End Sub
-
-    Protected Overridable Sub OnTrazabilidadSolicitada()
-
-        If ItemVenta Is Nothing Then Exit Sub
-        If ItemVenta.Articulo Is Nothing Then Exit Sub
-
-        Dim gtin As String = ItemVenta.Articulo.Gtin
-
-        If Not String.IsNullOrWhiteSpace(gtin) AndAlso gtin.Length = 14 Then
-
-            RaiseEvent TrazabilidadSolicitada(Me)
-
         End If
 
     End Sub
@@ -210,6 +194,7 @@ Public Class UcItemVenta
         btnEliminarItem.BackColor = color
         txtCodBarra.BackColor = color
         txtDescripcion.BackColor = color
+        txtSerie.BackColor = color
         txtFraccionado.BackColor = color
         txtCantidad.BackColor = color
         txtAlicIVA.BackColor = color
@@ -244,6 +229,7 @@ Public Class UcItemVenta
     Public Sub ModoBusqueda()
 
         txtDescripcion.ReadOnly = False
+        txtSerie.ReadOnly = True
 
         txtFraccionado.ReadOnly = True
         txtCantidad.ReadOnly = True
@@ -262,6 +248,7 @@ Public Class UcItemVenta
     Public Sub ModoItemCargado(permiteFraccionar As Boolean, permiteEditarPrecio As Boolean)
 
         txtDescripcion.ReadOnly = True
+        txtSerie.ReadOnly = True
 
         txtFraccionado.ReadOnly = False
         txtCantidad.ReadOnly = False
@@ -279,6 +266,13 @@ Public Class UcItemVenta
 
         txtDescripcion.Focus()
         txtDescripcion.SelectAll()
+
+    End Sub
+
+    Public Sub EnfocarSerie()
+
+        txtSerie.Focus()
+        txtSerie.SelectAll()
 
     End Sub
 
@@ -301,6 +295,11 @@ Public Class UcItemVenta
         txtPrecioUnitario.Focus()
         txtPrecioUnitario.SelectAll()
 
+    End Sub
+
+    Public Sub HabilitarSerie()
+        txtSerie.ReadOnly = False
+        txtSerie.TabStop = True
     End Sub
 
     Public Sub HabilitarFraccionado()

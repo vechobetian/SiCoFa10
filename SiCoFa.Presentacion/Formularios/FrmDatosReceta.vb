@@ -478,6 +478,8 @@ Public Class FrmDatosReceta
 
         FlowLayoutPanel1.Controls.Add(pnl)
 
+        Me.AcceptButton = btn
+
     End Sub
 
     Private Sub CargarDatosRequeridos()
@@ -801,6 +803,7 @@ Public Class FrmDatosReceta
         End If
 
     End Sub
+
 
 
 End Class

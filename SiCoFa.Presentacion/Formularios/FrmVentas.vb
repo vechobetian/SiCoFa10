@@ -326,7 +326,6 @@ Public Class FrmVentas
                 AddHandler uc.CantidadConfirmada, AddressOf CantidadConfirmada
                 AddHandler uc.PrecioConfirmado, AddressOf PrecioConfirmado
                 AddHandler uc.ItemSeleccionado, AddressOf SeleccionarItem
-                AddHandler uc.TrazabilidadSolicitada, AddressOf TrazabilidadSolicitada
 
                 PanelItems.Controls.Add(uc)
 
@@ -476,7 +475,6 @@ Public Class FrmVentas
         AddHandler uc.CantidadConfirmada, AddressOf CantidadConfirmada
         AddHandler uc.PrecioConfirmado, AddressOf PrecioConfirmado
         AddHandler uc.ItemSeleccionado, AddressOf SeleccionarItem
-        AddHandler uc.TrazabilidadSolicitada, AddressOf TrazabilidadSolicitada
 
         PanelItems.Controls.Add(uc)
         PanelItems.Controls.SetChildIndex(uc, 0)
@@ -557,179 +555,200 @@ Public Class FrmVentas
 
     End Sub
 
-    Private Sub BuscarArticuloDesdeUC(uc As UcItemVenta, texto As String)
-
-        If String.IsNullOrWhiteSpace(texto) Then Exit Sub
-        BuscarArticulo(uc, texto)
-
-    End Sub
-
     Private Function ObtenerReceta(idReceta As Long) As Receta
 
         Return mobj_Recetas.FirstOrDefault(Function(r) r.IdReceta = idReceta)
 
     End Function
 
-    Private Sub BuscarArticulo(uc As UcItemVenta, ByVal argTextoBuscado As String)
+    Private Sub BuscarArticuloDesdeUC(uc As UcItemVenta, texto As String)
+
+        If uc Is Nothing Then Exit Sub
+        If String.IsNullOrWhiteSpace(texto) Then Exit Sub
+
+        Dim articulo As Articulo = ProcesarTextoArticuloBuscado(texto)
+
+        If articulo Is Nothing Then
+            uc.txtDescripcion.Clear()
+            Exit Sub
+        End If
+
+        InsertarArticulo(uc, articulo)
+
+    End Sub
+
+    Private Function ProcesarTextoArticuloBuscado(ByVal texto As String) As Articulo
+
+        If texto = "*" OrElse texto = "/" Then
+            MsgBox("Artículo no encontrado", vbInformation, "SiCoFa")
+            Return Nothing
+        End If
+
+        Dim adminArticulos As New N_AdminArticulos
+        Dim articulos As List(Of Articulo)
+
+        Select Case Strings.Left(texto, 1)
+
+            Case "*"
+
+                Dim articulo As Articulo =
+                adminArticulos.ArticuloGenericoExento(texto)
+
+                articulos = New List(Of Articulo)
+
+                If articulo IsNot Nothing Then
+                    articulos.Add(articulo)
+                End If
+
+            Case "/"
+
+                Dim articulo As Articulo =
+                adminArticulos.ArticuloGenericoGravado(texto)
+
+                articulos = New List(Of Articulo)
+
+                If articulo IsNot Nothing Then
+                    articulos.Add(articulo)
+                End If
+
+            Case Else
+
+                articulos = adminArticulos.ListarArticulos(texto)
+
+        End Select
+
+        If articulos Is Nothing OrElse articulos.Count = 0 Then
+            MsgBox("Artículo no encontrado", vbInformation, "SiCoFa")
+            Return Nothing
+        End If
+
+        If articulos.Count = 1 Then
+            Return articulos(0)
+        End If
+
+        Using frm As New FrmBuscaArticulos
+
+            frm.Articulos = articulos
+
+            If frm.ShowDialog() = DialogResult.OK Then
+                Return frm.ArticuloSeleccionado
+            End If
+
+        End Using
+
+        Return Nothing
+
+    End Function
+
+    Private Sub InsertarArticulo(uc As UcItemVenta, articulo As Articulo)
+
+        If articulo Is Nothing OrElse uc Is Nothing Then Exit Sub
 
         Try
 
-            If argTextoBuscado = "*" OrElse argTextoBuscado = "/" Then
-
-                MsgBox("Artículo no encontrado", vbInformation, "SiCoFa")
-                Exit Sub
-
-            End If
-
-            Dim AdminArticulos As New N_AdminArticulos
-            Dim articulo As Articulo = Nothing
-            Dim listaArticulos As New List(Of Articulo)
-
-            Select Case Strings.Left(argTextoBuscado, 1)
-
-                Case "*"
-
-                    articulo = AdminArticulos.ArticuloGenericoExento(argTextoBuscado)
-
-                    If articulo IsNot Nothing Then
-                        listaArticulos.Add(articulo)
-                    End If
-
-                Case "/"
-
-                    articulo = AdminArticulos.ArticuloGenericoGravado(argTextoBuscado)
-
-                    If articulo IsNot Nothing Then
-                        listaArticulos.Add(articulo)
-                    End If
-
-                Case Else
-
-                    listaArticulos = AdminArticulos.ListarArticulos(argTextoBuscado)
-
-            End Select
-
-            If listaArticulos Is Nothing OrElse listaArticulos.Count = 0 Then
-
-                MsgBox("Artículo no encontrado", vbInformation, "SiCoFa")
-                Exit Sub
-
-            End If
-
-            Select Case listaArticulos.Count
-
-                Case 1
-
-                    articulo = listaArticulos.First()
-
-                Case Else
-
-                    Using f As New FrmBuscaArticulos
-
-                        f.Articulos = listaArticulos
-
-                        If f.ShowDialog() = DialogResult.OK Then
-                            articulo = f.ArticuloSeleccionado
-                        End If
-
-                    End Using
-
-            End Select
-
-            If articulo Is Nothing Then
-
-                uc.txtDescripcion.Clear()
-                Exit Sub
-
-            End If
-
+            Dim item As ItemComprobante = uc.ItemVenta
             Dim receta As Receta = Nothing
+            Dim cobertura As CoberturaOS = Nothing
 
-            If uc.ItemVenta.Receta IsNot Nothing Then
+            ' 1. Resolver la receta y su cobertura.
+            If item.Receta IsNot Nothing Then
 
-                receta = ObtenerReceta(uc.ItemVenta.Receta.IdReceta)
+                receta = ObtenerReceta(item.Receta.IdReceta)
 
                 If receta Is Nothing Then
                     MsgBox("No se encontró la receta asociada.", vbCritical, "SiCoFa")
                     Exit Sub
                 End If
 
-                Dim AdminRecetas As New N_AdminRecetas
-
-                AdminRecetas.ObtenerCobertura(articulo, uc.ItemVenta)
-
-                If uc.ItemVenta.DescuentoUnitarioOS = 0 AndAlso uc.ItemVenta.DescuentoUnitarioCS = 0 AndAlso uc.ItemVenta.Receta.Plan.Proceso <> 0 Then
-
-                    MsgBox(articulo.Nombre & " no tiene descuento", vbInformation, "SiCoFa")
-
-                    uc.txtDescripcion.Clear()
-
+                If receta.Plan Is Nothing Then
+                    MsgBox("La receta no tiene un plan asociado.", vbCritical, "SiCoFa")
                     Exit Sub
+                End If
 
+                Dim adminRecetas As New N_AdminRecetas
+
+                cobertura = adminRecetas.CoberturaOS(articulo, receta.Plan)
+
+                If cobertura Is Nothing Then
+                    MsgBox(articulo.Nombre & " no tiene cobertura.", vbInformation, "SiCoFa")
+                    uc.txtDescripcion.Clear()
+                    Exit Sub
                 End If
 
             End If
 
-            Dim item As ItemComprobante = uc.ItemVenta
-
+            ' 2. Asociar el artículo al ítem.
             item.Articulo = articulo
 
-            If item.Receta Is Nothing AndAlso item.IdArticulo <> "0" Then
-                item.PorcentajeDescuento = mdec_PorcentajeDescuentoGeneral
-                item.PrecioUnitario = item.Articulo.PrecioVenta * (1 + mdec_PorcentajeRecargoGeneral / 100)
+            ' 3. Aplicar la cobertura.
+            If cobertura IsNot Nothing Then
+
+                With item
+                    .PorcentajeOS = cobertura.PorcentajeOS
+                    .DescuentoUnitarioOS = cobertura.DescuentoUnitarioOS
+                    .PorcentajeCS = cobertura.PorcentajeCS
+                    .DescuentoUnitarioCS = cobertura.DescuentoUnitarioCS
+                End With
+
+            Else
+
+                ' Limpiar descuentos anteriores de cobertura.
+                With item
+                    .PorcentajeOS = 0
+                    .DescuentoUnitarioOS = 0
+                    .PorcentajeCS = 0
+                    .DescuentoUnitarioCS = 0
+                End With
+
             End If
 
-            If item.Promocion IsNot Nothing And item.Receta Is Nothing Then
+            ' 4. Aplicar descuento general y recargo si no hay receta.
+            If item.Receta Is Nothing AndAlso item.IdArticulo <> "0" Then
+                item.PorcentajeDescuento = mdec_PorcentajeDescuentoGeneral
+                item.PrecioUnitario = articulo.PrecioVenta * (1 + mdec_PorcentajeRecargoGeneral / 100)
+            End If
+
+            ' 5. Establecer la cantidad inicial.
+            If item.Promocion IsNot Nothing AndAlso item.Receta Is Nothing Then
                 item.Cantidad = item.Promocion.UnidadesCombo
             Else
                 item.Cantidad = 1
             End If
 
+            ' 6. Actualizar el control con el ítem.
             uc.Bind(item)
 
-            uc.ModoItemCargado(articulo.Fraccionable, articulo.Seccion.EstablecerPrecio)
-
-            If uc.ItemVenta.Articulo.Fraccionable AndAlso uc.ItemVenta.Receta Is Nothing Then
-                uc.HabilitarFraccionado()
-                uc.EnfocarFraccionado()
-
-            Else
-                uc.HabilitarCantidad()
-                uc.EnfocarCantidad()
-
-            End If
-
+            ' 7. Asociar el ítem a la receta.
             If receta IsNot Nothing Then
 
                 If receta.Items Is Nothing Then
                     receta.Items = New List(Of ItemComprobante)
                 End If
 
-                If Not receta.Items.Any(Function(x) x.Articulo IsNot Nothing AndAlso x.Articulo.IdArticulo = item.Articulo.IdArticulo) Then
-
+                If Not receta.Items.Any(Function(x) x.Articulo IsNot Nothing AndAlso x.Articulo.IdArticulo = articulo.IdArticulo) Then
                     receta.Items.Add(item)
-
                 End If
 
             End If
 
+            uc.ModoItemCargado(articulo.Fraccionable, articulo.Seccion.EstablecerPrecio)
+
+            If articulo.Fraccionable AndAlso uc.ItemVenta.Receta Is Nothing Then
+                uc.HabilitarFraccionado()
+                uc.EnfocarFraccionado()
+            Else
+                uc.HabilitarCantidad()
+                uc.EnfocarCantidad()
+            End If
+
+            ' 8. Recalcular los totales.
             ActualizarTotales()
+            RenderItemsUC(True)
 
         Catch ex As Exception
-
             MsgBox(ex.Message, vbCritical, "SiCoFa")
 
         End Try
-
-    End Sub
-
-    Private Sub TrazabilidadSolicitada(uc As UcItemVenta)
-
-        Dim item As ItemComprobante = uc.ItemVenta
-
-        If item Is Nothing OrElse item.Articulo Is Nothing Then Exit Sub
-
-        ' Aquí procesaremos la trazabilidad del artículo.
 
     End Sub
 
@@ -749,15 +768,7 @@ Public Class FrmVentas
             End If
 
             item.Descripcion = articulo.DFrac
-
-            item.PrecioUnitario =
-            Math.Round(
-                articulo.PrecioVenta /
-                articulo.UDiv *
-                (1 + articulo.RFrac / 100),
-                2,
-                MidpointRounding.ToEven
-            )
+            item.PrecioUnitario = Math.Round(articulo.PrecioVenta / articulo.UDiv * (1 + articulo.RFrac / 100), 2, MidpointRounding.ToEven)
 
         Else
 
@@ -1539,11 +1550,8 @@ Public Class FrmVentas
         Try
 
             If mobj_ItemSeleccionado Is Nothing Then
-
                 MessageBox.Show("Por favor, seleccione un ítem.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information)
-
                 Exit Sub
-
             End If
 
             Dim item As ItemComprobante = mobj_ItemSeleccionado.ItemVenta
@@ -1575,25 +1583,13 @@ Public Class FrmVentas
 
             End If
 
-            '==========================================================
-            ' BUSCAR ARTÍCULOS CON IGUAL ACCIÓN FARMACOLÓGICA
-            '==========================================================
-
             Dim adminArticulos As New N_AdminArticulos
-
             Dim listaArticulos As List(Of Articulo) = adminArticulos.ListarArticulosEquivalentes(item.Articulo)
 
             If listaArticulos Is Nothing OrElse listaArticulos.Count = 0 Then
-
                 MsgBox("No se encontraron artículos equivalentes", vbInformation, "SiCoFa")
-
                 Exit Sub
-
             End If
-
-            '==========================================================
-            ' SELECCIONAR ARTÍCULO
-            '==========================================================
 
             Dim articulo As Articulo = Nothing
 
@@ -1627,103 +1623,8 @@ Public Class FrmVentas
                 Exit Sub
             End If
 
-            '==========================================================
-            ' VALIDAR RECETA Y COBERTURA
-            '==========================================================
-
-            Dim receta As Receta = Nothing
-
-            If item.Receta IsNot Nothing Then
-
-                receta = ObtenerReceta(item.Receta.IdReceta)
-
-                If receta Is Nothing Then
-
-                    MsgBox("No se encontró la receta asociada.", vbCritical, "SiCoFa")
-
-                    Exit Sub
-
-                End If
-
-                Dim adminRecetas As New N_AdminRecetas
-
-                '------------------------------------------------------
-                ' IMPORTANTE:
-                ' No modificar todavía el item original.
-                '------------------------------------------------------
-
-                Dim itemPrueba As New ItemComprobante
-
-                itemPrueba.Articulo = articulo
-                itemPrueba.Cantidad = 1
-                itemPrueba.Receta = item.Receta
-
-                adminRecetas.ObtenerCobertura(articulo, itemPrueba)
-
-                '------------------------------------------------------
-                ' Validar descuento sobre el item de prueba
-                '------------------------------------------------------
-
-                If itemPrueba.DescuentoUnitarioOS = 0 AndAlso itemPrueba.DescuentoUnitarioCS = 0 AndAlso itemPrueba.Receta.Plan.Proceso <> 0 Then
-
-                    MsgBox(articulo.Nombre & " no tiene descuento", vbInformation, "SiCoFa")
-
-                    Exit Sub
-
-                End If
-
-            End If
-
-            '==========================================================
-            ' RECIÉN AHORA MODIFICAMOS EL ITEM ORIGINAL
-            '==========================================================
-
-            item.Articulo = articulo
-            item.Cantidad = 1
-
-            'Si tiene receta, recalculamos la cobertura sobre el item real
-            If item.Receta IsNot Nothing Then
-
-                Dim adminRecetas As New N_AdminRecetas
-
-                adminRecetas.ObtenerCobertura(articulo, item)
-
-            End If
-
-            '==========================================================
-            ' ACTUALIZAR USER CONTROL
-            '==========================================================
-
-            mobj_ItemSeleccionado.Bind(item)
-
-            mobj_ItemSeleccionado.ModoItemCargado(articulo.Fraccionable, articulo.Seccion.EstablecerPrecio)
-
-            '==========================================================
-            ' ACTUALIZAR RECETA
-            '==========================================================
-
-            If receta IsNot Nothing Then
-
-                If receta.Items Is Nothing Then
-                    receta.Items = New List(Of ItemComprobante)
-                End If
-
-                If Not receta.Items.Any(
-                Function(x) x.Articulo IsNot Nothing AndAlso
-                            x.Articulo.IdArticulo = item.Articulo.IdArticulo) Then
-
-                    receta.Items.Add(item)
-
-                End If
-
-            End If
-
-            '==========================================================
-            ' ACTUALIZAR
-            '==========================================================
-
+            Me.InsertarArticulo(mobj_ItemSeleccionado, articulo)
             ActualizarTotales()
-
             RenderItemsUC(True)
 
         Catch ex As Exception
@@ -1739,10 +1640,8 @@ Public Class FrmVentas
         Try
 
             If mobj_ItemSeleccionado Is Nothing Then
-
                 MessageBox.Show("Por favor, seleccione un ítem.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information)
                 Exit Sub
-
             End If
 
             Dim item As ItemComprobante = mobj_ItemSeleccionado.ItemVenta
@@ -1817,27 +1716,7 @@ Public Class FrmVentas
                 Exit Sub
             End If
 
-            '==========================================================
-            ' REEMPLAZAR ARTÍCULO
-            '==========================================================
-
-            item.Articulo = articulo
-
-            '==========================================================
-            ' ACTUALIZAR USER CONTROL
-            '==========================================================
-
-            mobj_ItemSeleccionado.Bind(item)
-
-            mobj_ItemSeleccionado.ModoItemCargado(articulo.Fraccionable, articulo.Seccion.EstablecerPrecio)
-
-            '==========================================================
-            ' ACTUALIZAR
-            '==========================================================
-
-            ActualizarTotales()
-
-            RenderItemsUC(True)
+            Me.InsertarArticulo(mobj_ItemSeleccionado, articulo)
 
         Catch ex As Exception
             MsgBox(ex.Message, vbCritical, "SiCoFa")
@@ -1929,27 +1808,7 @@ Public Class FrmVentas
                 Exit Sub
             End If
 
-            '==========================================================
-            ' REEMPLAZAR ARTÍCULO
-            '==========================================================
-
-            item.Articulo = articulo
-
-            '==========================================================
-            ' ACTUALIZAR USER CONTROL
-            '==========================================================
-
-            mobj_ItemSeleccionado.Bind(item)
-
-            mobj_ItemSeleccionado.ModoItemCargado(articulo.Fraccionable, articulo.Seccion.EstablecerPrecio)
-
-            '==========================================================
-            ' ACTUALIZAR
-            '==========================================================
-
-            ActualizarTotales()
-
-            RenderItemsUC(True)
+            Me.InsertarArticulo(mobj_ItemSeleccionado, articulo)
 
         Catch ex As Exception
             MsgBox(ex.Message, vbCritical, "SiCoFa")

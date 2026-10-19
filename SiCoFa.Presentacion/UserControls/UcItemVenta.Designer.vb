@@ -23,6 +23,7 @@ Partial Class UcItemVenta
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         TableLayoutPanel1 = New TableLayoutPanel()
+        txtSerie = New TextBox()
         txtFraccionado = New TextBox()
         txtImporteConDescuento = New TextBox()
         txtImporteDescuento = New TextBox()
@@ -39,10 +40,11 @@ Partial Class UcItemVenta
         ' 
         ' TableLayoutPanel1
         ' 
-        TableLayoutPanel1.ColumnCount = 11
+        TableLayoutPanel1.ColumnCount = 12
         TableLayoutPanel1.ColumnStyles.Add(New ColumnStyle(SizeType.Absolute, 33F))
         TableLayoutPanel1.ColumnStyles.Add(New ColumnStyle(SizeType.Absolute, 117F))
         TableLayoutPanel1.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 100F))
+        TableLayoutPanel1.ColumnStyles.Add(New ColumnStyle(SizeType.Absolute, 100F))
         TableLayoutPanel1.ColumnStyles.Add(New ColumnStyle(SizeType.Absolute, 47F))
         TableLayoutPanel1.ColumnStyles.Add(New ColumnStyle(SizeType.Absolute, 47F))
         TableLayoutPanel1.ColumnStyles.Add(New ColumnStyle(SizeType.Absolute, 58F))
@@ -51,14 +53,15 @@ Partial Class UcItemVenta
         TableLayoutPanel1.ColumnStyles.Add(New ColumnStyle(SizeType.Absolute, 58F))
         TableLayoutPanel1.ColumnStyles.Add(New ColumnStyle(SizeType.Absolute, 117F))
         TableLayoutPanel1.ColumnStyles.Add(New ColumnStyle(SizeType.Absolute, 117F))
-        TableLayoutPanel1.Controls.Add(txtFraccionado, 3, 0)
-        TableLayoutPanel1.Controls.Add(txtImporteConDescuento, 10, 0)
-        TableLayoutPanel1.Controls.Add(txtImporteDescuento, 9, 0)
-        TableLayoutPanel1.Controls.Add(txtPorcentajeDescuento, 8, 0)
-        TableLayoutPanel1.Controls.Add(txtImporteSinDescuento, 7, 0)
-        TableLayoutPanel1.Controls.Add(txtPrecioUnitario, 6, 0)
-        TableLayoutPanel1.Controls.Add(txtAlicIVA, 5, 0)
-        TableLayoutPanel1.Controls.Add(txtCantidad, 4, 0)
+        TableLayoutPanel1.Controls.Add(txtSerie, 3, 0)
+        TableLayoutPanel1.Controls.Add(txtFraccionado, 4, 0)
+        TableLayoutPanel1.Controls.Add(txtImporteConDescuento, 11, 0)
+        TableLayoutPanel1.Controls.Add(txtImporteDescuento, 10, 0)
+        TableLayoutPanel1.Controls.Add(txtPorcentajeDescuento, 9, 0)
+        TableLayoutPanel1.Controls.Add(txtImporteSinDescuento, 8, 0)
+        TableLayoutPanel1.Controls.Add(txtPrecioUnitario, 7, 0)
+        TableLayoutPanel1.Controls.Add(txtAlicIVA, 6, 0)
+        TableLayoutPanel1.Controls.Add(txtCantidad, 5, 0)
         TableLayoutPanel1.Controls.Add(txtDescripcion, 2, 0)
         TableLayoutPanel1.Controls.Add(txtCodBarra, 1, 0)
         TableLayoutPanel1.Controls.Add(btnEliminarItem, 0, 0)
@@ -71,6 +74,18 @@ Partial Class UcItemVenta
         TableLayoutPanel1.RowStyles.Add(New RowStyle(SizeType.Percent, 100F))
         TableLayoutPanel1.Size = New Size(1374, 26)
         TableLayoutPanel1.TabIndex = 0
+        ' 
+        ' txtSerie
+        ' 
+        txtSerie.BackColor = Color.White
+        txtSerie.BorderStyle = BorderStyle.None
+        txtSerie.Dock = DockStyle.Fill
+        txtSerie.Font = New Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        txtSerie.Location = New Point(600, 3)
+        txtSerie.Margin = New Padding(4, 3, 4, 3)
+        txtSerie.Name = "txtSerie"
+        txtSerie.Size = New Size(92, 18)
+        txtSerie.TabIndex = 11
         ' 
         ' txtFraccionado
         ' 
@@ -193,7 +208,7 @@ Partial Class UcItemVenta
         txtDescripcion.Location = New Point(154, 3)
         txtDescripcion.Margin = New Padding(4, 3, 4, 3)
         txtDescripcion.Name = "txtDescripcion"
-        txtDescripcion.Size = New Size(538, 18)
+        txtDescripcion.Size = New Size(438, 18)
         txtDescripcion.TabIndex = 1
         ' 
         ' txtCodBarra
@@ -255,4 +270,5 @@ Partial Class UcItemVenta
     Friend WithEvents txtDescripcion As TextBox
     Friend WithEvents btnEliminarItem As Button
     Friend WithEvents txtFraccionado As TextBox
+    Friend WithEvents txtSerie As TextBox
 End Class

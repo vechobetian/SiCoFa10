@@ -168,10 +168,19 @@ Public Class N_AdminCAE
             Using clientCAE As New HttpClient(handlerCAE)
                 clientCAE.Timeout = TimeSpan.FromSeconds(30)
 
+                ' --- ARMADO DE ALÍCUOTAS IVA ---
                 Dim alrIvaXml As String = ""
                 If det.Iva IsNot Nothing Then
                     For Each iv In det.Iva
                         alrIvaXml &= "<AlicIva><Id>" & iv.Id.ToString() & "</Id><BaseImp>" & iv.BaseImp.ToString(CultureInfo.InvariantCulture) & "</BaseImp><Importe>" & iv.Importe.ToString(CultureInfo.InvariantCulture) & "</Importe></AlicIva>"
+                    Next
+                End If
+
+                ' --- CORRECCIÓN: ARMADO DE COMPROBANTES ASOCIADOS (CbteAsoc) ---
+                Dim cbtesAsocXml As String = ""
+                If det.CbtesAsoc IsNot Nothing Then
+                    For Each ca In det.CbtesAsoc
+                        cbtesAsocXml &= "<CbteAsoc><Tipo>" & ca.Tipo.ToString() & "</Tipo><PtoVta>" & ca.PtoVta.ToString() & "</PtoVta><Nro>" & ca.Nro.ToString() & "</Nro></CbteAsoc>"
                     Next
                 End If
 
@@ -208,6 +217,7 @@ Public Class N_AdminCAE
                                 "<MonId>" & det.MonId & "</MonId>" &
                                 "<MonCotiz>" & det.MonCotiz.ToString(CultureInfo.InvariantCulture) & "</MonCotiz>" &
                                 If(det.Iva IsNot Nothing, "<Iva>" & alrIvaXml & "</Iva>", "") &
+                                If(Not String.IsNullOrEmpty(cbtesAsocXml), "<CbtesAsoc>" & cbtesAsocXml & "</CbtesAsoc>", "") &
                                 "<CondicionIVAReceptorId>" & det.CondicionIVAReceptorId.ToString() & "</CondicionIVAReceptorId>" &
                               "</FECAEDetRequest>" &
                             "</FeDetReq>" &
@@ -220,8 +230,13 @@ Public Class N_AdminCAE
                 clientCAE.DefaultRequestHeaders.Clear()
                 clientCAE.DefaultRequestHeaders.Add("SOAPAction", "http://ar.gov.afip.dif.FEV1/FECAESolicitar")
 
+                ' Guardamos copia del SOAP para auditar si fuera necesario
+                System.IO.File.WriteAllText(ObtenerRutaTemp("soap_request_factura_electronica.xml"), soapCAE)
+
                 Dim responseCAE = clientCAE.PostAsync(URLWsn, contentCAE).Result
                 Dim xmlCAEStr = responseCAE.Content.ReadAsStringAsync().Result
+
+                System.IO.File.WriteAllText(ObtenerRutaTemp("soap_response_factura_electronica.xml"), xmlCAEStr)
 
                 If Not responseCAE.IsSuccessStatusCode Then
                     Throw New Exception("Error HTTP en FECAESolicitar: " & xmlCAEStr)

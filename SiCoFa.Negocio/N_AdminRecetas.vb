@@ -46,38 +46,40 @@ Public Class N_AdminRecetas
 
     End Sub
 
-    Public Sub ObtenerCobertura(ByVal argArticulo As Articulo, ByRef argItemComprobante As ItemComprobante)
+    Public Function CoberturaOS(ByVal argArticulo As Articulo, argPlanOS As PlanOS) As CoberturaOS
 
-        If argItemComprobante.Receta Is Nothing OrElse argItemComprobante.Receta.Plan Is Nothing Then
-            Exit Sub
+        If argArticulo Is Nothing OrElse argPlanOS Is Nothing Then
+            Return Nothing
+            Exit Function
         End If
 
-        Select Case argItemComprobante.Receta.Plan.Proceso
+        Select Case argPlanOS.Proceso
 
             Case 1
-                Me.Proceso1(argArticulo, argItemComprobante)
+                Return Me.Proceso1(argArticulo, argPlanOS)
 
             Case 2
-                Me.Proceso2(argArticulo, argItemComprobante)
-
+                Return Me.Proceso2(argArticulo, argPlanOS)
             Case 3
-                Me.Proceso3(argArticulo, argItemComprobante)
+                Return Me.Proceso3(argArticulo, argPlanOS)
 
             Case 4
-                Me.Proceso4(argArticulo, argItemComprobante)
+                Return Me.Proceso4(argArticulo, argPlanOS)
 
             Case 12
-                Me.Proceso12(argArticulo, argItemComprobante)
+                Return Me.Proceso12(argArticulo, argPlanOS)
 
             Case 13
-                Me.Proceso13(argArticulo, argItemComprobante)
+                Return Me.Proceso13(argArticulo, argPlanOS)
 
+            Case Else
+                Return Nothing
 
         End Select
 
-    End Sub
+    End Function
 
-    Private Sub Proceso1(ByVal argArticulo As Articulo, ByRef argItemComprobante As ItemComprobante)
+    Private Function Proceso1(argArticulo As Articulo, argPlanOS As PlanOS) As CoberturaOS
 
         Dim codigo As Integer = argArticulo.Codigo
         Dim POS As Decimal = 0
@@ -85,11 +87,11 @@ Public Class N_AdminRecetas
         Dim PCS As Decimal = 0
         Dim DCS As Decimal = 0
 
-        If argItemComprobante.Receta.Plan.Vademecum1 IsNot Nothing Then
-            Dim itemVdm = argItemComprobante.Receta.Plan.Vademecum1.FirstOrDefault(Function(x) x.Codigo = codigo)
+        If argPlanOS.Vademecum1 IsNot Nothing Then
+            Dim itemVdm = argPlanOS.Vademecum1.FirstOrDefault(Function(x) x.Codigo = codigo)
 
             If itemVdm IsNot Nothing Then
-                POS = argItemComprobante.Receta.Plan.DesGeneral1
+                POS = argPlanOS.DesGeneral1
                 DOS = Math.Round(argArticulo.PrecioVenta * POS / 100, 2, MidpointRounding.ToEven)
                 PCS = 0
                 DCS = 0
@@ -98,19 +100,23 @@ Public Class N_AdminRecetas
         End If
 
         If DOS > 0 Then
+            Dim cos As New CoberturaOS
 
-            With argItemComprobante
+            With cos
                 .PorcentajeOS = POS
                 .DescuentoUnitarioOS = DOS
                 .PorcentajeCS = PCS
                 .DescuentoUnitarioCS = DCS
             End With
 
+            Return cos
         End If
 
-    End Sub
+        Return Nothing
 
-    Private Sub Proceso2(ByVal argArticulo As Articulo, ByRef argItemComprobante As ItemComprobante)
+    End Function
+
+    Private Function Proceso2(argArticulo As Articulo, argPlanOS As PlanOS) As CoberturaOS
 
         Dim codigo As Integer = argArticulo.Codigo
         Dim POS As Decimal = 0
@@ -118,8 +124,8 @@ Public Class N_AdminRecetas
         Dim PCS As Decimal = 0
         Dim DCS As Decimal = 0
 
-        If argItemComprobante.Receta.Plan.Vademecum1 IsNot Nothing Then
-            Dim itemVdm = argItemComprobante.Receta.Plan.Vademecum1.FirstOrDefault(Function(x) x.Codigo = codigo)
+        If argPlanOS.Vademecum1 IsNot Nothing Then
+            Dim itemVdm = argPlanOS.Vademecum1.FirstOrDefault(Function(x) x.Codigo = codigo)
 
             If itemVdm IsNot Nothing Then
                 POS = itemVdm.Descuento
@@ -132,18 +138,24 @@ Public Class N_AdminRecetas
 
         If DOS > 0 Then
 
-            With argItemComprobante
+            Dim cos As New CoberturaOS
+
+            With cos
                 .PorcentajeOS = POS
                 .DescuentoUnitarioOS = DOS
                 .PorcentajeCS = PCS
                 .DescuentoUnitarioCS = DCS
             End With
 
+            Return cos
+
         End If
 
-    End Sub
+        Return Nothing
 
-    Private Sub Proceso3(ByVal argArticulo As Articulo, ByRef argItemComprobante As ItemComprobante)
+    End Function
+
+    Private Function Proceso3(argArticulo As Articulo, argPlanOS As PlanOS) As CoberturaOS
 
         Dim codigo As Integer = argArticulo.Codigo
         Dim POS As Decimal = 0
@@ -151,17 +163,17 @@ Public Class N_AdminRecetas
         Dim PCS As Decimal = 0
         Dim DCS As Decimal = 0
 
-        If argItemComprobante.Receta.Plan.Vademecum1 IsNot Nothing Then
-            Dim itemVdm = argItemComprobante.Receta.Plan.Vademecum1.FirstOrDefault(Function(x) x.Codigo = codigo)
+        If argPlanOS.Vademecum1 IsNot Nothing Then
+            Dim itemVdm = argPlanOS.Vademecum1.FirstOrDefault(Function(x) x.Codigo = codigo)
 
             If itemVdm IsNot Nothing Then
-                POS = argItemComprobante.Receta.Plan.DesGeneral1
+                POS = argPlanOS.DesGeneral1
                 DOS = Math.Round(argArticulo.PrecioVenta * POS / 100, 2, MidpointRounding.ToEven)
                 PCS = 0
                 DCS = 0
 
             Else
-                POS = argItemComprobante.Receta.Plan.DesGeneral2
+                POS = argPlanOS.DesGeneral2
                 DOS = Math.Round(argArticulo.PrecioVenta * POS / 100, 2, MidpointRounding.ToEven)
                 PCS = 0
                 DCS = 0
@@ -172,39 +184,50 @@ Public Class N_AdminRecetas
 
         If DOS > 0 Then
 
-            With argItemComprobante
+            Dim cos As New CoberturaOS
+
+            With cos
                 .PorcentajeOS = POS
                 .DescuentoUnitarioOS = DOS
                 .PorcentajeCS = PCS
                 .DescuentoUnitarioCS = DCS
             End With
 
+            Return cos
+
         End If
 
-    End Sub
+        Return Nothing
 
-    Private Sub Proceso4(ByVal argArticulo As Articulo, ByRef argItemComprobante As ItemComprobante)
+    End Function
+
+    Private Function Proceso4(argArticulo As Articulo, argPlanOS As PlanOS) As CoberturaOS
 
         Dim POS As Decimal = 0
         Dim DOS As Decimal = 0
         Dim PCS As Decimal = 0
         Dim DCS As Decimal = 0
 
-        POS = argItemComprobante.Receta.Plan.DesGeneral1
+        POS = argPlanOS.DesGeneral1
         DOS = Math.Round(argArticulo.PrecioVenta * POS / 100, 2, MidpointRounding.ToEven)
         PCS = 0
         DCS = 0
 
-        With argItemComprobante
+        Dim cos As New CoberturaOS
+
+        With cos
             .PorcentajeOS = POS
             .DescuentoUnitarioOS = DOS
             .PorcentajeCS = PCS
             .DescuentoUnitarioCS = DCS
         End With
 
-    End Sub
+        Return cos
 
-    Private Sub Proceso12(ByVal argArticulo As Articulo, ByRef argItemComprobante As ItemComprobante)
+    End Function
+
+    Private Function Proceso12(argArticulo As Articulo, argPlanOS As PlanOS) As CoberturaOS
+
 
         Dim POS As Decimal = 0
         Dim DOS As Decimal = 0
@@ -216,7 +239,7 @@ Public Class N_AdminRecetas
             strPOS = InputBox("Ingrese el porcentaje de Descuento:", "Cobertura Obra Social")
 
             ' Si presiona Cancelar
-            If strPOS = "" Then Exit Sub
+            If strPOS = "" Then Return Nothing
 
             If Decimal.TryParse(strPOS, POS) AndAlso POS > 0 AndAlso POS < 101 Then
                 Exit Do
@@ -230,76 +253,42 @@ Public Class N_AdminRecetas
         PCS = 0
         DCS = 0
 
-        With argItemComprobante
+        Dim cos As New CoberturaOS
+
+        With cos
             .PorcentajeOS = POS
             .DescuentoUnitarioOS = DOS
             .PorcentajeCS = PCS
             .DescuentoUnitarioCS = DCS
         End With
 
-    End Sub
+        Return cos
 
-    Private Sub Proceso13(ByVal argArticulo As Articulo, ByRef argItemComprobante As ItemComprobante)
+    End Function
+
+    Private Function Proceso13(argArticulo As Articulo, argPlanOS As PlanOS) As CoberturaOS
 
         Dim POS As Decimal = 0
         Dim DOS As Decimal = 0
         Dim PCS As Decimal = 0
         Dim DCS As Decimal = 0
 
-        POS = argItemComprobante.Receta.Plan.DesGeneral1
+        POS = argPlanOS.DesGeneral1
         DOS = Math.Round(argArticulo.PrecioVenta * POS / 100, 2, MidpointRounding.ToEven)
-        PCS = argItemComprobante.Receta.Plan.DesGeneral2
+        PCS = argPlanOS.DesGeneral2
         DCS = Math.Round(argArticulo.PrecioVenta * PCS / 100, 2, MidpointRounding.ToEven)
 
+        Dim cos As New CoberturaOS
 
-        With argItemComprobante
+        With cos
             .PorcentajeOS = POS
             .DescuentoUnitarioOS = DOS
             .PorcentajeCS = PCS
             .DescuentoUnitarioCS = DCS
         End With
 
-    End Sub
+        Return cos
 
-    Private Sub Proceso(ByVal argArticulo As Articulo, ByRef argItemComprobante As ItemComprobante)
-
-        Dim codigo As Integer = argArticulo.Codigo
-        Dim POS As Decimal = 0
-        Dim DOS As Decimal = 0
-        Dim PCS As Decimal = 0
-        Dim DCS As Decimal = 0
-
-        If argItemComprobante.Receta.Plan.Vademecum1 IsNot Nothing Then
-            Dim itemVdm = argItemComprobante.Receta.Plan.Vademecum1.FirstOrDefault(Function(x) x.Codigo = codigo)
-
-            If itemVdm IsNot Nothing Then
-                POS = argItemComprobante.Receta.Plan.DesGeneral1
-                DOS = Math.Round(argArticulo.PrecioVenta * POS / 100, 2, MidpointRounding.ToEven)
-            End If
-
-        End If
-
-        If argItemComprobante.Receta.Plan.Vademecum2 IsNot Nothing Then
-            Dim itemVdm = argItemComprobante.Receta.Plan.Vademecum2.FirstOrDefault(Function(x) x.Codigo = codigo)
-
-            If itemVdm IsNot Nothing Then
-                PCS = argItemComprobante.Receta.Plan.DesGeneral2
-                DCS = Math.Round(argArticulo.PrecioVenta * PCS / 100, 2, MidpointRounding.ToEven)
-            End If
-
-        End If
-
-        If DOS > 0 OrElse DCS > 0 Then
-
-            With argItemComprobante
-                .PorcentajeOS = POS
-                .DescuentoUnitarioOS = DOS
-                .PorcentajeCS = PCS
-                .DescuentoUnitarioCS = DCS
-            End With
-
-        End If
-
-    End Sub
+    End Function
 
 End Class

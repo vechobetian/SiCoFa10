@@ -583,27 +583,27 @@ Public Class D_AdminOperaciones
                     End If
 
                     If argRecetas IsNot Nothing Then
-                        Dim AdminRecetas As New D_AdminRecetas
+                        Dim adminRecetas As New D_AdminRecetas
                         For Each r As Receta In argRecetas
                             r.IdOperacion = argOperacion.IdOperacion
-                            AdminRecetas.InsertarReceta(r, cn, tx)
+                            adminRecetas.InsertarReceta(r, cn, tx)
                         Next
                     End If
 
                     If argItemsComprobante IsNot Nothing Then
-                        Dim AdminItemsComprobante As New D_AdminItemsComprobante
-                        AdminItemsComprobante.InsertarItemsComprobanteVenta(argOperacion.IdOperacion, argItemsComprobante, cn, tx)
+                        Dim adminItemsComprobante As New D_AdminItemsComprobante
+                        adminItemsComprobante.InsertarItemsComprobanteVenta(argOperacion.IdOperacion, argItemsComprobante, cn, tx)
                     End If
 
-                    Dim AdminComprobantes As New D_AdminComprobantes
+                    Dim adminComprobantes As New D_AdminComprobantes
                     argComprobante.Operacion = argOperacion
-                    AdminComprobantes.EmitirComprobante(argComprobante, cn, tx)
+                    adminComprobantes.EmitirComprobante(argComprobante, cn, tx)
 
-                    Dim AdminAsientoContable As New D_AdminAsientosContable
-                    AdminAsientoContable.EfectuarAsientoContable(argOperacion, argAsiento, cn, tx)
+                    Dim adminAsientoContable As New D_AdminAsientosContable
+                    adminAsientoContable.EfectuarAsientoContable(argOperacion, argAsiento, cn, tx)
 
-                    Dim AdminArticulos As New D_AdminArticulos
-                    AdminArticulos.ActualizarStock(argOperacion.IdOperacion, -1, cn, tx)
+                    Dim adminArticulos As New D_AdminArticulos
+                    adminArticulos.ActualizarStock(argOperacion.IdOperacion, -1, cn, tx)
 
                     Me.FinalizarOperacion(argMacAddress, argOperacion, True, cn, tx)
 
