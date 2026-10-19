@@ -121,11 +121,23 @@ Public Class D_AdminItemsComprobante
 
                 If i.Articulo Is Nothing Then Continue For
 
-                Dim IdItem As Long = Me.InsertarItemComprobante(argIdOperacion, i, cn, tx)
+                Dim idItem As Long = Me.InsertarItemComprobante(argIdOperacion, i, cn, tx)
 
                 If i.Receta IsNot Nothing Then
-                    Dim AdminItemsReceta As New D_AdminItemsReceta
-                    AdminItemsReceta.InsertarItemReceta(IdItem, argIdOperacion, i, cn, tx)
+                    Dim adminItemsReceta As New D_AdminItemsReceta
+                    adminItemsReceta.InsertarItemReceta(idItem, argIdOperacion, i, cn, tx)
+                End If
+
+                If i.ItemTrazable IsNot Nothing Then
+
+                    Dim sql As String = "UPDATE transacciones_trazabilidad SET IdItem = @IdItem, Estado = 'DISPENSADA' WHERE IdTransaccion = @IdTransaccion"
+
+                    Using cmd As New MySqlCommand(sql, cn, tx)
+                        cmd.Parameters.AddWithValue("@IdItem", idItem)
+                        cmd.Parameters.AddWithValue("@IdTransaccion", i.ItemTrazable.IdTransaccion)
+                        cmd.ExecuteNonQuery()
+                    End Using
+
                 End If
 
             Next

@@ -678,7 +678,7 @@ Partial Class FrmVentas
         TableLayoutPanel1.ColumnCount = 11
         TableLayoutPanel1.ColumnStyles.Add(New ColumnStyle(SizeType.Absolute, 175F))
         TableLayoutPanel1.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 100F))
-        TableLayoutPanel1.ColumnStyles.Add(New ColumnStyle(SizeType.Absolute, 60F))
+        TableLayoutPanel1.ColumnStyles.Add(New ColumnStyle(SizeType.Absolute, 120F))
         TableLayoutPanel1.ColumnStyles.Add(New ColumnStyle(SizeType.Absolute, 52F))
         TableLayoutPanel1.ColumnStyles.Add(New ColumnStyle(SizeType.Absolute, 52F))
         TableLayoutPanel1.ColumnStyles.Add(New ColumnStyle(SizeType.Absolute, 52F))
@@ -711,10 +711,10 @@ Partial Class FrmVentas
         ' 
         lblSerie.AutoSize = True
         lblSerie.Dock = DockStyle.Fill
-        lblSerie.Location = New Point(396, 0)
+        lblSerie.Location = New Point(336, 0)
         lblSerie.Margin = New Padding(4, 0, 4, 0)
         lblSerie.Name = "lblSerie"
-        lblSerie.Size = New Size(52, 29)
+        lblSerie.Size = New Size(112, 29)
         lblSerie.TabIndex = 10
         lblSerie.Text = "Serie"
         lblSerie.TextAlign = ContentAlignment.MiddleLeft
@@ -822,7 +822,7 @@ Partial Class FrmVentas
         lblDescripcion.Location = New Point(179, 0)
         lblDescripcion.Margin = New Padding(4, 0, 4, 0)
         lblDescripcion.Name = "lblDescripcion"
-        lblDescripcion.Size = New Size(209, 29)
+        lblDescripcion.Size = New Size(149, 29)
         lblDescripcion.TabIndex = 1
         lblDescripcion.Text = "Descripción"
         lblDescripcion.TextAlign = ContentAlignment.MiddleLeft

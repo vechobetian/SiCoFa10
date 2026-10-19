@@ -44,7 +44,7 @@ Partial Class UcItemVenta
         TableLayoutPanel1.ColumnStyles.Add(New ColumnStyle(SizeType.Absolute, 33F))
         TableLayoutPanel1.ColumnStyles.Add(New ColumnStyle(SizeType.Absolute, 117F))
         TableLayoutPanel1.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 100F))
-        TableLayoutPanel1.ColumnStyles.Add(New ColumnStyle(SizeType.Absolute, 100F))
+        TableLayoutPanel1.ColumnStyles.Add(New ColumnStyle(SizeType.Absolute, 150F))
         TableLayoutPanel1.ColumnStyles.Add(New ColumnStyle(SizeType.Absolute, 47F))
         TableLayoutPanel1.ColumnStyles.Add(New ColumnStyle(SizeType.Absolute, 47F))
         TableLayoutPanel1.ColumnStyles.Add(New ColumnStyle(SizeType.Absolute, 58F))
@@ -81,10 +81,10 @@ Partial Class UcItemVenta
         txtSerie.BorderStyle = BorderStyle.None
         txtSerie.Dock = DockStyle.Fill
         txtSerie.Font = New Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        txtSerie.Location = New Point(600, 3)
+        txtSerie.Location = New Point(550, 3)
         txtSerie.Margin = New Padding(4, 3, 4, 3)
         txtSerie.Name = "txtSerie"
-        txtSerie.Size = New Size(92, 18)
+        txtSerie.Size = New Size(142, 18)
         txtSerie.TabIndex = 11
         ' 
         ' txtFraccionado
@@ -208,7 +208,7 @@ Partial Class UcItemVenta
         txtDescripcion.Location = New Point(154, 3)
         txtDescripcion.Margin = New Padding(4, 3, 4, 3)
         txtDescripcion.Name = "txtDescripcion"
-        txtDescripcion.Size = New Size(438, 18)
+        txtDescripcion.Size = New Size(388, 18)
         txtDescripcion.TabIndex = 1
         ' 
         ' txtCodBarra

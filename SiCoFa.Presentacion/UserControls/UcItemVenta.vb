@@ -121,9 +121,11 @@ Public Class UcItemVenta
 
         txtCodBarra.Text = item.CodBarras
         txtDescripcion.Text = item.Descripcion
+        txtSerie.Text = If(item.ItemTrazable IsNot Nothing, item.ItemTrazable.Serie, String.Empty)
 
         If item.Articulo Is Nothing Then
             btnEliminarItem.Visible = False
+            txtSerie.Text = ""
             txtFraccionado.Text = ""
             txtCantidad.Text = ""
             txtAlicIVA.Text = ""
@@ -269,13 +271,6 @@ Public Class UcItemVenta
 
     End Sub
 
-    Public Sub EnfocarSerie()
-
-        txtSerie.Focus()
-        txtSerie.SelectAll()
-
-    End Sub
-
     Public Sub EnfocarFraccionado()
 
         txtFraccionado.Focus()
@@ -295,11 +290,6 @@ Public Class UcItemVenta
         txtPrecioUnitario.Focus()
         txtPrecioUnitario.SelectAll()
 
-    End Sub
-
-    Public Sub HabilitarSerie()
-        txtSerie.ReadOnly = False
-        txtSerie.TabStop = True
     End Sub
 
     Public Sub HabilitarFraccionado()

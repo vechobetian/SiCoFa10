@@ -733,6 +733,16 @@ Public Class FrmVentas
 
             uc.ModoItemCargado(articulo.Fraccionable, articulo.Seccion.EstablecerPrecio)
 
+            If Not String.IsNullOrWhiteSpace(articulo.Gtin) Then
+                Dim itemTrazable As TransaccionTrazabilidad = ObtenerItemTrazable(articulo.Gtin)
+
+                If itemTrazable IsNot Nothing Then
+                    item.ItemTrazable = itemTrazable
+                    uc.Bind(item)
+                End If
+
+            End If
+
             If articulo.Fraccionable AndAlso uc.ItemVenta.Receta Is Nothing Then
                 uc.HabilitarFraccionado()
                 uc.EnfocarFraccionado()
@@ -751,6 +761,108 @@ Public Class FrmVentas
         End Try
 
     End Sub
+
+    Private Function ObtenerItemTrazable(argGtin As String) As TransaccionTrazabilidad
+
+        Dim adminTrazabilidad As New N_AdminTrazabilidad
+        Dim serie As String
+        Dim dt As DataTable
+        Dim transaccion As TransaccionTrazabilidad = Nothing
+
+        Do
+            serie = InputBox("¡MEDICAMENTO TRAZABLE!" & vbCrLf & "Ingrese el serial", "SiCoFa")
+
+            ' Cancelar o ingresar vacío.
+            If String.IsNullOrWhiteSpace(serie) Then
+                Dim User As Usuario = ModSeguridad.ValidarUsuario("OMITIR_SERIAL")
+                If User IsNot Nothing Then
+                    Return Nothing
+                Else
+                    serie = "NO ESTABLECIDA"
+                End If
+            End If
+
+            ' Buscar transacciones confirmadas por GTIN y serie.
+            dt = adminTrazabilidad.ObtenerTransaccionesConfirmadas(argGtin, serie)
+
+            If dt Is Nothing OrElse dt.Rows.Count = 0 Then
+
+                MsgBox("No se encontró una transacción con el serial ingresado.", vbInformation, "SiCoFa")
+
+            ElseIf dt.Rows.Count = 1 Then
+
+                Dim fila As DataRow = dt.Rows(0)
+
+                transaccion = New TransaccionTrazabilidad With {
+                                                                    .IdTransaccion = If(IsDBNull(fila("IdTransaccion")), 0L, Convert.ToInt64(fila("IdTransaccion"))),
+                                                                    .FechaEvento = If(IsDBNull(fila("FechaEvento")), Date.MinValue, Convert.ToDateTime(fila("FechaEvento"))),
+                                                                    .DescripcionEvento = If(IsDBNull(fila("DescripcionEvento")), String.Empty, Convert.ToString(fila("DescripcionEvento"))),
+                                                                    .GlnOrigen = If(IsDBNull(fila("GlnOrigen")), String.Empty, Convert.ToString(fila("GlnOrigen"))),
+                                                                    .RazonSocialOrigen = If(IsDBNull(fila("RazonSocialOrigen")), String.Empty, Convert.ToString(fila("RazonSocialOrigen"))),
+                                                                    .Comprobante = If(IsDBNull(fila("Comprobante")), String.Empty, Convert.ToString(fila("Comprobante"))),
+                                                                    .IdUsuario = If(IsDBNull(fila("IdUsuario")), 0, Convert.ToInt32(fila("IdUsuario"))),
+                                                                    .Nombre = If(IsDBNull(fila("Nombre")), String.Empty, Convert.ToString(fila("Nombre"))),
+                                                                    .Gtin = If(IsDBNull(fila("Gtin")), String.Empty, Convert.ToString(fila("Gtin"))),
+                                                                    .Serie = If(IsDBNull(fila("Serie")), String.Empty, Convert.ToString(fila("Serie"))),
+                                                                    .Lote = If(IsDBNull(fila("Lote")), String.Empty, Convert.ToString(fila("Lote"))),
+                                                                    .Vencimiento = If(IsDBNull(fila("Vencimiento")), Date.MinValue, Convert.ToDateTime(fila("Vencimiento"))),
+                                                                    .Estado = If(IsDBNull(fila("Estado")), String.Empty, Convert.ToString(fila("Estado")))
+                                                                    }
+
+
+
+            Else
+
+                Using f As New FrmSelectorUniversal
+                    f.Text = "Seriales Gtin " & argGtin
+                    f.Objetos = dt.DefaultView
+                    f.NombrePropiedadId = "IdTransaccion"
+                    f.NombrePropiedadDescripcion = "Serie"
+                    f.HeaderPropiedadDescripcion = "Serie"
+
+                    If f.ShowDialog() = DialogResult.OK Then
+                        Dim idTransaccionSeleccionada As Long = Convert.ToInt64(f.Valor1Seleccionado)
+                        transaccion = adminTrazabilidad.ObtenerTransaccionPorIdTransaccion(idTransaccionSeleccionada)
+                        f.Close()
+
+                    End If
+                End Using
+
+            End If
+
+            If transaccion IsNot Nothing Then
+
+                If SerialCargado(transaccion.Serie) Then
+                    MsgBox("El serial ingresado ya fue cargado en otro artículo.",
+                           vbInformation, "SiCoFa")
+
+                    transaccion = Nothing
+                Else
+                    Return transaccion
+                End If
+
+            End If
+        Loop
+
+    End Function
+
+    Private Function SerialCargado(argSerie As String) As Boolean
+
+        If String.IsNullOrWhiteSpace(argSerie) Then Return False
+
+        For Each item As ItemComprobante In mobj_Items
+
+            If item Is Nothing OrElse item.ItemTrazable Is Nothing Then Continue For
+
+            If String.Equals(item.ItemTrazable.Serie?.Trim(), argSerie.Trim(), StringComparison.OrdinalIgnoreCase) Then
+                Return True
+            End If
+
+        Next
+
+        Return False
+
+    End Function
 
     Private Sub FraccionadoConfirmado(uc As UcItemVenta)
 

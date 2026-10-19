@@ -521,6 +521,40 @@ Public Class FrmInicio
 
     End Sub
 
+    Private Sub mnuInformarTrazablesDispensados_Click(sender As Object, e As EventArgs) Handles mnuInformarTrazablesDispensados.Click
+        Cursor = Cursors.WaitCursor
+
+        Try
+            Dim negocio As New N_AdminTrazabilidad()
+
+            ' Obtener las transacciones confirmadas desde MySQL.
+            Dim tabla As DataTable = negocio.ObtenerTransaccionesDispensadas()
+
+            If tabla.Rows.Count = 0 Then
+                MessageBox.Show(
+                "No hay transacciones dispensadas para mostrar.",
+                "SiCoFa - Trazabilidad",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Information
+            )
+                Return
+            End If
+
+            ' Mostrar las transacciones en la grilla.
+            Using frm As New FrmTransaccionesTrazabilidad()
+                frm.CargarDatosEnGrilla(tabla)
+                frm.ShowDialog(Me)
+            End Using
+
+        Catch ex As Exception
+            MessageBox.Show(ex.Message, "SiCoFa - Trazabilidad", MessageBoxButtons.OK, MessageBoxIcon.Error)
+
+        Finally
+            Cursor = Cursors.Default
+        End Try
+
+    End Sub
+
     Private Sub mnuTrazablesInformados_Click(sender As Object, e As EventArgs) Handles mnuTrazablesInformados.Click
 
         Cursor = Cursors.WaitCursor

@@ -20,7 +20,7 @@
     Private m_DescuentoUnitarioCS As Decimal
     Private m_EsNuevo As Boolean = True
     Private m_NumeroAutorizacionItem As String
-    Private m_IdTransaccionTrazabilidad As Long
+    Private m_ItemTrazable As TransaccionTrazabilidad
 
     Public Sub New()
 
@@ -341,12 +341,12 @@
         End Set
     End Property
 
-    Public Property IdTransaccionTrazabilidad As Long
+    Public Property ItemTrazable As TransaccionTrazabilidad
         Get
-            Return m_IdTransaccionTrazabilidad
+            Return m_ItemTrazable
         End Get
-        Set(value As Long)
-            m_IdTransaccionTrazabilidad = value
+        Set(value As TransaccionTrazabilidad)
+            m_ItemTrazable = value
         End Set
     End Property
 

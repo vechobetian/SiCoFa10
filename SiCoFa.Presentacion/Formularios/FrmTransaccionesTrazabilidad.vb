@@ -109,33 +109,42 @@ Public Class FrmTransaccionesTrazabilidad
 
     End Sub
 
-    Private Function ConfirmarTransaccion(argTransaccion As TransaccionTrazabilidad) As Boolean
+    Private Async Function ConfirmarTransaccion(argTransaccion As TransaccionTrazabilidad) As Task(Of Boolean)
 
         Dim valoresColumnas As New Dictionary(Of String, Object) From {
-        {"IdTransaccion", argTransaccion.IdTransaccion},
-        {"FechaEvento", argTransaccion.FechaEvento},
-        {"DescripcionEvento", argTransaccion.DescripcionEvento},
-        {"GlnOrigen", argTransaccion.GlnOrigen},
-        {"RazonSocialOrigen", argTransaccion.RazonSocialOrigen},
-        {"Comprobante", argTransaccion.Comprobante},
-        {"IdUsuario", argTransaccion.IdUsuario},
-        {"Nombre", argTransaccion.Nombre},
-        {"Gtin", argTransaccion.Gtin},
-        {"Serie", argTransaccion.Serie},
-        {"Lote", argTransaccion.Lote},
-        {"Vencimiento", argTransaccion.Vencimiento},
-        {"Estado", "CONFIRMADA"}
-    }
+                                                                        {"IdTransaccion", argTransaccion.IdTransaccion},
+                                                                        {"FechaEvento", argTransaccion.FechaEvento},
+                                                                        {"DescripcionEvento", argTransaccion.DescripcionEvento},
+                                                                        {"GlnOrigen", argTransaccion.GlnOrigen},
+                                                                        {"RazonSocialOrigen", argTransaccion.RazonSocialOrigen},
+                                                                        {"Comprobante", argTransaccion.Comprobante},
+                                                                        {"IdUsuario", argTransaccion.IdUsuario},
+                                                                        {"Nombre", argTransaccion.Nombre},
+                                                                        {"Gtin", argTransaccion.Gtin},
+                                                                        {"Serie", argTransaccion.Serie},
+                                                                        {"Lote", argTransaccion.Lote},
+                                                                        {"Vencimiento", argTransaccion.Vencimiento},
+                                                                        {"Estado", "CONFIRMADA"}
+                                                                      }
 
         Try
+
             Dim adminDB As New N_AdminDB()
+            Dim existeArticulo As Boolean = CBool(adminDB.CuentaRegistros("SELECT COUNT(*) FROM articulos WHERE CodBarras='" & Strings.Right(argTransaccion.Gtin, 13) & "'"))
 
-            Dim gtinActualizado As Boolean = CBool(adminDB.ActualizarCampo("articulos", "Gtin", argTransaccion.Gtin, "CodBarras='" & Strings.Right(argTransaccion.Gtin, 13) & "'"))
-
-            If Not gtinActualizado Then
-                argTransaccion.Estado = "Gtin no encontrado"
+            If Not existeArticulo Then
+                argTransaccion.Estado = "Dar de alta en SiCoFa"
                 Return False
             End If
+
+            Dim adminTrazabilidad As New N_AdminTrazabilidad
+            Dim transaccionConfirmada As Boolean = Await adminTrazabilidad.ConfirmarTransaccionAnmatAsync(argTransaccion.IdTransaccion)
+
+            If Not transaccionConfirmada Then
+                Return False
+            End If
+
+            Dim gtinActualizado As Boolean = CBool(adminDB.ActualizarCampo("articulos", "Gtin", argTransaccion.Gtin, "CodBarras='" & Strings.Right(argTransaccion.Gtin, 13) & "'"))
 
             adminDB.InsertarRegistro("transacciones_trazabilidad", valoresColumnas)
 
@@ -156,10 +165,7 @@ Public Class FrmTransaccionesTrazabilidad
 
     End Function
 
-    Private Sub btnConfirmarTransaccion_Click(
-    sender As Object,
-    e As EventArgs
-) Handles btnConfirmarTransaccion.Click
+    Private Async Sub btnConfirmarTransaccion_Click(sender As Object, e As EventArgs) Handles btnConfirmarTransaccion.Click
 
         Try
             If dgvTransacciones.CurrentRow Is Nothing Then
@@ -171,24 +177,15 @@ Public Class FrmTransaccionesTrazabilidad
                 Return
             End If
 
-            Dim transaccion As TransaccionTrazabilidad =
-            TryCast(
-                dgvTransacciones.CurrentRow.DataBoundItem,
-                TransaccionTrazabilidad)
+            Dim transaccion As TransaccionTrazabilidad = TryCast(dgvTransacciones.CurrentRow.DataBoundItem, TransaccionTrazabilidad)
 
             If transaccion Is Nothing Then Return
 
             Select Case If(transaccion.Estado, "").Trim().ToUpperInvariant()
 
                 Case "NO CONFIRMADA"
-
-                    If ConfirmarTransaccion(transaccion) Then
-                        MessageBox.Show(
-                        "Transacción confirmada correctamente.",
-                        "SiCoFa",
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Information)
-                    End If
+                    Dim adminTrazabilidad As New N_AdminTrazabilidad()
+                    Dim transaccionConfirmada As Boolean = Await adminTrazabilidad.ConfirmarTransaccionAsync(transaccion)
 
                 Case "CONFIRMADA"
                     MessageBox.Show(
@@ -217,7 +214,7 @@ Public Class FrmTransaccionesTrazabilidad
 
     End Sub
 
-    Private Sub btnConfirmarTransacciones_Click(sender As Object, e As EventArgs) Handles btnConfirmarTransacciones.Click
+    Private Async Sub btnConfirmarTransacciones_Click(sender As Object, e As EventArgs) Handles btnConfirmarTransacciones.Click
 
         Dim confirmadas As Integer = 0
         Dim errores As Integer = 0
@@ -240,7 +237,7 @@ Public Class FrmTransaccionesTrazabilidad
                 End If
 
                 ' Procesar una transacción por vez.
-                If ConfirmarTransaccion(transaccion) Then
+                If Await ConfirmarTransaccion(transaccion) Then
                     confirmadas += 1
                 Else
                     errores += 1
