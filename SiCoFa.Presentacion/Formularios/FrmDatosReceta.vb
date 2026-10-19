@@ -237,6 +237,28 @@ Public Class FrmDatosReceta
 
     End Sub
 
+    Protected Overrides Function ProcessCmdKey(ByRef msg As Message, keyData As Keys) As Boolean
+        If keyData = Keys.Enter Then
+            Dim paneles = FlowLayoutPanel1.Controls.OfType(Of Panel)().ToList()
+
+            If paneles.Count > 0 Then
+                ' Como ya no hay botón, el último panel es el último campo de carga
+                Dim ultimoPanel = paneles.Last()
+
+                ' Buscamos el control de entrada dentro de ese panel
+                Dim controlInput = ultimoPanel.Controls.OfType(Of Control)().FirstOrDefault(Function(c) Not TypeOf c Is Label)
+
+                ' Si el foco está en ese último campo, procesamos la receta directamente
+                If controlInput IsNot Nothing AndAlso controlInput.ContainsFocus Then
+                    ProcesarReceta()
+                    Return True
+                End If
+            End If
+        End If
+
+        Return MyBase.ProcessCmdKey(msg, keyData)
+    End Function
+
     Private Sub ActualizarRecetaDesdeControles()
 
         For Each pnl As Panel In FlowLayoutPanel1.Controls
@@ -529,7 +551,7 @@ Public Class FrmDatosReceta
             AgregarCampoTexto("Diagnostico", NameOf(m_Receta.Diagnostico), NameOf(m_Receta.Diagnostico))
         End If
 
-        AgregarBotonAceptar()
+        'AgregarBotonAceptar()
 
         AjustarTamañoFormulario()
 
