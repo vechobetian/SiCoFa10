@@ -130,12 +130,21 @@ Public Class D_AdminItemsComprobante
 
                 If i.ItemTrazable IsNot Nothing Then
 
-                    Dim sql As String = "UPDATE items_trazables SET IdItem = @IdItem, Estado = 'DISPENSADA' WHERE IdTransaccion = @IdTransaccion"
+                    ' Definimos la fecha del evento (usando la fecha actual o la que corresponda al comprobante)
+                    Dim fechaEventoStr As String = Date.Today.ToString("dd/MM/yyyy")
+
+                    Dim sql As String = "UPDATE items_trazables SET IdItem = @IdItem, FechaEvento = STR_TO_DATE(@FechaEvento, '%d/%m/%Y'), Estado = 'DISPENSADA' WHERE IdTransaccion = @IdTransaccion"
 
                     Using cmd As New MySqlCommand(sql, cn, tx)
                         cmd.Parameters.AddWithValue("@IdItem", idItem)
+                        cmd.Parameters.AddWithValue("@FechaEvento", fechaEventoStr)
                         cmd.Parameters.AddWithValue("@IdTransaccion", i.ItemTrazable.IdTransaccion)
-                        cmd.ExecuteNonQuery()
+
+                        Dim filasAfectadas As Integer = cmd.ExecuteNonQuery()
+
+                        If filasAfectadas = 0 Then
+                            Throw New Exception($"No se pudo actualizar el ítem trazable local para el IdTransaccion {i.ItemTrazable.IdTransaccion}.")
+                        End If
                     End Using
 
                 End If

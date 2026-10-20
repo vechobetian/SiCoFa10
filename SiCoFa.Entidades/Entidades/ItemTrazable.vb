@@ -12,5 +12,6 @@
     Public Property Lote As String
     Public Property Vencimiento As Date
     Public Property Estado As String
+    Public Property IdItem As Long
 
 End Class

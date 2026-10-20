@@ -139,45 +139,59 @@ Public Class N_AdminTrazabilidad
         End Try
     End Function
 
-    ''' <summary>
-    ''' Informa una transacción dispensada individual al Web Service de PAMI y actualiza la base local.
-    ''' </summary>
     Public Async Function InformarTransaccionDispensada(argTransaccion As ItemTrazable) As Task(Of Boolean)
         Try
             Dim param = ObtenerParametros()
             Dim servicio As New TrazabilidadServices()
 
-            ' Datos para el evento de informar dispensados (Usamos fecha/hora actual o la del evento si está disponible)
+            ' Datos para el evento de informar dispensados 
             Dim fechaStr As String = If(argTransaccion.FechaEvento <> Date.MinValue, argTransaccion.FechaEvento.ToString("dd/MM/yyyy"), Date.Today.ToString("dd/MM/yyyy"))
-            Dim horaStr As String = DateTime.Now.ToString("HH:mm:ss")
+            Dim horaStr As String = DateTime.Now.ToString("HH:mm")
 
             ' Llamada al servicio SOAP de PAMI (sendMedicamentos)
             Dim codigoTransaccionStr = Await servicio.InformarTransaccionAsync(
-                param.Usuario, param.Password, param.Gln,
-                fechaStr, horaStr,
-                argTransaccion.Gtin, argTransaccion.Serie, argTransaccion.Lote,
-                argTransaccion.Vencimiento,
-                "", ' Apellido / Nombre predeterminado si viene vacío
-                "",
-                ""
-            )
+                                            param.Usuario, param.Password, param.Gln,
+                                            fechaStr, horaStr,
+                                            argTransaccion.Gtin, argTransaccion.Serie, argTransaccion.Lote,
+                                            argTransaccion.Vencimiento,
+                                            "", ' Apellido / Nombre predeterminado si viene vacío
+                                            "",
+                                            ""
+                                         )
 
             If servicio.EsError OrElse String.IsNullOrWhiteSpace(codigoTransaccionStr) Then
                 argTransaccion.Estado = "Error al informar: " & servicio.DescripcionError
                 Return False
             End If
 
-            ' Si PAMI devuelve el ID de transacción, lo actualizamos en la entidad y en la BD local
+            ' Si PAMI devuelve el ID de transacción, lo parseamos y actualizamos
             Dim nuevoIdTransaccion As Long
             If Long.TryParse(codigoTransaccionStr, nuevoIdTransaccion) Then
-                argTransaccion.IdTransaccion = nuevoIdTransaccion
+
+                Dim adminDB As New D_AdminDB()
+
+                ' Actualizamos con la descripción exacta del evento
+                Dim sqlUpdate As String = $"UPDATE items_trazables SET " &
+                              $"IdTransaccion = {nuevoIdTransaccion}, " &
+                              $"Estado = 'INFORMADA', " &
+                              $"FechaEvento = STR_TO_DATE('{fechaStr}', '%d/%m/%Y'), " &
+                              $"DescripcionEvento = 'DISPENSACION DEL PRODUCTO AL PACIENTE' " &
+                              $"WHERE IdTransaccion = {argTransaccion.IdTransaccion}"
+
+                Dim exito As Boolean = adminDB.ActualizarTablaUpdate(sqlUpdate)
+
+
+                If Not exito Then
+                    argTransaccion.Estado = "Error: No se pudo actualizar el registro en la base de datos local."
+                    Return False
+                End If
+            Else
+                argTransaccion.Estado = "Error al parsear el IdTransaccion devuelto por PAMI."
+                Return False
             End If
 
-            Dim adminDB As New D_AdminDB()
-
-            ' Actualizamos el estado local a INFORMADA y guardamos el IdTransaccion devuelto por PAMI
-            adminDB.ActualizarCampo("items_trazables", "Estado", "INFORMADA", "IdTransaccion=" & argTransaccion.IdTransaccion)
-
+            argTransaccion.IdTransaccion = nuevoIdTransaccion
+            argTransaccion.DescripcionEvento = "DISPENSACION DEL PRODUCTO AL PACIENTE"
             argTransaccion.Estado = "INFORMADA"
             Return True
 
@@ -194,7 +208,7 @@ Public Class N_AdminTrazabilidad
     Public Function ObtenerTransaccionesConfirmadas() As DataTable
         Dim adminDB As New D_AdminDB()
         Dim sql As String =
-            "SELECT IdTransaccion, FechaEvento, DescripcionEvento, GlnOrigen, RazonSocialOrigen, Comprobante, IdUsuario, Nombre, Gtin, Serie, Lote, Vencimiento, Estado " &
+            "SELECT * " &
             "FROM items_trazables " &
             "WHERE Estado = 'CONFIRMADA' " &
             "ORDER BY FechaEvento DESC"
@@ -204,7 +218,7 @@ Public Class N_AdminTrazabilidad
     Public Function ObtenerTransaccionesDispensadas() As DataTable
         Dim adminDB As New D_AdminDB()
         Dim sql As String =
-            "SELECT IdTransaccion, FechaEvento, DescripcionEvento, GlnOrigen, RazonSocialOrigen, Comprobante, IdUsuario, Nombre, Gtin, Serie, Lote, Vencimiento, Estado " &
+            "SELECT * " &
             "FROM items_trazables " &
             "WHERE Estado = 'DISPENSADA' " &
             "ORDER BY FechaEvento DESC"
@@ -214,7 +228,7 @@ Public Class N_AdminTrazabilidad
     Public Function ObtenerTransaccionesInformadas() As DataTable
         Dim adminDB As New D_AdminDB()
         Dim sql As String =
-            "SELECT IdTransaccion, FechaEvento, DescripcionEvento, GlnOrigen, RazonSocialOrigen, Comprobante, IdUsuario, Nombre, Gtin, Serie, Lote, Vencimiento, Estado " &
+            "SELECT * " &
             "FROM items_trazables " &
             "WHERE Estado = 'INFORMADA' " &
             "ORDER BY FechaEvento DESC"
@@ -224,10 +238,10 @@ Public Class N_AdminTrazabilidad
     Public Function ObtenerTransaccionesConfirmadas(argGtin As String, argSerie As String) As DataTable
         Dim adminDB As New D_AdminDB()
         Dim gtinClean As String = argGtin.Replace("'", "''")
-        Dim serieClean As String = argSerie.Replace("'", "''")
+        Dim serieClean As String = argSerie.Replace("'", "''").Replace("*", "%")
 
         Dim sql As String =
-            $"SELECT IdTransaccion, FechaEvento, DescripcionEvento, GlnOrigen, RazonSocialOrigen, Comprobante, IdUsuario, Nombre, Gtin, Serie, Lote, Vencimiento, Estado " &
+            $"SELECT * " &
             $"FROM items_trazables " &
             $"WHERE Gtin='{gtinClean}' " &
             $"  AND Serie LIKE '%{serieClean}%' " &
@@ -240,7 +254,7 @@ Public Class N_AdminTrazabilidad
     Public Function ObtenerTransaccionPorIdTransaccion(argIdTransaccion As Long) As ItemTrazable
         Dim adminDB As New D_AdminDB()
         Dim sql As String =
-            $"SELECT IdTransaccion, FechaEvento, DescripcionEvento, GlnOrigen, RazonSocialOrigen, Comprobante, IdUsuario, Nombre, Gtin, Serie, Lote, Vencimiento, Estado " &
+            $"SELECT * " &
             $"FROM items_trazables " &
             $"WHERE IdTransaccion={argIdTransaccion}"
 
@@ -265,7 +279,8 @@ Public Class N_AdminTrazabilidad
             .Serie = If(IsDBNull(fila("Serie")), String.Empty, Convert.ToString(fila("Serie"))),
             .Lote = If(IsDBNull(fila("Lote")), String.Empty, Convert.ToString(fila("Lote"))),
             .Vencimiento = If(IsDBNull(fila("Vencimiento")), Date.MinValue, Convert.ToDateTime(fila("Vencimiento"))),
-            .Estado = If(IsDBNull(fila("Estado")), String.Empty, Convert.ToString(fila("Estado")))
+            .Estado = If(IsDBNull(fila("Estado")), String.Empty, Convert.ToString(fila("Estado"))),
+            .IdItem = If(IsDBNull(fila("IdItem")), 0L, Convert.ToInt64(fila("IdItem")))
         }
     End Function
 

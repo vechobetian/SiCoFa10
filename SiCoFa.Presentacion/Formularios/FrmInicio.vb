@@ -470,9 +470,14 @@ Public Class FrmInicio
                     Dim transacciones As List(Of ItemTrazable) = Await negocio.ObtenerTransaccionesNoConfirmadasAsync(strDesde, strHasta)
 
                     ' 4. Mostramos los datos en tu formulario de grilla (FrmTransacTraza)
-                    Dim frmGrilla As New FrmTransaccionesTrazabilidad()
-                    frmGrilla.CargarDatosEnGrilla(transacciones)
-                    frmGrilla.Show()
+                    Dim frm As New FrmTransaccionesTrazabilidad()
+                    frm.CargarDatosEnGrilla(transacciones)
+                    frm.btnConfirmarTransaccion.Visible = True
+                    frm.btnConfirmarTransacciones.Visible = True
+                    frm.btnInformarTransaccion.Visible = False
+                    frm.btnInformarTransacciones.Visible = False
+                    frm.dgvDetalle.Visible = False
+                    frm.Show()
 
                 Catch ex As Exception
                     MessageBox.Show(ex.Message, "SiCoFa - Trazabilidad", MessageBoxButtons.OK, MessageBoxIcon.Warning)
@@ -508,6 +513,11 @@ Public Class FrmInicio
             ' Mostrar las transacciones en la grilla.
             Dim frm As New FrmTransaccionesTrazabilidad()
             frm.CargarDatosEnGrilla(tabla)
+            frm.btnInformarTransaccion.Visible = True
+            frm.btnConfirmarTransaccion.Visible = False
+            frm.btnConfirmarTransacciones.Visible = False
+            frm.btnInformarTransacciones.Visible = False
+            frm.dgvDetalle.Visible = True
             frm.Show()
 
         Catch ex As Exception
@@ -541,6 +551,11 @@ Public Class FrmInicio
             ' Mostrar las transacciones en la grilla.
             Dim frm As New FrmTransaccionesTrazabilidad()
             frm.CargarDatosEnGrilla(tabla)
+            frm.btnInformarTransaccion.Visible = True
+            frm.btnInformarTransacciones.Visible = True
+            frm.btnConfirmarTransaccion.Visible = False
+            frm.btnConfirmarTransaccion.Visible = False
+            frm.dgvDetalle.Visible = True
             frm.Show()
 
         Catch ex As Exception
@@ -575,6 +590,11 @@ Public Class FrmInicio
             ' Mostrar las transacciones en la grilla.
             Dim frm As New FrmTransaccionesTrazabilidad()
             frm.CargarDatosEnGrilla(tabla)
+            frm.btnConfirmarTransaccion.Visible = False
+            frm.btnConfirmarTransacciones.Visible = False
+            frm.btnInformarTransaccion.Visible = False
+            frm.btnInformarTransacciones.Visible = False
+            frm.dgvDetalle.Visible = True
             frm.Show()
 
         Catch ex As Exception

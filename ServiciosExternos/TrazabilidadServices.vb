@@ -212,7 +212,7 @@ Public Class TrazabilidadServices
         Dim cuerpoSoap As String =
             "<ns1:sendMedicamentos xmlns:ns1=""http://business.mywebservice.inssjp.com/"">" &
                 "<arg0>" &
-                    $"<apellido>{EscaparXml(argApellido)}</apellido>" &
+                    $"<apellido/>" &
                     $"<numero_serial>{EscaparXml(argSerial)}</numero_serial>" &
                     $"<f_evento>{EscaparXml(argFecha)}</f_evento>" &
                     $"<gln_origen>{EscaparXml(argMiGLN)}</gln_origen>" &
@@ -221,12 +221,12 @@ Public Class TrazabilidadServices
                     $"<vencimiento>{vencimientoTexto}</vencimiento>" &
                     $"<h_evento>{EscaparXml(argHora)}</h_evento>" &
                     "<id_evento>111</id_evento>" &
-                    "<id_obra_social>0</id_obra_social>" &
-                    $"<n_documento>{EscaparXml(argNumDoc)}</n_documento>" &
-                    "<n_factura>0</n_factura>" &
-                    $"<nombres>{EscaparXml(argNombre)}</nombres>" &
-                    "<nro_asociado>0</nro_asociado>" &
-                    "<tipo_documento>96</tipo_documento>" &
+                    "<id_obra_social/>" &
+                    $"<n_documento/>" &
+                    "<n_factura/>" &
+                    $"<nombres/>" &
+                    "<nro_asociado/>" &
+                    "<tipo_documento/>" &
                 "</arg0>" &
                 $"<arg1>{EscaparXml(argUsuario)}</arg1>" &
                 $"<arg2>{EscaparXml(argContrasena)}</arg2>" &

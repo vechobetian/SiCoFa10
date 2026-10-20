@@ -794,20 +794,20 @@ Public Class FrmVentas
                 Dim fila As DataRow = dt.Rows(0)
 
                 transaccion = New ItemTrazable With {
-                                                                    .IdTransaccion = If(IsDBNull(fila("IdTransaccion")), 0L, Convert.ToInt64(fila("IdTransaccion"))),
-                                                                    .FechaEvento = If(IsDBNull(fila("FechaEvento")), Date.MinValue, Convert.ToDateTime(fila("FechaEvento"))),
-                                                                    .DescripcionEvento = If(IsDBNull(fila("DescripcionEvento")), String.Empty, Convert.ToString(fila("DescripcionEvento"))),
-                                                                    .GlnOrigen = If(IsDBNull(fila("GlnOrigen")), String.Empty, Convert.ToString(fila("GlnOrigen"))),
-                                                                    .RazonSocialOrigen = If(IsDBNull(fila("RazonSocialOrigen")), String.Empty, Convert.ToString(fila("RazonSocialOrigen"))),
-                                                                    .Comprobante = If(IsDBNull(fila("Comprobante")), String.Empty, Convert.ToString(fila("Comprobante"))),
-                                                                    .IdUsuario = If(IsDBNull(fila("IdUsuario")), 0, Convert.ToInt32(fila("IdUsuario"))),
-                                                                    .Nombre = If(IsDBNull(fila("Nombre")), String.Empty, Convert.ToString(fila("Nombre"))),
-                                                                    .Gtin = If(IsDBNull(fila("Gtin")), String.Empty, Convert.ToString(fila("Gtin"))),
-                                                                    .Serie = If(IsDBNull(fila("Serie")), String.Empty, Convert.ToString(fila("Serie"))),
-                                                                    .Lote = If(IsDBNull(fila("Lote")), String.Empty, Convert.ToString(fila("Lote"))),
-                                                                    .Vencimiento = If(IsDBNull(fila("Vencimiento")), Date.MinValue, Convert.ToDateTime(fila("Vencimiento"))),
-                                                                    .Estado = If(IsDBNull(fila("Estado")), String.Empty, Convert.ToString(fila("Estado")))
-                                                                    }
+                                                    .IdTransaccion = If(IsDBNull(fila("IdTransaccion")), 0L, Convert.ToInt64(fila("IdTransaccion"))),
+                                                    .FechaEvento = If(IsDBNull(fila("FechaEvento")), Date.MinValue, Convert.ToDateTime(fila("FechaEvento"))),
+                                                    .DescripcionEvento = If(IsDBNull(fila("DescripcionEvento")), String.Empty, Convert.ToString(fila("DescripcionEvento"))),
+                                                    .GlnOrigen = If(IsDBNull(fila("GlnOrigen")), String.Empty, Convert.ToString(fila("GlnOrigen"))),
+                                                    .RazonSocialOrigen = If(IsDBNull(fila("RazonSocialOrigen")), String.Empty, Convert.ToString(fila("RazonSocialOrigen"))),
+                                                    .Comprobante = If(IsDBNull(fila("Comprobante")), String.Empty, Convert.ToString(fila("Comprobante"))),
+                                                    .IdUsuario = If(IsDBNull(fila("IdUsuario")), 0, Convert.ToInt32(fila("IdUsuario"))),
+                                                    .Nombre = If(IsDBNull(fila("Nombre")), String.Empty, Convert.ToString(fila("Nombre"))),
+                                                    .Gtin = If(IsDBNull(fila("Gtin")), String.Empty, Convert.ToString(fila("Gtin"))),
+                                                    .Serie = If(IsDBNull(fila("Serie")), String.Empty, Convert.ToString(fila("Serie"))),
+                                                    .Lote = If(IsDBNull(fila("Lote")), String.Empty, Convert.ToString(fila("Lote"))),
+                                                    .Vencimiento = If(IsDBNull(fila("Vencimiento")), Date.MinValue, Convert.ToDateTime(fila("Vencimiento"))),
+                                                    .Estado = If(IsDBNull(fila("Estado")), String.Empty, Convert.ToString(fila("Estado")))
+                                                    }
 
 
 

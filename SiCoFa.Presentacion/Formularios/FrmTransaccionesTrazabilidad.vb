@@ -17,9 +17,46 @@ Public Class FrmTransaccionesTrazabilidad
         Me.dgvItemsTrazables.DataSource = Me.bindingSourceTransacciones
     End Sub
 
-    ''' <summary>
-    ''' Extrae un objeto TransaccionTrazabilidad sin importar si la fuente es List(Of TransaccionTrazabilidad) o DataView/DataTable
-    ''' </summary>
+    Private Sub ActualizarDetalle()
+        Try
+            If Me.dgvItemsTrazables.CurrentRow Is Nothing Then
+                Me.dgvDetalle.DataSource = Nothing
+                Exit Sub
+            End If
+
+            ' Verificamos si la columna existe en la grilla
+            If Not Me.dgvItemsTrazables.Columns.Contains("IdItem") Then
+                Me.dgvDetalle.DataSource = Nothing
+                Exit Sub
+            End If
+
+            Dim valor = Me.dgvItemsTrazables.CurrentRow.Cells("IdItem").Value
+
+            ' Si el valor es nulo, DBNull o no es numérico (significa que aún no se vendió)
+            If valor Is Nothing OrElse IsDBNull(valor) OrElse Not IsNumeric(valor) Then
+                Me.dgvDetalle.DataSource = Nothing ' Limpiamos la grilla de detalle
+                Exit Sub
+            End If
+
+            Dim idItem As Long = Convert.ToInt64(valor)
+            If idItem <= 0 Then
+                Me.dgvDetalle.DataSource = Nothing
+                Exit Sub
+            End If
+
+            Dim sql As String = "SELECT * FROM vw_items_trazables WHERE IdItem = " & idItem
+
+            Dim adminDB As New N_AdminDB()
+            Dim dt As DataTable = adminDB.ObtenerTabla(sql)
+
+            Me.dgvDetalle.AutoGenerateColumns = False
+            Me.dgvDetalle.DataSource = dt
+
+        Catch ex As Exception
+            MsgBox(ex.Message, vbCritical, "SiCoFa")
+        End Try
+    End Sub
+
     Private Function ObtenerTransaccionDeFila(fila As DataGridViewRow) As ItemTrazable
         If fila Is Nothing OrElse fila.DataBoundItem Is Nothing Then Return Nothing
 
@@ -44,7 +81,8 @@ Public Class FrmTransaccionesTrazabilidad
                 .Serie = If(IsDBNull(r("Serie")), String.Empty, Convert.ToString(r("Serie"))),
                 .Lote = If(IsDBNull(r("Lote")), String.Empty, Convert.ToString(r("Lote"))),
                 .Vencimiento = If(IsDBNull(r("Vencimiento")), Date.MinValue, Convert.ToDateTime(r("Vencimiento"))),
-                .Estado = If(IsDBNull(r("Estado")), String.Empty, Convert.ToString(r("Estado")))
+                .Estado = If(IsDBNull(r("Estado")), String.Empty, Convert.ToString(r("Estado"))),
+                .idItem = If(IsDBNull(r("IdItem")), 0L, Convert.ToInt64(r("IdItem")))
             }
         End If
 
@@ -126,7 +164,25 @@ Public Class FrmTransaccionesTrazabilidad
         bindingSourceTransacciones.DataSource = listaOrdenada
     End Sub
 
+    Private Sub FrmTransaccionesTrazabilidad_Shown(sender As Object, e As EventArgs) Handles Me.Shown
+        Try
+            ' Nos aseguramos de conectar el evento de selección aquí o en el Load
+            AddHandler dgvItemsTrazables.SelectionChanged, AddressOf DgvItemsTrazables_SelectionChanged
+
+            ' Forzamos la primera actualización del detalle para el registro inicial
+            ActualizarDetalle()
+
+        Catch ex As Exception
+            MsgBox(ex.Message, vbCritical, "SiCoFa")
+        End Try
+    End Sub
+
+    Private Sub DgvItemsTrazables_SelectionChanged(sender As Object, e As EventArgs)
+        ActualizarDetalle()
+    End Sub
+
     Private Async Sub btnConfirmarTransaccion_Click(sender As Object, e As EventArgs) Handles btnConfirmarTransaccion.Click
+
         Try
             If dgvItemsTrazables.CurrentRow Is Nothing Then
                 MessageBox.Show("Seleccioná una transacción.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information)
@@ -136,61 +192,21 @@ Public Class FrmTransaccionesTrazabilidad
             Dim transaccion As ItemTrazable = ObtenerTransaccionDeFila(dgvItemsTrazables.CurrentRow)
             If transaccion Is Nothing Then Return
 
-            Select Case If(transaccion.Estado, "").Trim().ToUpperInvariant()
-                Case "NO CONFIRMADA"
-                    Dim adminTrazabilidad As New N_AdminTrazabilidad()
+            Dim adminTrazabilidad As New N_AdminTrazabilidad()
 
-                    Cursor = Cursors.WaitCursor
-                    Dim exito As Boolean = Await adminTrazabilidad.ConfirmarTransaccion(transaccion)
-                    Cursor = Cursors.Default
+            Cursor = Cursors.WaitCursor
+            Dim exito As Boolean = Await adminTrazabilidad.ConfirmarTransaccion(transaccion)
+            Cursor = Cursors.Default
 
-                    ActualizarEstadoEnGrilla(dgvItemsTrazables.CurrentRow, transaccion.Estado)
-                    bindingSourceTransacciones.ResetBindings(False)
-                    dgvItemsTrazables.Refresh()
+            ActualizarEstadoEnGrilla(dgvItemsTrazables.CurrentRow, transaccion.Estado)
+            bindingSourceTransacciones.ResetBindings(False)
+            dgvItemsTrazables.Refresh()
 
-                    If exito Then
-                        MessageBox.Show("La transacción se confirmó con éxito.", "SiCoFa - Trazabilidad", MessageBoxButtons.OK, MessageBoxIcon.Information)
-                    Else
-                        MessageBox.Show($"No se pudo confirmar. Estado actual: {transaccion.Estado}", "SiCoFa - Trazabilidad", MessageBoxButtons.OK, MessageBoxIcon.Warning)
-                    End If
-
-                Case "CONFIRMADA"
-                    Dim adminTrazabilidad As New N_AdminTrazabilidad()
-
-                    Cursor = Cursors.WaitCursor
-                    Dim exito As Boolean = Await adminTrazabilidad.InformarTransaccionDispensada(transaccion)
-                    Cursor = Cursors.Default
-
-                    ActualizarEstadoEnGrilla(dgvItemsTrazables.CurrentRow, transaccion.Estado)
-                    bindingSourceTransacciones.ResetBindings(False)
-                    dgvItemsTrazables.Refresh()
-
-                    If exito Then
-                        MessageBox.Show("La transacción dispensada se informó con éxito.", "SiCoFa - Trazabilidad", MessageBoxButtons.OK, MessageBoxIcon.Information)
-                    Else
-                        MessageBox.Show($"No se pudo informar. Estado actual: {transaccion.Estado}", "SiCoFa - Trazabilidad", MessageBoxButtons.OK, MessageBoxIcon.Warning)
-                    End If
-
-                Case "DISPENSADA"
-                    Dim adminTrazabilidad As New N_AdminTrazabilidad()
-
-                    Cursor = Cursors.WaitCursor
-                    Dim exito As Boolean = Await adminTrazabilidad.InformarTransaccionDispensada(transaccion)
-                    Cursor = Cursors.Default
-
-                    ActualizarEstadoEnGrilla(dgvItemsTrazables.CurrentRow, transaccion.Estado)
-                    bindingSourceTransacciones.ResetBindings(False)
-                    dgvItemsTrazables.Refresh()
-
-                    If exito Then
-                        MessageBox.Show("La transacción dispensada se informó con éxito.", "SiCoFa - Trazabilidad", MessageBoxButtons.OK, MessageBoxIcon.Information)
-                    Else
-                        MessageBox.Show($"No se pudo informar. Estado actual: {transaccion.Estado}", "SiCoFa - Trazabilidad", MessageBoxButtons.OK, MessageBoxIcon.Warning)
-                    End If
-
-                Case Else
-                    MessageBox.Show("No hay un proceso definido para el estado: " & If(transaccion.Estado, "(sin estado)"), "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning)
-            End Select
+            If exito Then
+                MessageBox.Show("La transacción se confirmó con éxito.", "SiCoFa - Trazabilidad", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            Else
+                MessageBox.Show($"No se pudo confirmar. Estado actual: {transaccion.Estado}", "SiCoFa - Trazabilidad", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            End If
 
         Catch ex As Exception
             Cursor = Cursors.Default
@@ -248,6 +264,93 @@ Public Class FrmTransaccionesTrazabilidad
         Finally
             Cursor = Cursors.Default
             btnConfirmarTransacciones.Enabled = True
+        End Try
+    End Sub
+
+    Private Async Sub btnInformarTransaccion_Click(sender As Object, e As EventArgs) Handles btnInformarTransaccion.Click
+
+        Try
+
+            If dgvItemsTrazables.CurrentRow Is Nothing Then
+                MessageBox.Show("Seleccioná una transacción.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                Return
+            End If
+
+            Dim transaccion As ItemTrazable = ObtenerTransaccionDeFila(dgvItemsTrazables.CurrentRow)
+            If transaccion Is Nothing Then Return
+
+            Dim adminTrazabilidad As New N_AdminTrazabilidad()
+
+            Cursor = Cursors.WaitCursor
+            Dim exito As Boolean = Await adminTrazabilidad.InformarTransaccionDispensada(transaccion)
+            Cursor = Cursors.Default
+
+            ActualizarEstadoEnGrilla(dgvItemsTrazables.CurrentRow, transaccion.Estado)
+            bindingSourceTransacciones.ResetBindings(False)
+            dgvItemsTrazables.Refresh()
+
+            If exito Then
+                MessageBox.Show("La transacción dispensada se informó con éxito.", "SiCoFa - Trazabilidad", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            Else
+                MessageBox.Show($"No se pudo informar. Estado actual: {transaccion.Estado}", "SiCoFa - Trazabilidad", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            End If
+
+        Catch ex As Exception
+            Cursor = Cursors.Default
+            MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+
+    End Sub
+
+    Private Async Sub btnInformarTransacciones_Click(sender As Object, e As EventArgs) Handles btnInformarTransacciones.Click
+        Dim informadas As Integer = 0
+        Dim errores As Integer = 0
+
+        Try
+            btnInformarTransacciones.Enabled = False
+            Cursor = Cursors.WaitCursor
+
+            Dim adminTrazabilidad As New N_AdminTrazabilidad()
+
+            For Each fila As DataGridViewRow In dgvItemsTrazables.Rows
+                If fila.IsNewRow Then Continue For
+
+                Dim transaccion As ItemTrazable = ObtenerTransaccionDeFila(fila)
+                If transaccion Is Nothing Then Continue For
+
+                If Not String.Equals(transaccion.Estado?.Trim(), "DISPENSADA", StringComparison.OrdinalIgnoreCase) Then
+                    Continue For
+                End If
+
+                Dim exito As Boolean = Await adminTrazabilidad.InformarTransaccionDispensada(transaccion)
+
+                ActualizarEstadoEnGrilla(fila, transaccion.Estado)
+
+                If exito Then
+                    informadas += 1
+                Else
+                    errores += 1
+                End If
+
+                ' Refrescar la grilla de forma segura sin bloquear la UI
+                bindingSourceTransacciones.ResetBindings(False)
+                dgvItemsTrazables.Refresh()
+
+                ' Pausa de 300ms para cuidar el Web Service de PAMI
+                Await Task.Delay(300)
+            Next
+
+            MessageBox.Show(
+            $"Proceso de informe finalizado.{Environment.NewLine}Informadas: {informadas}{Environment.NewLine}Errores: {errores}",
+            "SiCoFa - Trazabilidad",
+            MessageBoxButtons.OK,
+            If(errores = 0, MessageBoxIcon.Information, MessageBoxIcon.Warning))
+
+        Catch ex As Exception
+            MessageBox.Show(ex.Message, "SiCoFa - Trazabilidad", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        Finally
+            Cursor = Cursors.Default
+            btnInformarTransacciones.Enabled = True
         End Try
     End Sub
 
