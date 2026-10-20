@@ -130,7 +130,7 @@ Public Class D_AdminItemsComprobante
 
                 If i.ItemTrazable IsNot Nothing Then
 
-                    Dim sql As String = "UPDATE transacciones_trazabilidad SET IdItem = @IdItem, Estado = 'DISPENSADA' WHERE IdTransaccion = @IdTransaccion"
+                    Dim sql As String = "UPDATE items_trazables SET IdItem = @IdItem, Estado = 'DISPENSADA' WHERE IdTransaccion = @IdTransaccion"
 
                     Using cmd As New MySqlCommand(sql, cn, tx)
                         cmd.Parameters.AddWithValue("@IdItem", idItem)

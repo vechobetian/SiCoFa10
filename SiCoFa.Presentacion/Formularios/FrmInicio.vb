@@ -467,13 +467,12 @@ Public Class FrmInicio
                 Try
                     ' 3. Llamamos a tu capa de negocio
                     Dim negocio As New N_AdminTrazabilidad()
-                    Dim transacciones As List(Of TransaccionTrazabilidad) = Await negocio.ObtenerTransaccionesNoConfirmadasAsync(strDesde, strHasta)
+                    Dim transacciones As List(Of ItemTrazable) = Await negocio.ObtenerTransaccionesNoConfirmadasAsync(strDesde, strHasta)
 
                     ' 4. Mostramos los datos en tu formulario de grilla (FrmTransacTraza)
-                    Using frmGrilla As New FrmTransaccionesTrazabilidad()
-                        frmGrilla.CargarDatosEnGrilla(transacciones)
-                        frmGrilla.ShowDialog()
-                    End Using
+                    Dim frmGrilla As New FrmTransaccionesTrazabilidad()
+                    frmGrilla.CargarDatosEnGrilla(transacciones)
+                    frmGrilla.Show()
 
                 Catch ex As Exception
                     MessageBox.Show(ex.Message, "SiCoFa - Trazabilidad", MessageBoxButtons.OK, MessageBoxIcon.Warning)
@@ -507,10 +506,9 @@ Public Class FrmInicio
             End If
 
             ' Mostrar las transacciones en la grilla.
-            Using frm As New FrmTransaccionesTrazabilidad()
-                frm.CargarDatosEnGrilla(tabla)
-                frm.ShowDialog(Me)
-            End Using
+            Dim frm As New FrmTransaccionesTrazabilidad()
+            frm.CargarDatosEnGrilla(tabla)
+            frm.Show()
 
         Catch ex As Exception
             MessageBox.Show(ex.Message, "SiCoFa - Trazabilidad", MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -541,10 +539,9 @@ Public Class FrmInicio
             End If
 
             ' Mostrar las transacciones en la grilla.
-            Using frm As New FrmTransaccionesTrazabilidad()
-                frm.CargarDatosEnGrilla(tabla)
-                frm.ShowDialog(Me)
-            End Using
+            Dim frm As New FrmTransaccionesTrazabilidad()
+            frm.CargarDatosEnGrilla(tabla)
+            frm.Show()
 
         Catch ex As Exception
             MessageBox.Show(ex.Message, "SiCoFa - Trazabilidad", MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -576,10 +573,9 @@ Public Class FrmInicio
             End If
 
             ' Mostrar las transacciones en la grilla.
-            Using frm As New FrmTransaccionesTrazabilidad()
-                frm.CargarDatosEnGrilla(tabla)
-                frm.ShowDialog(Me)
-            End Using
+            Dim frm As New FrmTransaccionesTrazabilidad()
+            frm.CargarDatosEnGrilla(tabla)
+            frm.Show()
 
         Catch ex As Exception
             MessageBox.Show(ex.Message, "SiCoFa - Trazabilidad", MessageBoxButtons.OK, MessageBoxIcon.Error)

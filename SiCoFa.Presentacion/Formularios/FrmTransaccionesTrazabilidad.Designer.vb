@@ -32,8 +32,10 @@ Partial Class FrmTransaccionesTrazabilidad
         Dim DataGridViewCellStyle7 As DataGridViewCellStyle = New DataGridViewCellStyle()
         Dim DataGridViewCellStyle8 As DataGridViewCellStyle = New DataGridViewCellStyle()
         Dim DataGridViewCellStyle9 As DataGridViewCellStyle = New DataGridViewCellStyle()
+        Dim DataGridViewCellStyle10 As DataGridViewCellStyle = New DataGridViewCellStyle()
+        Dim DataGridViewCellStyle11 As DataGridViewCellStyle = New DataGridViewCellStyle()
         TableLayoutPanel1 = New TableLayoutPanel()
-        dgvTransacciones = New DataGridView()
+        dgvItemsTrazables = New DataGridView()
         ToolStrip1 = New ToolStrip()
         btnOrdenAscendente = New ToolStripButton()
         btnOrdenDescendente = New ToolStripButton()
@@ -53,7 +55,7 @@ Partial Class FrmTransaccionesTrazabilidad
         Vencimiento = New DataGridViewTextBoxColumn()
         Estado = New DataGridViewTextBoxColumn()
         TableLayoutPanel1.SuspendLayout()
-        CType(dgvTransacciones, ComponentModel.ISupportInitialize).BeginInit()
+        CType(dgvItemsTrazables, ComponentModel.ISupportInitialize).BeginInit()
         ToolStrip1.SuspendLayout()
         SuspendLayout()
         ' 
@@ -61,7 +63,7 @@ Partial Class FrmTransaccionesTrazabilidad
         ' 
         TableLayoutPanel1.ColumnCount = 1
         TableLayoutPanel1.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 100F))
-        TableLayoutPanel1.Controls.Add(dgvTransacciones, 0, 1)
+        TableLayoutPanel1.Controls.Add(dgvItemsTrazables, 0, 1)
         TableLayoutPanel1.Controls.Add(ToolStrip1, 0, 0)
         TableLayoutPanel1.Dock = DockStyle.Fill
         TableLayoutPanel1.Location = New Point(0, 0)
@@ -73,26 +75,26 @@ Partial Class FrmTransaccionesTrazabilidad
         TableLayoutPanel1.Size = New Size(974, 519)
         TableLayoutPanel1.TabIndex = 5
         ' 
-        ' dgvTransacciones
+        ' dgvItemsTrazables
         ' 
-        dgvTransacciones.AllowUserToAddRows = False
-        dgvTransacciones.AllowUserToDeleteRows = False
-        dgvTransacciones.AllowUserToResizeColumns = False
-        dgvTransacciones.AllowUserToResizeRows = False
-        dgvTransacciones.BackgroundColor = Color.White
-        dgvTransacciones.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        dgvTransacciones.Columns.AddRange(New DataGridViewColumn() {IdTransaccion, FechaEvento, DescripcionEvento, GlnOrigen, RazonSocialOrigen, Comprobante, IdUsuario, Nombre, Gtin, Serie, Lote, Vencimiento, Estado})
-        dgvTransacciones.Dock = DockStyle.Fill
-        dgvTransacciones.Location = New Point(4, 43)
-        dgvTransacciones.Margin = New Padding(4, 3, 4, 3)
-        dgvTransacciones.Name = "dgvTransacciones"
-        dgvTransacciones.ReadOnly = True
-        dgvTransacciones.RowHeadersVisible = False
-        dgvTransacciones.RowHeadersWidth = 20
-        dgvTransacciones.SelectionMode = DataGridViewSelectionMode.FullRowSelect
-        dgvTransacciones.Size = New Size(966, 433)
-        dgvTransacciones.TabIndex = 5
-        dgvTransacciones.TabStop = False
+        dgvItemsTrazables.AllowUserToAddRows = False
+        dgvItemsTrazables.AllowUserToDeleteRows = False
+        dgvItemsTrazables.AllowUserToResizeColumns = False
+        dgvItemsTrazables.AllowUserToResizeRows = False
+        dgvItemsTrazables.BackgroundColor = Color.White
+        dgvItemsTrazables.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        dgvItemsTrazables.Columns.AddRange(New DataGridViewColumn() {IdTransaccion, FechaEvento, DescripcionEvento, GlnOrigen, RazonSocialOrigen, Comprobante, IdUsuario, Nombre, Gtin, Serie, Lote, Vencimiento, Estado})
+        dgvItemsTrazables.Dock = DockStyle.Fill
+        dgvItemsTrazables.Location = New Point(4, 43)
+        dgvItemsTrazables.Margin = New Padding(4, 3, 4, 3)
+        dgvItemsTrazables.Name = "dgvItemsTrazables"
+        dgvItemsTrazables.ReadOnly = True
+        dgvItemsTrazables.RowHeadersVisible = False
+        dgvItemsTrazables.RowHeadersWidth = 20
+        dgvItemsTrazables.SelectionMode = DataGridViewSelectionMode.FullRowSelect
+        dgvItemsTrazables.Size = New Size(966, 433)
+        dgvItemsTrazables.TabIndex = 5
+        dgvItemsTrazables.TabStop = False
         ' 
         ' ToolStrip1
         ' 
@@ -142,6 +144,8 @@ Partial Class FrmTransaccionesTrazabilidad
         ' IdTransaccion
         ' 
         IdTransaccion.DataPropertyName = "IdTransaccion"
+        DataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft
+        IdTransaccion.DefaultCellStyle = DataGridViewCellStyle1
         IdTransaccion.HeaderText = "IdTransaccion"
         IdTransaccion.Name = "IdTransaccion"
         IdTransaccion.ReadOnly = True
@@ -150,8 +154,8 @@ Partial Class FrmTransaccionesTrazabilidad
         ' FechaEvento
         ' 
         FechaEvento.DataPropertyName = "FechaEvento"
-        DataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleCenter
-        FechaEvento.DefaultCellStyle = DataGridViewCellStyle1
+        DataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter
+        FechaEvento.DefaultCellStyle = DataGridViewCellStyle2
         FechaEvento.HeaderText = "Fecha Evento"
         FechaEvento.Name = "FechaEvento"
         FechaEvento.ReadOnly = True
@@ -160,8 +164,8 @@ Partial Class FrmTransaccionesTrazabilidad
         ' 
         DescripcionEvento.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
         DescripcionEvento.DataPropertyName = "DescripcionEvento"
-        DataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.TopLeft
-        DescripcionEvento.DefaultCellStyle = DataGridViewCellStyle2
+        DataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft
+        DescripcionEvento.DefaultCellStyle = DataGridViewCellStyle3
         DescripcionEvento.HeaderText = "Evento"
         DescripcionEvento.Name = "DescripcionEvento"
         DescripcionEvento.ReadOnly = True
@@ -169,8 +173,8 @@ Partial Class FrmTransaccionesTrazabilidad
         ' GlnOrigen
         ' 
         GlnOrigen.DataPropertyName = "GlnOrigen"
-        DataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleCenter
-        GlnOrigen.DefaultCellStyle = DataGridViewCellStyle3
+        DataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleCenter
+        GlnOrigen.DefaultCellStyle = DataGridViewCellStyle4
         GlnOrigen.HeaderText = "GlnOrigen"
         GlnOrigen.Name = "GlnOrigen"
         GlnOrigen.ReadOnly = True
@@ -178,8 +182,8 @@ Partial Class FrmTransaccionesTrazabilidad
         ' RazonSocialOrigen
         ' 
         RazonSocialOrigen.DataPropertyName = "RazonSocialOrigen"
-        DataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.TopLeft
-        RazonSocialOrigen.DefaultCellStyle = DataGridViewCellStyle4
+        DataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleLeft
+        RazonSocialOrigen.DefaultCellStyle = DataGridViewCellStyle5
         RazonSocialOrigen.HeaderText = "Razon Social Origen"
         RazonSocialOrigen.Name = "RazonSocialOrigen"
         RazonSocialOrigen.ReadOnly = True
@@ -195,8 +199,8 @@ Partial Class FrmTransaccionesTrazabilidad
         ' IdUsuario
         ' 
         IdUsuario.DataPropertyName = "IdUsuario"
-        DataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleCenter
-        IdUsuario.DefaultCellStyle = DataGridViewCellStyle5
+        DataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleCenter
+        IdUsuario.DefaultCellStyle = DataGridViewCellStyle6
         IdUsuario.HeaderText = "IdUsuario"
         IdUsuario.Name = "IdUsuario"
         IdUsuario.ReadOnly = True
@@ -205,6 +209,8 @@ Partial Class FrmTransaccionesTrazabilidad
         ' Nombre
         ' 
         Nombre.DataPropertyName = "Nombre"
+        DataGridViewCellStyle7.Alignment = DataGridViewContentAlignment.MiddleLeft
+        Nombre.DefaultCellStyle = DataGridViewCellStyle7
         Nombre.HeaderText = "Articulo"
         Nombre.Name = "Nombre"
         Nombre.ReadOnly = True
@@ -213,8 +219,8 @@ Partial Class FrmTransaccionesTrazabilidad
         ' Gtin
         ' 
         Gtin.DataPropertyName = "Gtin"
-        DataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleCenter
-        Gtin.DefaultCellStyle = DataGridViewCellStyle6
+        DataGridViewCellStyle8.Alignment = DataGridViewContentAlignment.MiddleCenter
+        Gtin.DefaultCellStyle = DataGridViewCellStyle8
         Gtin.HeaderText = "Gtin"
         Gtin.Name = "Gtin"
         Gtin.ReadOnly = True
@@ -222,8 +228,8 @@ Partial Class FrmTransaccionesTrazabilidad
         ' Serie
         ' 
         Serie.DataPropertyName = "Serie"
-        DataGridViewCellStyle7.Alignment = DataGridViewContentAlignment.MiddleLeft
-        Serie.DefaultCellStyle = DataGridViewCellStyle7
+        DataGridViewCellStyle9.Alignment = DataGridViewContentAlignment.MiddleLeft
+        Serie.DefaultCellStyle = DataGridViewCellStyle9
         Serie.HeaderText = "Serie"
         Serie.Name = "Serie"
         Serie.ReadOnly = True
@@ -232,8 +238,8 @@ Partial Class FrmTransaccionesTrazabilidad
         ' Lote
         ' 
         Lote.DataPropertyName = "Lote"
-        DataGridViewCellStyle8.Alignment = DataGridViewContentAlignment.MiddleLeft
-        Lote.DefaultCellStyle = DataGridViewCellStyle8
+        DataGridViewCellStyle10.Alignment = DataGridViewContentAlignment.MiddleLeft
+        Lote.DefaultCellStyle = DataGridViewCellStyle10
         Lote.HeaderText = "Lote"
         Lote.Name = "Lote"
         Lote.ReadOnly = True
@@ -242,8 +248,8 @@ Partial Class FrmTransaccionesTrazabilidad
         ' Vencimiento
         ' 
         Vencimiento.DataPropertyName = "Vencimiento"
-        DataGridViewCellStyle9.Alignment = DataGridViewContentAlignment.MiddleCenter
-        Vencimiento.DefaultCellStyle = DataGridViewCellStyle9
+        DataGridViewCellStyle11.Alignment = DataGridViewContentAlignment.MiddleCenter
+        Vencimiento.DefaultCellStyle = DataGridViewCellStyle11
         Vencimiento.HeaderText = "Vencimiento"
         Vencimiento.Name = "Vencimiento"
         Vencimiento.ReadOnly = True
@@ -267,7 +273,7 @@ Partial Class FrmTransaccionesTrazabilidad
         Text = "Transacciones Trazabilidad"
         WindowState = FormWindowState.Maximized
         TableLayoutPanel1.ResumeLayout(False)
-        CType(dgvTransacciones, ComponentModel.ISupportInitialize).EndInit()
+        CType(dgvItemsTrazables, ComponentModel.ISupportInitialize).EndInit()
         ToolStrip1.ResumeLayout(False)
         ToolStrip1.PerformLayout()
         ResumeLayout(False)
@@ -278,7 +284,7 @@ Partial Class FrmTransaccionesTrazabilidad
     Friend WithEvents btnOrdenAscendente As ToolStripButton
     Friend WithEvents btnOrdenDescendente As ToolStripButton
     Friend WithEvents btnConfirmarTransaccion As ToolStripButton
-    Friend WithEvents dgvTransacciones As DataGridView
+    Friend WithEvents dgvItemsTrazables As DataGridView
     Friend WithEvents btnConfirmarTransacciones As ToolStripButton
     Friend WithEvents IdTransaccion As DataGridViewTextBoxColumn
     Friend WithEvents FechaEvento As DataGridViewTextBoxColumn

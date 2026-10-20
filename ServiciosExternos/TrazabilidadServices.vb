@@ -2,13 +2,13 @@
 Imports System.IO
 Imports System.Net.Http
 Imports System.Security
-Imports System.Xml.Linq
 Imports SiCoFa.Entidades
 Imports Vecho
 
 Public Class TrazabilidadServices
 
-    Private Const MstrUrl As String = "https://trazabilidad.pami.org.ar:9050/trazamed.WebService"
+    Private Const MstrUrl As String = "https://trazabilidad.pami.org.ar:9050/trazamed.WebService" 'Produccion
+    'Private Const MstrUrl As String = "https://servicios.pami.org.ar/trazamed.WebService" 'Homologacion
 
     ' Cabecera y pie SOAP
     Private Shared ReadOnly SoapHead As String =
@@ -122,8 +122,8 @@ Public Class TrazabilidadServices
         End If
     End Sub
 
-    Public Async Function TransaccionesNoConfirmadasAsync(argUsuario As String, argContrasena As String, argGln As String, argDesde As String, argHasta As String) As Task(Of List(Of TransaccionTrazabilidad))
-        Dim listaItems As New List(Of TransaccionTrazabilidad)()
+    Public Async Function TransaccionesNoConfirmadasAsync(argUsuario As String, argContrasena As String, argGln As String, argDesde As String, argHasta As String) As Task(Of List(Of ItemTrazable))
+        Dim listaItems As New List(Of ItemTrazable)()
 
         Dim cuerpo =
             "<ns1:getTransaccionesNoConfirmadas xmlns:ns1=""http://business.mywebservice.inssjp.com/"">" &
@@ -145,7 +145,7 @@ Public Class TrazabilidadServices
         Dim returnNode = doc.Descendants().FirstOrDefault(Function(e) e.Name.LocalName = "return")
         If returnNode IsNot Nothing Then
             For Each itemXml In returnNode.Elements().Where(Function(e) e.Name.LocalName = "list")
-                Dim item As New TransaccionTrazabilidad()
+                Dim item As New ItemTrazable()
 
                 Dim idTrans = itemXml.Elements().FirstOrDefault(Function(e) e.Name.LocalName = "_id_transaccion")?.Value
                 If IsNumeric(idTrans) Then item.IdTransaccion = CLng(idTrans)
@@ -245,8 +245,8 @@ Public Class TrazabilidadServices
         Return nodoCodigo.Value.Trim()
     End Function
 
-    Public Async Function VerTransaccionesAsync(argUsuario As String, argContrasena As String, argGln As String, argDesde As String, argHasta As String, argIdEstado As Integer) As Task(Of List(Of TransaccionTrazabilidad))
-        Dim listaItems As New List(Of TransaccionTrazabilidad)()
+    Public Async Function VerTransaccionesAsync(argUsuario As String, argContrasena As String, argGln As String, argDesde As String, argHasta As String, argIdEstado As Integer) As Task(Of List(Of ItemTrazable))
+        Dim listaItems As New List(Of ItemTrazable)()
 
         Dim cuerpo =
             "<ns1:getTransaccionesWS xmlns:ns1=""http://business.mywebservice.inssjp.com/"">" &
@@ -279,7 +279,7 @@ Public Class TrazabilidadServices
         Dim returnNode = doc.Descendants().FirstOrDefault(Function(e) e.Name.LocalName = "return")
         If returnNode IsNot Nothing Then
             For Each itemXml In returnNode.Elements().Where(Function(e) e.Name.LocalName = "list")
-                Dim item As New TransaccionTrazabilidad()
+                Dim item As New ItemTrazable()
 
                 Dim idTrans = itemXml.Elements().FirstOrDefault(Function(e) e.Name.LocalName = "_id_transaccion")?.Value
                 If IsNumeric(idTrans) Then item.IdTransaccion = CLng(idTrans)

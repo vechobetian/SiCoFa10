@@ -32,7 +32,7 @@ Public Class N_AdminTrazabilidad
     ''' <summary>
     ''' Obtiene las transacciones no confirmadas desde el Web Service de PAMI
     ''' </summary>
-    Public Async Function ObtenerTransaccionesNoConfirmadasAsync(argDesde As String, argHasta As String) As Task(Of List(Of TransaccionTrazabilidad))
+    Public Async Function ObtenerTransaccionesNoConfirmadasAsync(argDesde As String, argHasta As String) As Task(Of List(Of ItemTrazable))
         Dim param = ObtenerParametros()
         Dim servicio As New TrazabilidadServices()
         Dim lista = Await servicio.TransaccionesNoConfirmadasAsync(param.Usuario, param.Password, param.Gln, argDesde, argHasta)
@@ -47,7 +47,7 @@ Public Class N_AdminTrazabilidad
     ''' <summary>
     ''' Consulta el historial de transacciones en PAMI filtrando por estado y fechas
     ''' </summary>
-    Public Async Function VerTransaccionesAsync(argDesde As String, argHasta As String, argIdEstado As Integer) As Task(Of List(Of TransaccionTrazabilidad))
+    Public Async Function VerTransaccionesAsync(argDesde As String, argHasta As String, argIdEstado As Integer) As Task(Of List(Of ItemTrazable))
         Dim param = ObtenerParametros()
         Dim servicio As New TrazabilidadServices()
         Dim lista = Await servicio.VerTransaccionesAsync(param.Usuario, param.Password, param.Gln, argDesde, argHasta, argIdEstado)
@@ -94,7 +94,7 @@ Public Class N_AdminTrazabilidad
     ''' <summary>
     ''' Procesa el flujo completo de confirmación: valida artículo, confirma en ANMAT y guarda localmente
     ''' </summary>
-    Public Async Function ConfirmarTransaccion(argTransaccion As TransaccionTrazabilidad) As Task(Of Boolean)
+    Public Async Function ConfirmarTransaccion(argTransaccion As ItemTrazable) As Task(Of Boolean)
         Try
             Dim adminDB As New D_AdminDB()
             Dim codBarras13 As String = If(argTransaccion.Gtin.Length >= 13, Strings.Right(argTransaccion.Gtin, 13), argTransaccion.Gtin)
@@ -130,7 +130,7 @@ Public Class N_AdminTrazabilidad
                 {"Estado", "CONFIRMADA"}
             }
 
-            adminDB.InsertarRegistro("transacciones_trazabilidad", valoresColumnas)
+            adminDB.InsertarRegistro("items_trazables", valoresColumnas)
             argTransaccion.Estado = "CONFIRMADA"
 
             Return True
@@ -142,7 +142,7 @@ Public Class N_AdminTrazabilidad
     ''' <summary>
     ''' Informa una transacción dispensada individual al Web Service de PAMI y actualiza la base local.
     ''' </summary>
-    Public Async Function InformarTransaccionDispensada(argTransaccion As TransaccionTrazabilidad) As Task(Of Boolean)
+    Public Async Function InformarTransaccionDispensada(argTransaccion As ItemTrazable) As Task(Of Boolean)
         Try
             Dim param = ObtenerParametros()
             Dim servicio As New TrazabilidadServices()
@@ -176,7 +176,7 @@ Public Class N_AdminTrazabilidad
             Dim adminDB As New D_AdminDB()
 
             ' Actualizamos el estado local a INFORMADA y guardamos el IdTransaccion devuelto por PAMI
-            adminDB.ActualizarCampo("transacciones_trazabilidad", "Estado", "INFORMADA", "IdTransaccion=" & argTransaccion.IdTransaccion)
+            adminDB.ActualizarCampo("items_trazables", "Estado", "INFORMADA", "IdTransaccion=" & argTransaccion.IdTransaccion)
 
             argTransaccion.Estado = "INFORMADA"
             Return True
@@ -195,7 +195,7 @@ Public Class N_AdminTrazabilidad
         Dim adminDB As New D_AdminDB()
         Dim sql As String =
             "SELECT IdTransaccion, FechaEvento, DescripcionEvento, GlnOrigen, RazonSocialOrigen, Comprobante, IdUsuario, Nombre, Gtin, Serie, Lote, Vencimiento, Estado " &
-            "FROM transacciones_trazabilidad " &
+            "FROM items_trazables " &
             "WHERE Estado = 'CONFIRMADA' " &
             "ORDER BY FechaEvento DESC"
         Return adminDB.ObtenerTabla(sql)
@@ -205,7 +205,7 @@ Public Class N_AdminTrazabilidad
         Dim adminDB As New D_AdminDB()
         Dim sql As String =
             "SELECT IdTransaccion, FechaEvento, DescripcionEvento, GlnOrigen, RazonSocialOrigen, Comprobante, IdUsuario, Nombre, Gtin, Serie, Lote, Vencimiento, Estado " &
-            "FROM transacciones_trazabilidad " &
+            "FROM items_trazables " &
             "WHERE Estado = 'DISPENSADA' " &
             "ORDER BY FechaEvento DESC"
         Return adminDB.ObtenerTabla(sql)
@@ -215,7 +215,7 @@ Public Class N_AdminTrazabilidad
         Dim adminDB As New D_AdminDB()
         Dim sql As String =
             "SELECT IdTransaccion, FechaEvento, DescripcionEvento, GlnOrigen, RazonSocialOrigen, Comprobante, IdUsuario, Nombre, Gtin, Serie, Lote, Vencimiento, Estado " &
-            "FROM transacciones_trazabilidad " &
+            "FROM items_trazables " &
             "WHERE Estado = 'INFORMADA' " &
             "ORDER BY FechaEvento DESC"
         Return adminDB.ObtenerTabla(sql)
@@ -228,7 +228,7 @@ Public Class N_AdminTrazabilidad
 
         Dim sql As String =
             $"SELECT IdTransaccion, FechaEvento, DescripcionEvento, GlnOrigen, RazonSocialOrigen, Comprobante, IdUsuario, Nombre, Gtin, Serie, Lote, Vencimiento, Estado " &
-            $"FROM transacciones_trazabilidad " &
+            $"FROM items_trazables " &
             $"WHERE Gtin='{gtinClean}' " &
             $"  AND Serie LIKE '%{serieClean}%' " &
             $"  AND Estado = 'CONFIRMADA' " &
@@ -237,11 +237,11 @@ Public Class N_AdminTrazabilidad
         Return adminDB.ObtenerTabla(sql)
     End Function
 
-    Public Function ObtenerTransaccionPorIdTransaccion(argIdTransaccion As Long) As TransaccionTrazabilidad
+    Public Function ObtenerTransaccionPorIdTransaccion(argIdTransaccion As Long) As ItemTrazable
         Dim adminDB As New D_AdminDB()
         Dim sql As String =
             $"SELECT IdTransaccion, FechaEvento, DescripcionEvento, GlnOrigen, RazonSocialOrigen, Comprobante, IdUsuario, Nombre, Gtin, Serie, Lote, Vencimiento, Estado " &
-            $"FROM transacciones_trazabilidad " &
+            $"FROM items_trazables " &
             $"WHERE IdTransaccion={argIdTransaccion}"
 
         Dim dt As DataTable = adminDB.ObtenerTabla(sql)
@@ -252,7 +252,7 @@ Public Class N_AdminTrazabilidad
 
         Dim fila As DataRow = dt.Rows(0)
 
-        Return New TransaccionTrazabilidad With {
+        Return New ItemTrazable With {
             .IdTransaccion = If(IsDBNull(fila("IdTransaccion")), 0L, Convert.ToInt64(fila("IdTransaccion"))),
             .FechaEvento = If(IsDBNull(fila("FechaEvento")), Date.MinValue, Convert.ToDateTime(fila("FechaEvento"))),
             .DescripcionEvento = If(IsDBNull(fila("DescripcionEvento")), String.Empty, Convert.ToString(fila("DescripcionEvento"))),

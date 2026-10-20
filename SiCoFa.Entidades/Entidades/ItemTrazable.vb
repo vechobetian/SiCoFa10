@@ -1,4 +1,4 @@
-﻿Public Class TransaccionTrazabilidad
+﻿Public Class ItemTrazable
     Public Property IdTransaccion As Long
     Public Property FechaEvento As Date
     Public Property DescripcionEvento As String

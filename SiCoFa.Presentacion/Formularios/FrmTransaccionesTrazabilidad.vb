@@ -5,33 +5,33 @@ Public Class FrmTransaccionesTrazabilidad
 
     Private bindingSourceTransacciones As New BindingSource()
 
-    Public Sub CargarDatosEnGrilla(argTransacciones As List(Of TransaccionTrazabilidad))
-        Me.dgvTransacciones.AutoGenerateColumns = False
+    Public Sub CargarDatosEnGrilla(argTransacciones As List(Of ItemTrazable))
+        Me.dgvItemsTrazables.AutoGenerateColumns = False
         Me.bindingSourceTransacciones.DataSource = argTransacciones
-        Me.dgvTransacciones.DataSource = Me.bindingSourceTransacciones
+        Me.dgvItemsTrazables.DataSource = Me.bindingSourceTransacciones
     End Sub
 
     Public Sub CargarDatosEnGrilla(argTabla As DataTable)
-        Me.dgvTransacciones.AutoGenerateColumns = False
+        Me.dgvItemsTrazables.AutoGenerateColumns = False
         Me.bindingSourceTransacciones.DataSource = argTabla.DefaultView
-        Me.dgvTransacciones.DataSource = Me.bindingSourceTransacciones
+        Me.dgvItemsTrazables.DataSource = Me.bindingSourceTransacciones
     End Sub
 
     ''' <summary>
     ''' Extrae un objeto TransaccionTrazabilidad sin importar si la fuente es List(Of TransaccionTrazabilidad) o DataView/DataTable
     ''' </summary>
-    Private Function ObtenerTransaccionDeFila(fila As DataGridViewRow) As TransaccionTrazabilidad
+    Private Function ObtenerTransaccionDeFila(fila As DataGridViewRow) As ItemTrazable
         If fila Is Nothing OrElse fila.DataBoundItem Is Nothing Then Return Nothing
 
         ' Caso 1: Si la fuente es List(Of TransaccionTrazabilidad)
-        Dim obj = TryCast(fila.DataBoundItem, TransaccionTrazabilidad)
+        Dim obj = TryCast(fila.DataBoundItem, ItemTrazable)
         If obj IsNot Nothing Then Return obj
 
         ' Caso 2: Si la fuente es DataTable / DataView
         Dim rowView = TryCast(fila.DataBoundItem, DataRowView)
         If rowView IsNot Nothing Then
             Dim r = rowView.Row
-            Return New TransaccionTrazabilidad With {
+            Return New ItemTrazable With {
                 .IdTransaccion = If(IsDBNull(r("IdTransaccion")), 0L, Convert.ToInt64(r("IdTransaccion"))),
                 .FechaEvento = If(IsDBNull(r("FechaEvento")), Date.MinValue, Convert.ToDateTime(r("FechaEvento"))),
                 .DescripcionEvento = If(IsDBNull(r("DescripcionEvento")), String.Empty, Convert.ToString(r("DescripcionEvento"))),
@@ -57,7 +57,7 @@ Public Class FrmTransaccionesTrazabilidad
     Private Sub ActualizarEstadoEnGrilla(fila As DataGridViewRow, nuevoEstado As String)
         If fila Is Nothing OrElse fila.DataBoundItem Is Nothing Then Return
 
-        Dim obj = TryCast(fila.DataBoundItem, TransaccionTrazabilidad)
+        Dim obj = TryCast(fila.DataBoundItem, ItemTrazable)
         If obj IsNot Nothing Then
             obj.Estado = nuevoEstado
             Return
@@ -78,31 +78,31 @@ Public Class FrmTransaccionesTrazabilidad
     End Sub
 
     Private Sub OrdenarGrilla(argAscendente As Boolean)
-        If dgvTransacciones.CurrentCell Is Nothing Then
+        If dgvItemsTrazables.CurrentCell Is Nothing Then
             MessageBox.Show("Seleccioná una celda de la columna por la cual ordenar.")
             Return
         End If
 
-        Dim nombrePropiedad As String = dgvTransacciones.CurrentCell.OwningColumn.DataPropertyName
+        Dim nombrePropiedad As String = dgvItemsTrazables.CurrentCell.OwningColumn.DataPropertyName
         If String.IsNullOrWhiteSpace(nombrePropiedad) Then Return
 
         ' Caso 1: Si la grilla se cargó desde una List(Of TransaccionTrazabilidad)
-        Dim transacciones = TryCast(bindingSourceTransacciones.DataSource, List(Of TransaccionTrazabilidad))
+        Dim transacciones = TryCast(bindingSourceTransacciones.DataSource, List(Of ItemTrazable))
         If transacciones IsNot Nothing Then
             Select Case nombrePropiedad
-                Case NameOf(TransaccionTrazabilidad.IdTransaccion) : AplicarOrden(transacciones, Function(t) t.IdTransaccion, argAscendente)
-                Case NameOf(TransaccionTrazabilidad.FechaEvento) : AplicarOrden(transacciones, Function(t) t.FechaEvento, argAscendente)
-                Case NameOf(TransaccionTrazabilidad.DescripcionEvento) : AplicarOrden(transacciones, Function(t) t.DescripcionEvento, argAscendente)
-                Case NameOf(TransaccionTrazabilidad.GlnOrigen) : AplicarOrden(transacciones, Function(t) t.GlnOrigen, argAscendente)
-                Case NameOf(TransaccionTrazabilidad.RazonSocialOrigen) : AplicarOrden(transacciones, Function(t) t.RazonSocialOrigen, argAscendente)
-                Case NameOf(TransaccionTrazabilidad.Comprobante) : AplicarOrden(transacciones, Function(t) t.Comprobante, argAscendente)
-                Case NameOf(TransaccionTrazabilidad.IdUsuario) : AplicarOrden(transacciones, Function(t) t.IdUsuario, argAscendente)
-                Case NameOf(TransaccionTrazabilidad.Nombre) : AplicarOrden(transacciones, Function(t) t.Nombre, argAscendente)
-                Case NameOf(TransaccionTrazabilidad.Gtin) : AplicarOrden(transacciones, Function(t) t.Gtin, argAscendente)
-                Case NameOf(TransaccionTrazabilidad.Serie) : AplicarOrden(transacciones, Function(t) t.Serie, argAscendente)
-                Case NameOf(TransaccionTrazabilidad.Lote) : AplicarOrden(transacciones, Function(t) t.Lote, argAscendente)
-                Case NameOf(TransaccionTrazabilidad.Vencimiento) : AplicarOrden(transacciones, Function(t) t.Vencimiento, argAscendente)
-                Case NameOf(TransaccionTrazabilidad.Estado) : AplicarOrden(transacciones, Function(t) t.Estado, argAscendente)
+                Case NameOf(ItemTrazable.IdTransaccion) : AplicarOrden(transacciones, Function(t) t.IdTransaccion, argAscendente)
+                Case NameOf(ItemTrazable.FechaEvento) : AplicarOrden(transacciones, Function(t) t.FechaEvento, argAscendente)
+                Case NameOf(ItemTrazable.DescripcionEvento) : AplicarOrden(transacciones, Function(t) t.DescripcionEvento, argAscendente)
+                Case NameOf(ItemTrazable.GlnOrigen) : AplicarOrden(transacciones, Function(t) t.GlnOrigen, argAscendente)
+                Case NameOf(ItemTrazable.RazonSocialOrigen) : AplicarOrden(transacciones, Function(t) t.RazonSocialOrigen, argAscendente)
+                Case NameOf(ItemTrazable.Comprobante) : AplicarOrden(transacciones, Function(t) t.Comprobante, argAscendente)
+                Case NameOf(ItemTrazable.IdUsuario) : AplicarOrden(transacciones, Function(t) t.IdUsuario, argAscendente)
+                Case NameOf(ItemTrazable.Nombre) : AplicarOrden(transacciones, Function(t) t.Nombre, argAscendente)
+                Case NameOf(ItemTrazable.Gtin) : AplicarOrden(transacciones, Function(t) t.Gtin, argAscendente)
+                Case NameOf(ItemTrazable.Serie) : AplicarOrden(transacciones, Function(t) t.Serie, argAscendente)
+                Case NameOf(ItemTrazable.Lote) : AplicarOrden(transacciones, Function(t) t.Lote, argAscendente)
+                Case NameOf(ItemTrazable.Vencimiento) : AplicarOrden(transacciones, Function(t) t.Vencimiento, argAscendente)
+                Case NameOf(ItemTrazable.Estado) : AplicarOrden(transacciones, Function(t) t.Estado, argAscendente)
                 Case Else
                     MessageBox.Show("No hay un criterio de ordenamiento definido para esta columna.")
             End Select
@@ -116,8 +116,8 @@ Public Class FrmTransaccionesTrazabilidad
         End If
     End Sub
 
-    Private Sub AplicarOrden(Of TKey)(argTransacciones As List(Of TransaccionTrazabilidad), argSelector As Func(Of TransaccionTrazabilidad, TKey), argAscendente As Boolean)
-        Dim listaOrdenada As List(Of TransaccionTrazabilidad)
+    Private Sub AplicarOrden(Of TKey)(argTransacciones As List(Of ItemTrazable), argSelector As Func(Of ItemTrazable, TKey), argAscendente As Boolean)
+        Dim listaOrdenada As List(Of ItemTrazable)
         If argAscendente Then
             listaOrdenada = argTransacciones.OrderBy(argSelector).ToList()
         Else
@@ -128,12 +128,12 @@ Public Class FrmTransaccionesTrazabilidad
 
     Private Async Sub btnConfirmarTransaccion_Click(sender As Object, e As EventArgs) Handles btnConfirmarTransaccion.Click
         Try
-            If dgvTransacciones.CurrentRow Is Nothing Then
+            If dgvItemsTrazables.CurrentRow Is Nothing Then
                 MessageBox.Show("Seleccioná una transacción.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information)
                 Return
             End If
 
-            Dim transaccion As TransaccionTrazabilidad = ObtenerTransaccionDeFila(dgvTransacciones.CurrentRow)
+            Dim transaccion As ItemTrazable = ObtenerTransaccionDeFila(dgvItemsTrazables.CurrentRow)
             If transaccion Is Nothing Then Return
 
             Select Case If(transaccion.Estado, "").Trim().ToUpperInvariant()
@@ -144,9 +144,9 @@ Public Class FrmTransaccionesTrazabilidad
                     Dim exito As Boolean = Await adminTrazabilidad.ConfirmarTransaccion(transaccion)
                     Cursor = Cursors.Default
 
-                    ActualizarEstadoEnGrilla(dgvTransacciones.CurrentRow, transaccion.Estado)
+                    ActualizarEstadoEnGrilla(dgvItemsTrazables.CurrentRow, transaccion.Estado)
                     bindingSourceTransacciones.ResetBindings(False)
-                    dgvTransacciones.Refresh()
+                    dgvItemsTrazables.Refresh()
 
                     If exito Then
                         MessageBox.Show("La transacción se confirmó con éxito.", "SiCoFa - Trazabilidad", MessageBoxButtons.OK, MessageBoxIcon.Information)
@@ -155,7 +155,21 @@ Public Class FrmTransaccionesTrazabilidad
                     End If
 
                 Case "CONFIRMADA"
-                    MessageBox.Show("Esta transacción ya está confirmada.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                    Dim adminTrazabilidad As New N_AdminTrazabilidad()
+
+                    Cursor = Cursors.WaitCursor
+                    Dim exito As Boolean = Await adminTrazabilidad.InformarTransaccionDispensada(transaccion)
+                    Cursor = Cursors.Default
+
+                    ActualizarEstadoEnGrilla(dgvItemsTrazables.CurrentRow, transaccion.Estado)
+                    bindingSourceTransacciones.ResetBindings(False)
+                    dgvItemsTrazables.Refresh()
+
+                    If exito Then
+                        MessageBox.Show("La transacción dispensada se informó con éxito.", "SiCoFa - Trazabilidad", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                    Else
+                        MessageBox.Show($"No se pudo informar. Estado actual: {transaccion.Estado}", "SiCoFa - Trazabilidad", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                    End If
 
                 Case "DISPENSADA"
                     Dim adminTrazabilidad As New N_AdminTrazabilidad()
@@ -164,9 +178,9 @@ Public Class FrmTransaccionesTrazabilidad
                     Dim exito As Boolean = Await adminTrazabilidad.InformarTransaccionDispensada(transaccion)
                     Cursor = Cursors.Default
 
-                    ActualizarEstadoEnGrilla(dgvTransacciones.CurrentRow, transaccion.Estado)
+                    ActualizarEstadoEnGrilla(dgvItemsTrazables.CurrentRow, transaccion.Estado)
                     bindingSourceTransacciones.ResetBindings(False)
-                    dgvTransacciones.Refresh()
+                    dgvItemsTrazables.Refresh()
 
                     If exito Then
                         MessageBox.Show("La transacción dispensada se informó con éxito.", "SiCoFa - Trazabilidad", MessageBoxButtons.OK, MessageBoxIcon.Information)
@@ -194,10 +208,10 @@ Public Class FrmTransaccionesTrazabilidad
 
             Dim adminTrazabilidad As New N_AdminTrazabilidad()
 
-            For Each fila As DataGridViewRow In dgvTransacciones.Rows
+            For Each fila As DataGridViewRow In dgvItemsTrazables.Rows
                 If fila.IsNewRow Then Continue For
 
-                Dim transaccion As TransaccionTrazabilidad = ObtenerTransaccionDeFila(fila)
+                Dim transaccion As ItemTrazable = ObtenerTransaccionDeFila(fila)
                 If transaccion Is Nothing Then Continue For
 
                 If Not String.Equals(transaccion.Estado?.Trim(), "NO CONFIRMADA", StringComparison.OrdinalIgnoreCase) Then
@@ -217,7 +231,7 @@ Public Class FrmTransaccionesTrazabilidad
 
                 ' Refrescar la grilla de forma segura sin bloquear la UI
                 bindingSourceTransacciones.ResetBindings(False)
-                dgvTransacciones.Refresh()
+                dgvItemsTrazables.Refresh()
 
                 ' Pausa de 300ms para no saturar el Web Service de PAMI y mantener fluidez
                 Await Task.Delay(300)

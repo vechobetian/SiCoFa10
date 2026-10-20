@@ -734,7 +734,7 @@ Public Class FrmVentas
             uc.ModoItemCargado(articulo.Fraccionable, articulo.Seccion.EstablecerPrecio)
 
             If Not String.IsNullOrWhiteSpace(articulo.Gtin) Then
-                Dim itemTrazable As TransaccionTrazabilidad = ObtenerItemTrazable(articulo.Gtin)
+                Dim itemTrazable As ItemTrazable = ObtenerItemTrazable(articulo.Gtin)
 
                 If itemTrazable IsNot Nothing Then
                     item.ItemTrazable = itemTrazable
@@ -762,12 +762,12 @@ Public Class FrmVentas
 
     End Sub
 
-    Private Function ObtenerItemTrazable(argGtin As String) As TransaccionTrazabilidad
+    Private Function ObtenerItemTrazable(argGtin As String) As ItemTrazable
 
         Dim adminTrazabilidad As New N_AdminTrazabilidad
         Dim serie As String
         Dim dt As DataTable
-        Dim transaccion As TransaccionTrazabilidad = Nothing
+        Dim transaccion As ItemTrazable = Nothing
 
         Do
             serie = InputBox("¡MEDICAMENTO TRAZABLE!" & vbCrLf & "Ingrese el serial", "SiCoFa")
@@ -793,7 +793,7 @@ Public Class FrmVentas
 
                 Dim fila As DataRow = dt.Rows(0)
 
-                transaccion = New TransaccionTrazabilidad With {
+                transaccion = New ItemTrazable With {
                                                                     .IdTransaccion = If(IsDBNull(fila("IdTransaccion")), 0L, Convert.ToInt64(fila("IdTransaccion"))),
                                                                     .FechaEvento = If(IsDBNull(fila("FechaEvento")), Date.MinValue, Convert.ToDateTime(fila("FechaEvento"))),
                                                                     .DescripcionEvento = If(IsDBNull(fila("DescripcionEvento")), String.Empty, Convert.ToString(fila("DescripcionEvento"))),
