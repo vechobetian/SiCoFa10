@@ -49,7 +49,7 @@ Public Module ArticuloMapper
                             datos("DFrac").ToString,
                             Convert.ToInt32(datos("UDiv")),
                             Convert.ToDecimal(datos("RFrac")),
-                            Convert.ToBoolean(datos("Gravamen")),
+                            datos("Gravamen").ToString,
                             Convert.ToInt32(datos("CodiFF")),
                             datos("Potencia").ToString,
                             Convert.ToInt32(datos("CodiUP")),

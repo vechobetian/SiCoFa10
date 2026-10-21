@@ -31,7 +31,7 @@ Public Class Articulo
     Property TipoPromocion As Promocion
     Property UDiv As Integer
     Property RFrac As Decimal
-    Property Gravamen As Boolean
+    Property Gravamen As String
     Property CodiFF As Integer
     Property Potencia As String
     Property CodiUP As Integer
@@ -69,7 +69,7 @@ Public Class Articulo
                    ByVal argDFrac As String,
                    ByVal argUDiv As Integer,
                    ByVal argRFrac As Decimal,
-                   ByVal argGravamen As Boolean,
+                   ByVal argGravamen As String,
                    ByVal argCodiFF As Integer,
                    ByVal argPotencia As String,
                    ByVal argCodiUP As Integer,
